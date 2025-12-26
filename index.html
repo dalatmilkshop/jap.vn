@@ -21,16 +21,21 @@
         a { text-decoration: none; color: var(--primary); }
         a:hover { text-decoration: underline; }
 
-        /* LOGIC NGÔN NGỮ */
+        /* LOGIC NGÔN NGỮ (HARDCORE FIX) */
         [lang="vi"] { display: none !important; }
         [lang="en"] { display: block !important; }
+        span[lang="vi"] { display: none !important; }
+        span[lang="en"] { display: inline !important; }
+
         body.show-vi [lang="vi"] { display: block !important; }
         body.show-vi [lang="en"] { display: none !important; }
+        body.show-vi span[lang="vi"] { display: inline !important; }
+        body.show-vi span[lang="en"] { display: none !important; }
 
         /* --- LAYOUT --- */
         .container { max-width: 1100px; margin: 0 auto; display: flex; min-height: 100vh; }
         
-        /* --- SIDEBAR (Giống trang Docs) --- */
+        /* --- SIDEBAR --- */
         .sidebar { width: 280px; background: var(--bg-light); border-right: 1px solid var(--border); padding: 30px 20px; display: flex; flex-direction: column; }
         .logo { font-size: 1.5rem; font-weight: 700; color: #000; margin-bottom: 30px; display: block; text-decoration: none !important; }
         .logo span { color: var(--primary); }
@@ -60,7 +65,8 @@
         .footer-simple { margin-top: 60px; padding-top: 20px; border-top: 1px solid var(--border); font-size: 0.85rem; color: #999; display: flex; justify-content: space-between; }
         
         /* LANG SWITCH */
-        .lang-btn { background: #fff; border: 1px solid var(--border); padding: 5px 10px; border-radius: 4px; cursor: pointer; font-size: 0.8rem; }
+        .lang-btn { background: #fff; border: 1px solid var(--border); padding: 5px 10px; border-radius: 4px; cursor: pointer; font-size: 0.8rem; margin-top: auto; }
+        .lang-btn:hover { border-color: var(--primary); color: var(--primary); }
 
         @media (max-width: 768px) {
             .container { flex-direction: column; }
@@ -82,13 +88,16 @@
             <a href="#" class="menu-link">Legacy Systems</a>
 
             <div class="menu-title">About Project</div>
-            <a href="story.html" class="menu-link" style="color: var(--primary); font-weight: 500;">★ The Origin Story / Câu chuyện khởi nguồn</a>
+            <a href="story.html" class="menu-link" style="color: var(--primary); font-weight: 500;">
+                <span lang="en">★ The Origin Story</span>
+                <span lang="vi">★ Câu chuyện khởi nguồn</span>
+            </a>
 
             <div class="menu-title">External Links</div>
             <a href="#" class="menu-link">Rockwell Knowledgebase ↗</a>
             <a href="#" class="menu-link">PLCTalk Forum ↗</a>
             
-            <div style="margin-top: auto;">
+            <div style="margin-top: 30px;">
                 <button class="lang-btn" onclick="toggleLanguage()">🌐 EN / VI</button>
             </div>
         </aside>
@@ -178,10 +187,12 @@
     <script>
         const savedLang = localStorage.getItem('jap_lang');
         const body = document.body;
+        // Chỉ hiện tiếng Việt nếu đã lưu trước đó
         if (savedLang === 'vi') body.classList.add('show-vi');
 
         function toggleLanguage() {
             body.classList.toggle('show-vi');
+            // Lưu trạng thái
             localStorage.setItem('jap_lang', body.classList.contains('show-vi') ? 'vi' : 'en');
         }
     </script>

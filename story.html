@@ -6,22 +6,27 @@
     <title>The Origin Story - JAP.vn</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Merriweather:ital,wght@0,300;0,700;1,300&display=swap" rel="stylesheet">
     <style>
-        /* --- GIỮ NGUYÊN STYLE CŨ --- */
-        :root { --primary: #0056b3; --text-dark: #333; --text-light: #555; --bg-light: #f8f9fa; --border: #e1e4e8; }
+        /* --- CORE STYLES --- */
+        :root { --primary: #0056b3; --text-dark: #333; --bg-light: #f8f9fa; --border: #e1e4e8; }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Roboto', sans-serif; background-color: #fff; color: var(--text-dark); line-height: 1.8; }
         
         /* LOGIC NGÔN NGỮ */
         [lang="vi"] { display: none !important; }
         [lang="en"] { display: block !important; }
+        span[lang="vi"] { display: none !important; }
+        span[lang="en"] { display: inline !important; }
+        
         body.show-vi [lang="vi"] { display: block !important; }
         body.show-vi [lang="en"] { display: none !important; }
+        body.show-vi span[lang="vi"] { display: inline !important; }
+        body.show-vi span[lang="en"] { display: none !important; }
 
         .container { max-width: 800px; margin: 0 auto; padding: 60px 20px; }
         
         /* --- STORY STYLES --- */
-        .back-link { font-size: 0.9rem; text-decoration: none; color: #999; display: inline-block; margin-bottom: 40px; }
-        .back-link:hover { color: var(--primary); }
+        .back-link { font-size: 0.9rem; text-decoration: none; color: #999; display: inline-block; margin-bottom: 40px; transition: 0.3s; }
+        .back-link:hover { color: var(--primary); transform: translateX(-5px); }
 
         h1 { font-family: 'Merriweather', serif; font-size: 2.5rem; margin-bottom: 10px; font-weight: 700; color: #111; }
         .subtitle { font-size: 1.1rem; color: #777; font-style: italic; margin-bottom: 50px; border-bottom: 1px solid var(--border); padding-bottom: 30px; }
@@ -33,7 +38,6 @@
         }
         
         h2 { font-size: 1.5rem; margin-bottom: 15px; color: var(--primary); }
-        
         p { margin-bottom: 20px; font-size: 1.05rem; color: #444; }
         
         .highlight-box {
@@ -45,8 +49,8 @@
         .sign-name { font-weight: bold; font-size: 1.1rem; }
         .sign-role { font-size: 0.9rem; color: #777; }
 
-        .lang-btn { position: fixed; top: 20px; right: 20px; background: #fff; border: 1px solid var(--border); padding: 8px 16px; border-radius: 20px; cursor: pointer; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
-
+        .lang-btn { position: fixed; top: 20px; right: 20px; background: #fff; border: 1px solid var(--border); padding: 8px 16px; border-radius: 20px; cursor: pointer; box-shadow: 0 2px 10px rgba(0,0,0,0.1); z-index: 100; }
+        .lang-btn:hover { border-color: var(--primary); color: var(--primary); }
     </style>
 </head>
 <body>
@@ -54,7 +58,10 @@
     <button class="lang-btn" onclick="toggleLanguage()">🌐 EN / VI</button>
 
     <div class="container">
-        <a href="index.html" class="back-link">← Back to Documentation Hub</a>
+        <a href="index.html" class="back-link">
+            <span lang="en">← Back to Documentation Hub</span>
+            <span lang="vi">← Quay lại Trang chủ</span>
+        </a>
 
         <h1>
             <span lang="en">Why We Are Here</span>
@@ -134,11 +141,11 @@
             <p>
                 <span lang="en">
                     I decided to re-acquire and rebuild JAP.vn, not for profit, but to continue the spirit of sharing. 
-                    <strong>"Phú quý sinh lễ nghĩa"</strong> — As we grow, we return to our roots to support those who are starting where we once did.
+                    <strong>"Pay it forward"</strong> — As we grow, we return to our roots to support those who are starting exactly where we once did.
                 </span>
                 <span lang="vi">
                     Tôi quyết định mua lại và xây dựng lại JAP.vn, không phải vì lợi nhuận, mà để tiếp nối tinh thần chia sẻ. 
-                    <strong>"Phú quý sinh lễ nghĩa"</strong> — Khi đã vững bước, chúng ta quay lại bồi đắp cội nguồn để hỗ trợ những người đang bắt đầu ở vạch xuất phát giống mình ngày xưa.
+                    <strong>"Uống nước nhớ nguồn"</strong> — Khi đã vững bước, chúng ta quay lại bồi đắp cội nguồn để hỗ trợ những người đang bắt đầu ở vạch xuất phát giống mình ngày xưa.
                 </span>
             </p>
         </div>
