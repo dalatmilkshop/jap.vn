@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="JAP - Just Automation Platform. The premier knowledge base for Industrial Automation.">
-    <title>JAP.vn - Just Automation Platform | Industrial Knowledge Base</title>
+    <meta name="description" content="JAP - Just Automation Platform. Independent industrial automation knowledge base and community resources.">
+    <title>JAP.vn - Just Automation Platform | Independent Knowledge Base</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         /* --- VARIABLES --- */
@@ -20,14 +20,12 @@
         a { text-decoration: none; transition: 0.3s; color: inherit; }
         ul { list-style: none; }
         
-        /* --- LOGIC NGÔN NGỮ (HARDCORE FIX) --- */
-        /* Mặc định: Luôn ẨN tiếng Việt, HIỆN tiếng Anh */
+        /* --- LOGIC NGÔN NGỮ --- */
         [lang="vi"] { display: none !important; }
         [lang="en"] { display: block !important; }
         span[lang="vi"] { display: none !important; }
         span[lang="en"] { display: inline !important; }
 
-        /* Chỉ khi Body có class .show-vi thì mới đảo ngược */
         body.show-vi [lang="vi"] { display: block !important; }
         body.show-vi [lang="en"] { display: none !important; }
         body.show-vi span[lang="vi"] { display: inline !important; }
@@ -81,7 +79,7 @@
         }
         .resource-row:hover { border-color: var(--text-sub); background: rgba(255,255,255,0.03); }
         .res-left { display: flex; align-items: center; gap: 16px; }
-        .file-icon { width: 40px; height: 40px; background: rgba(59, 130, 246, 0.1); color: var(--primary); display: flex; align-items: center; justify-content: center; border-radius: 6px; font-weight: bold; }
+        .file-icon { width: 40px; height: 40px; background: rgba(59, 130, 246, 0.1); color: var(--primary); display: flex; align-items: center; justify-content: center; border-radius: 6px; font-weight: bold; font-size: 0.8rem; }
         .res-info h4 { font-size: 1rem; color: var(--text-main); }
         .res-info span { font-size: 0.85rem; color: var(--text-sub); }
         .download-arrow { color: var(--text-sub); font-size: 1.2rem; }
@@ -104,9 +102,9 @@
             <a href="#" class="logo">JAP<span>.vn</span></a>
             <nav>
                 <ul class="nav-links">
-                    <li><a href="#"><span lang="en">Hardware</span><span lang="vi">Phần cứng</span></a></li>
-                    <li><a href="#"><span lang="en">Software</span><span lang="vi">Phần mềm</span></a></li>
-                    <li><a href="#"><span lang="en">Networks</span><span lang="vi">Mạng CN</span></a></li>
+                    <li><a href="#"><span lang="en">Controllers</span><span lang="vi">Bộ điều khiển</span></a></li>
+                    <li><a href="#"><span lang="en">HMI & SCADA</span><span lang="vi">HMI & SCADA</span></a></li>
+                    <li><a href="#"><span lang="en">Motion</span><span lang="vi">Truyền động</span></a></li>
                 </ul>
             </nav>
             <button class="lang-switch" onclick="toggleLanguage()">
@@ -118,30 +116,30 @@
     <section class="hero">
         <div class="container">
             <span class="badge">
-                <span lang="en">v37.00 Firmware Released</span>
-                <span lang="vi">Đã cập nhật Firmware v37.00</span>
+                <span lang="en">Tech Update: v37 Series</span>
+                <span lang="vi">Tin công nghệ: Series v37</span>
             </span>
             <h1 style="margin-top: 20px;">
                 <span lang="en">Industrial Intelligence <br> <span style="color: var(--primary);">Simplified.</span></span>
                 <span lang="vi">Đơn giản hóa <br> <span style="color: var(--primary);">Trí tuệ Công nghiệp.</span></span>
             </h1>
             <p>
-                <span lang="en">The definitive archive for Rockwell Automation configuration, Studio 5000 logic patterns, and legacy hardware migration strategies.</span>
-                <span lang="vi">Kho lưu trữ chuyên sâu về cấu hình Rockwell Automation, các mẫu lệnh Studio 5000 và chiến lược chuyển đổi phần cứng cũ.</span>
+                <span lang="en">Independent knowledge base for industrial automation strategies, logic patterns, and system architecture.</span>
+                <span lang="vi">Kho kiến thức độc lập về chiến lược tự động hóa công nghiệp, mẫu logic và kiến trúc hệ thống.</span>
             </p>
             <a href="#resources" class="btn btn-primary">
-                <span lang="en">Browse Database</span>
-                <span lang="vi">Duyệt Dữ liệu</span>
+                <span lang="en">View Knowledge Base</span>
+                <span lang="vi">Xem Kho kiến thức</span>
             </a>
         </div>
     </section>
 
     <div class="stats-bar">
         <div class="container stats-grid">
-            <div><span class="stat-num">13+</span><span class="stat-label"><span lang="en">Years Legacy</span><span lang="vi">Năm Hoạt động</span></span></div>
-            <div><span class="stat-num">5k+</span><span class="stat-label"><span lang="en">Articles</span><span lang="vi">Bài viết</span></span></div>
-            <div><span class="stat-num">v37</span><span class="stat-label"><span lang="en">Latest Support</span><span lang="vi">Hỗ trợ mới nhất</span></span></div>
-            <div><span class="stat-num">24/7</span><span class="stat-label"><span lang="en">Uptime</span><span lang="vi">Hoạt động</span></span></div>
+            <div><span class="stat-num">13+</span><span class="stat-label"><span lang="en">Years Online</span><span lang="vi">Năm Hoạt động</span></span></div>
+            <div><span class="stat-num">5k+</span><span class="stat-label"><span lang="en">Topics</span><span lang="vi">Chủ đề</span></span></div>
+            <div><span class="stat-num">v37</span><span class="stat-label"><span lang="en">Tech Coverage</span><span lang="vi">Phạm vi hỗ trợ</span></span></div>
+            <div><span class="stat-num">24/7</span><span class="stat-label"><span lang="en">Community</span><span lang="vi">Cộng đồng</span></span></div>
         </div>
     </div>
 
@@ -153,23 +151,23 @@
             <div class="grid-4">
                 <div class="feature-card">
                     <div class="f-icon">🧠</div>
-                    <h3>ControlLogix</h3>
-                    <p><span lang="en">Advanced config for 5580 controllers.</span><span lang="vi">Cấu hình nâng cao cho bộ điều khiển 5580.</span></p>
+                    <h3>PAC & PLC Systems</h3>
+                    <p><span lang="en">Logic design principles and controller architecture.</span><span lang="vi">Nguyên lý thiết kế Logic và kiến trúc bộ điều khiển.</span></p>
                 </div>
                 <div class="feature-card">
                     <div class="f-icon">⚡</div>
-                    <h3>PowerFlex Drives</h3>
-                    <p><span lang="en">VFD parameter optimization.</span><span lang="vi">Tối ưu hóa tham số biến tần.</span></p>
+                    <h3>AC Drives</h3>
+                    <p><span lang="en">Parameter optimization for industrial motors.</span><span lang="vi">Tối ưu hóa tham số cho động cơ công nghiệp.</span></p>
                 </div>
                  <div class="feature-card">
                     <div class="f-icon">📡</div>
-                    <h3>Stratix Networks</h3>
-                    <p><span lang="en">Industrial switch configuration.</span><span lang="vi">Cấu hình Switch công nghiệp.</span></p>
+                    <h3>Network Topology</h3>
+                    <p><span lang="en">EtherNet/IP configuration guides.</span><span lang="vi">Hướng dẫn cấu hình EtherNet/IP.</span></p>
                 </div>
                  <div class="feature-card">
                     <div class="f-icon">💾</div>
-                    <h3>Legacy Support</h3>
-                    <p><span lang="en">Migration for PLC-5 & SLC 500.</span><span lang="vi">Chuyển đổi hệ thống PLC-5 & SLC 500.</span></p>
+                    <h3>Migration Strategy</h3>
+                    <p><span lang="en">Upgrading legacy systems to modern standards.</span><span lang="vi">Nâng cấp hệ thống cũ lên tiêu chuẩn hiện đại.</span></p>
                 </div>
             </div>
         </div>
@@ -178,35 +176,35 @@
     <section id="resources" class="section-padding resources">
         <div class="container">
             <div style="text-align: center; margin-bottom: 40px;">
-                <h2><span lang="en">Featured Resources</span><span lang="vi">Tài nguyên Nổi bật</span></h2>
+                <h2><span lang="en">Featured Articles</span><span lang="vi">Bài viết Nổi bật</span></h2>
             </div>
             
             <a href="#" class="resource-row">
                 <div class="res-left">
+                    <div class="file-icon">DOC</div>
+                    <div class="res-info">
+                        <h4><span lang="en">What's new in Studio 5000 v37?</span><span lang="vi">Có gì mới trong Studio 5000 v37?</span></h4>
+                        <span>Type: Technical Review • Read time: 5 mins</span>
+                    </div>
+                </div>
+                <div class="download-arrow">➔</div>
+            </a>
+            <a href="#" class="resource-row">
+                <div class="res-left">
                     <div class="file-icon">PDF</div>
                     <div class="res-info">
-                        <h4><span lang="en">Studio 5000 v37 Release Notes</span><span lang="vi">Thông tin phát hành Studio 5000 v37</span></h4>
-                        <span>Updated: Dec 2025 • Size: 2.8 MB</span>
+                        <h4><span lang="en">RSLinx Classic vs. Enterprise</span><span lang="vi">So sánh RSLinx Classic và Enterprise</span></h4>
+                        <span>Type: Whitepaper • Format: PDF</span>
                     </div>
                 </div>
                 <div class="download-arrow">➔</div>
             </a>
             <a href="#" class="resource-row">
                 <div class="res-left">
-                    <div class="file-icon">ZIP</div>
+                    <div class="file-icon">GUIDE</div>
                     <div class="res-info">
-                        <h4><span lang="en">RSLinx Classic Gateway Config Guide</span><span lang="vi">Hướng dẫn cấu hình RSLinx Classic Gateway</span></h4>
-                        <span>Updated: Nov 2025 • Assets Included</span>
-                    </div>
-                </div>
-                <div class="download-arrow">➔</div>
-            </a>
-            <a href="#" class="resource-row">
-                <div class="res-left">
-                    <div class="file-icon">ISO</div>
-                    <div class="res-info">
-                        <h4><span lang="en">Legacy: RSLogix 500 Installer (Archive)</span><span lang="vi">Bản cũ: Bộ cài RSLogix 500 (Lưu trữ)</span></h4>
-                        <span>Legacy Support • VM Ready</span>
+                        <h4><span lang="en">Migrating from RSLogix 500 to Studio 5000</span><span lang="vi">Chuyển đổi từ RSLogix 500 sang Studio 5000</span></h4>
+                        <span>Type: Best Practices • Step-by-step</span>
                     </div>
                 </div>
                 <div class="download-arrow">➔</div>
@@ -220,24 +218,24 @@
                 <div style="max-width: 300px;">
                     <div class="logo" style="margin-bottom: 20px;">JAP<span>.vn</span></div>
                     <p>
-                        <span lang="en">Empowering the next generation of industrial innovators with accessible technical knowledge.</span>
-                        <span lang="vi">Trao quyền cho thế hệ đổi mới công nghiệp tiếp theo với nguồn tri thức kỹ thuật dễ tiếp cận.</span>
+                        <span lang="en">Independent platform for industrial automation enthusiasts.</span>
+                        <span lang="vi">Nền tảng độc lập dành cho người đam mê tự động hóa công nghiệp.</span>
                     </p>
                 </div>
                 <div>
-                    <h4 style="color: #fff; margin-bottom: 20px;">Legal</h4>
+                    <h4 style="color: #fff; margin-bottom: 20px;">Info</h4>
                     <ul>
-                        <li style="margin-bottom: 10px;"><a href="#">Terms of Use</a></li>
-                        <li style="margin-bottom: 10px;"><a href="#">Privacy Policy</a></li>
-                        <li style="margin-bottom: 10px;"><a href="#">DMCA</a></li>
+                        <li style="margin-bottom: 10px;"><a href="#">About Us</a></li>
+                        <li style="margin-bottom: 10px;"><a href="#">Disclaimer</a></li>
+                        <li style="margin-bottom: 10px;"><a href="#">Privacy</a></li>
                     </ul>
                 </div>
             </div>
             
             <div class="footer-bottom">
                 <p>
-                    <span lang="en">Disclaimer: JAP.vn is an independent educational platform and is not affiliated with Rockwell Automation, Inc.</span>
-                    <span lang="vi">Tuyên bố miễn trừ: JAP.vn là nền tảng giáo dục độc lập và không liên kết với Rockwell Automation, Inc.</span>
+                    <span lang="en"><strong>Disclaimer:</strong> JAP.vn is an independent knowledge base and is NOT affiliated with, endorsed by, or sponsored by Rockwell Automation, Inc. All trademarks belong to their respective owners. We do not distribute software.</span>
+                    <span lang="vi"><strong>Tuyên bố miễn trừ:</strong> JAP.vn là kho kiến thức độc lập, KHÔNG trực thuộc, được ủy quyền hay tài trợ bởi Rockwell Automation, Inc. Mọi thương hiệu thuộc về chủ sở hữu tương ứng. Chúng tôi không phân phối phần mềm.</span>
                 </p>
                 <p style="margin-top: 10px;">&copy; 2025 Just Automation Platform. All Rights Reserved.</p>
             </div>
@@ -245,12 +243,9 @@
     </footer>
 
     <script>
-        // JS LOGIC MỚI - FIX BUG NGÔN NGỮ
         const savedLang = localStorage.getItem('jap_lang');
         const body = document.body;
         
-        // Chỉ khi nào localStorage có giá trị chính xác là 'vi' thì mới thêm class
-        // Còn nếu là 'en', 'null' hoặc bất cứ cái gì khác -> Mặc định là Anh (do CSS)
         if (savedLang === 'vi') {
             body.classList.add('show-vi');
         }
@@ -258,7 +253,6 @@
         function toggleLanguage() {
             body.classList.toggle('show-vi');
             
-            // Lưu trạng thái vào bộ nhớ
             if (body.classList.contains('show-vi')) {
                 localStorage.setItem('jap_lang', 'vi');
             } else {
