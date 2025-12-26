@@ -62,14 +62,9 @@
     body { font-family: 'Roboto', sans-serif; background-color: #fff; color: var(--text-dark); line-height: 1.7; }
     a { text-decoration: none; color: var(--primary); }
     a:hover { text-decoration: underline; }
-    [lang="vi"] { display: none !important; }
-    [lang="en"] { display: block !important; }
-    span[lang="vi"] { display: none !important; }
-    span[lang="en"] { display: inline !important; }
-    body.show-vi [lang="vi"] { display: block !important; }
-    body.show-vi [lang="en"] { display: none !important; }
-    body.show-vi span[lang="vi"] { display: inline !important; }
-    body.show-vi span[lang="en"] { display: none !important; }
+    [lang="en"] { display: none; }
+    body.show-en [lang="vi"] { display: none; }
+    body.show-en [lang="en"] { display: inline; }
     .container { max-width: 1100px; margin: 0 auto; display: flex; min-height: 100vh; }
     .sidebar { width: 280px; background: var(--bg-light); border-right: 1px solid var(--border); padding: 30px 20px; display: flex; flex-direction: column; }
     .logo { font-size: 1.5rem; font-weight: 700; color: #000; margin-bottom: 30px; display: block; text-decoration: none !important; }
@@ -115,7 +110,7 @@
       <a href="#" class="menu-link">Rockwell Knowledgebase ↗</a>
       <a href="#" class="menu-link">PLCTalk Forum ↗</a>
       <div style="margin-top: 30px;">
-        <button class="lang-btn" onclick="toggleLanguage()">🌐 EN / VI</button>
+        <button class="lang-btn" onclick="toggleLang()">🌐 EN / VI</button>
       </div>
     </aside>
     <main class="main">
@@ -323,12 +318,8 @@
     </main>
   </div>
   <script>
-    const savedLang = localStorage.getItem('jap_lang');
-    const body = document.body;
-    if (savedLang === 'vi') body.classList.add('show-vi');
-    function toggleLanguage() {
-      body.classList.toggle('show-vi');
-      localStorage.setItem('jap_lang', body.classList.contains('show-vi') ? 'vi' : 'en');
+    function toggleLang() {
+      document.body.classList.toggle('show-en');
     }
   </script>
 <!-- Internal links for SEO -->

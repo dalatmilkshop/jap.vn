@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
+    <style>
+      [lang="en"] { display: none; }
+      body.show-en [lang="vi"] { display: none; }
+      body.show-en [lang="en"] { display: inline; }
+      .lang-btn { background: #fff; border: 1px solid #e1e4e8; padding: 5px 10px; border-radius: 4px; cursor: pointer; font-size: 0.8rem; margin: 10px 0; }
+      .lang-btn:hover { border-color: #0056b3; color: #0056b3; }
+    </style>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>[Logix] Bài 9: Viết chương trình Ladder với RSLogix 5000 | JAP.VN</title>
@@ -14,135 +21,140 @@
   <link rel="stylesheet" href="../../assets/css/main.css">
 </head>
 <body>
-  <aside class="sidebar">
-    <!-- ...sidebar content/navigation... -->
-  </aside>
-  <main class="content">
+  <div style="max-width:900px;margin:auto;">
+    <button class="lang-btn" onclick="toggleLang()">🌐 EN / VI</button>
     <article>
-      <h1>[Logix] Bài 9: Viết chương trình Ladder với RSLogix 5000</h1>
-      <p><em>Ngày đăng: 22/10/2012 &mdash; Cập nhật: 2025</em></p>
-      <p><strong>Tiếng Việt</strong> | <a href="#en">English below</a></p>
-      <p>RSLogix 5000 hỗ trợ 4 ngôn ngữ lập trình: <strong>Ladder</strong>, Function Block Diagram (FBD), Sequential Function Chart (SFC) và Structured Text (ST). Trong một chương trình có thể sử dụng nhiều ngôn ngữ cùng lúc, tuy nhiên không thể chuyển đổi chương trình đang viết từ ngôn ngữ này sang ngôn ngữ khác.</p>
-      <h2>Bảng so sánh các ngôn ngữ lập trình</h2>
-      <table>
-        <thead>
-          <tr><th>Ngôn ngữ</th><th>Nên sử dụng cho</th></tr>
-        </thead>
-        <tbody>
-          <tr><td>Ladder</td><td>
-            <ul>
-              <li>Xử lý logic ON/OFF</li>
-              <li>Logic phức tạp, Discrete Control</li>
-              <li>Bảo trì, sửa chữa máy</li>
-              <li>Motion</li>
-            </ul>
-          </td></tr>
-          <tr><td>FBD</td><td>
-            <ul>
-              <li>Điều khiển quá trình (Process Control)</li>
-              <li>Loop Control, PID</li>
-              <li>Drive Control</li>
-            </ul>
-          </td></tr>
-          <tr><td>SFC</td><td>
-            <ul>
-              <li>Batch Control</li>
-              <li>Máy trạng thái</li>
-              <li>Điều khiển tuần tự từng bước</li>
-            </ul>
-          </td></tr>
-          <tr><td>ST</td><td>
-            <ul>
-              <li>Tính toán phức tạp</li>
-              <li>Tra bảng, xử lý truyền thông ASCII</li>
-            </ul>
-          </td></tr>
-        </tbody>
-      </table>
-      <h2>Giới thiệu ngôn ngữ Ladder</h2>
-      <p><img src="../../assets/images/logix/rslogix5000-ladder-japvn-01.png" alt="Giao diện lập trình Ladder trong RSLogix 5000"></p>
-      <ol>
-        <li>Các Routine là nơi viết chương trình. Hãy tổ chức Routine, Program, Task hợp lý để dễ quản lý.</li>
-        <li>Khu vực viết chương trình, nơi nhập các lệnh Ladder.</li>
-        <li>Thanh công cụ, nơi lấy các lệnh để xây dựng chương trình.</li>
-      </ol>
-      <h3>Ghi chú</h3>
-      <ul>
-        <li>RSLogix 5000 có nhiều phiên bản, số ngôn ngữ hỗ trợ tùy phiên bản.</li>
-        <li>Nên chia chương trình thành nhiều Sub-Routine, gọi trong Main Routine.</li>
-        <li>Các lệnh Ladder trong RSLogix 5000 tương tự các PLC khác, dễ sử dụng.</li>
-        <li>Đưa chuột vào lệnh và nhấn F1 để xem Help.</li>
-        <li>Mỗi Routine có thể dùng một ngôn ngữ khác nhau.</li>
-      </ul>
-      <h3>Tài liệu tham khảo</h3>
-      <ul>
-        <li><a href="http://literature.rockwellautomation.com/idc/groups/literature/documents/pm/1756-pm008_-en-p.pdf" target="_blank" rel="noopener">Tài liệu Ladder RSLogix 5000</a></li>
-        <li><a href="http://literature.rockwellautomation.com/idc/groups/literature/documents/rm/1756-rm003_-en-p.pdf" target="_blank" rel="noopener">Chi tiết lệnh RSLogix 5000</a></li>
-      </ul>
-      <p><em>Giáp Văn Vỹ – 2012</em></p>
-      <hr>
-      <h2 id="en">[Logix] Lesson 9: Writing Ladder Programs in RSLogix 5000</h2>
-      <p><em>English version</em></p>
-      <p>RSLogix 5000 supports 4 programming languages: <strong>Ladder</strong>, Function Block Diagram (FBD), Sequential Function Chart (SFC), and Structured Text (ST). You can use multiple languages in one project, but cannot convert code between languages.</p>
-      <h3>Language comparison table</h3>
-      <table>
-        <thead>
-          <tr><th>Language</th><th>Best for</th></tr>
-        </thead>
-        <tbody>
-          <tr><td>Ladder</td><td>
-            <ul>
-              <li>ON/OFF logic</li>
-              <li>Complex logic, Discrete Control</li>
-              <li>Maintenance, troubleshooting</li>
-              <li>Motion</li>
-            </ul>
-          </td></tr>
-          <tr><td>FBD</td><td>
-            <ul>
-              <li>Process Control</li>
-              <li>Loop Control, PID</li>
-              <li>Drive Control</li>
-            </ul>
-          </td></tr>
-          <tr><td>SFC</td><td>
-            <ul>
-              <li>Batch Control</li>
-              <li>State machines</li>
-              <li>Step-by-step sequential control</li>
-            </ul>
-          </td></tr>
-          <tr><td>ST</td><td>
-            <ul>
-              <li>Complex calculations</li>
-              <li>Table lookup, ASCII communication</li>
-            </ul>
-          </td></tr>
-        </tbody>
-      </table>
-      <h3>About Ladder programming</h3>
-      <p><img src="../../assets/images/logix/rslogix5000-ladder-japvn-01.png" alt="Ladder programming interface in RSLogix 5000"></p>
-      <ol>
-        <li>Routines are where you write code. Organize Routines, Programs, and Tasks for easy management.</li>
-        <li>Program area: where you enter Ladder instructions.</li>
-        <li>Toolbar: where you select instructions to build your program.</li>
-      </ol>
-      <h4>Notes</h4>
-      <ul>
-        <li>RSLogix 5000 comes in several editions, each supporting different languages.</li>
-        <li>Split your program into Sub-Routines and call them from Main Routine.</li>
-        <li>Ladder instructions are similar to other PLCs and easy to use.</li>
-        <li>Hover over an instruction and press F1 for Help.</li>
-        <li>Each Routine can use a different language.</li>
-      </ul>
-      <h4>References</h4>
-      <ul>
-        <li><a href="http://literature.rockwellautomation.com/idc/groups/literature/documents/pm/1756-pm008_-en-p.pdf" target="_blank" rel="noopener">RSLogix 5000 Ladder Manual</a></li>
-        <li><a href="http://literature.rockwellautomation.com/idc/groups/literature/documents/rm/1756-rm003_-en-p.pdf" target="_blank" rel="noopener">Instruction Reference</a></li>
-      </ul>
-      <p><em>Giap Van Vy – 2012</em></p>
+      <div lang="vi">
+        <h1>[Logix] Bài 9: Viết chương trình Ladder với RSLogix 5000</h1>
+        <p><em>Ngày đăng: 22/10/2012 &mdash; Cập nhật: 2025</em></p>
+        <p>RSLogix 5000 hỗ trợ 4 ngôn ngữ lập trình: <strong>Ladder</strong>, Function Block Diagram (FBD), Sequential Function Chart (SFC) và Structured Text (ST). Trong một chương trình có thể sử dụng nhiều ngôn ngữ cùng lúc, tuy nhiên không thể chuyển đổi chương trình đang viết từ ngôn ngữ này sang ngôn ngữ khác.</p>
+        <h2>Bảng so sánh các ngôn ngữ lập trình</h2>
+        <table>
+          <thead>
+            <tr><th>Ngôn ngữ</th><th>Nên sử dụng cho</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Ladder</td><td>
+              <ul>
+                <li>Xử lý logic ON/OFF</li>
+                <li>Logic phức tạp, Discrete Control</li>
+                <li>Bảo trì, sửa chữa máy</li>
+                <li>Motion</li>
+              </ul>
+            </td></tr>
+            <tr><td>FBD</td><td>
+              <ul>
+                <li>Điều khiển quá trình (Process Control)</li>
+                <li>Loop Control, PID</li>
+                <li>Drive Control</li>
+              </ul>
+            </td></tr>
+            <tr><td>SFC</td><td>
+              <ul>
+                <li>Batch Control</li>
+                <li>Máy trạng thái</li>
+                <li>Điều khiển tuần tự từng bước</li>
+              </ul>
+            </td></tr>
+            <tr><td>ST</td><td>
+              <ul>
+                <li>Tính toán phức tạp</li>
+                <li>Tra bảng, xử lý truyền thông ASCII</li>
+              </ul>
+            </td></tr>
+          </tbody>
+        </table>
+        <h2>Giới thiệu ngôn ngữ Ladder</h2>
+        <p><img src="../../assets/images/logix/rslogix5000-ladder-japvn-01.png" alt="Giao diện lập trình Ladder trong RSLogix 5000"></p>
+        <ol>
+          <li>Các Routine là nơi viết chương trình. Hãy tổ chức Routine, Program, Task hợp lý để dễ quản lý.</li>
+          <li>Khu vực viết chương trình, nơi nhập các lệnh Ladder.</li>
+          <li>Thanh công cụ, nơi lấy các lệnh để xây dựng chương trình.</li>
+        </ol>
+        <h3>Ghi chú</h3>
+        <ul>
+          <li>RSLogix 5000 có nhiều phiên bản, số ngôn ngữ hỗ trợ tùy phiên bản.</li>
+          <li>Nên chia chương trình thành nhiều Sub-Routine, gọi trong Main Routine.</li>
+          <li>Các lệnh Ladder trong RSLogix 5000 tương tự các PLC khác, dễ sử dụng.</li>
+          <li>Đưa chuột vào lệnh và nhấn F1 để xem Help.</li>
+          <li>Mỗi Routine có thể dùng một ngôn ngữ khác nhau.</li>
+        </ul>
+        <h3>Tài liệu tham khảo</h3>
+        <ul>
+          <li><a href="http://literature.rockwellautomation.com/idc/groups/literature/documents/pm/1756-pm008_-en-p.pdf" target="_blank" rel="noopener">Tài liệu Ladder RSLogix 5000</a></li>
+          <li><a href="http://literature.rockwellautomation.com/idc/groups/literature/documents/rm/1756-rm003_-en-p.pdf" target="_blank" rel="noopener">Chi tiết lệnh RSLogix 5000</a></li>
+        </ul>
+        <p><em>Giáp Văn Vỹ – 2012</em></p>
+      </div>
+      <div lang="en">
+        <h1>[Logix] Lesson 9: Writing Ladder Programs in RSLogix 5000</h1>
+        <p><em>Published: 22/10/2012 &mdash; Updated: 2025</em></p>
+        <p>RSLogix 5000 supports 4 programming languages: <strong>Ladder</strong>, Function Block Diagram (FBD), Sequential Function Chart (SFC), and Structured Text (ST). You can use multiple languages in one project, but cannot convert code between languages.</p>
+        <h2>Language comparison table</h2>
+        <table>
+          <thead>
+            <tr><th>Language</th><th>Best for</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Ladder</td><td>
+              <ul>
+                <li>ON/OFF logic</li>
+                <li>Complex logic, Discrete Control</li>
+                <li>Maintenance, troubleshooting</li>
+                <li>Motion</li>
+              </ul>
+            </td></tr>
+            <tr><td>FBD</td><td>
+              <ul>
+                <li>Process Control</li>
+                <li>Loop Control, PID</li>
+                <li>Drive Control</li>
+              </ul>
+            </td></tr>
+            <tr><td>SFC</td><td>
+              <ul>
+                <li>Batch Control</li>
+                <li>State machines</li>
+                <li>Step-by-step sequential control</li>
+              </ul>
+            </td></tr>
+            <tr><td>ST</td><td>
+              <ul>
+                <li>Complex calculations</li>
+                <li>Table lookup, ASCII communication</li>
+              </ul>
+            </td></tr>
+          </tbody>
+        </table>
+        <h2>About Ladder programming</h2>
+        <p><img src="../../assets/images/logix/rslogix5000-ladder-japvn-01.png" alt="Ladder programming interface in RSLogix 5000"></p>
+        <ol>
+          <li>Routines are where you write code. Organize Routines, Programs, and Tasks for easy management.</li>
+          <li>Program area: where you enter Ladder instructions.</li>
+          <li>Toolbar: where you select instructions to build your program.</li>
+        </ol>
+        <h3>Notes</h3>
+        <ul>
+          <li>RSLogix 5000 comes in several editions, each supporting different languages.</li>
+          <li>Split your program into Sub-Routines and call them from Main Routine.</li>
+          <li>Ladder instructions are similar to other PLCs and easy to use.</li>
+          <li>Hover over an instruction and press F1 for Help.</li>
+          <li>Each Routine can use a different language.</li>
+        </ul>
+        <h3>References</h3>
+        <ul>
+          <li><a href="http://literature.rockwellautomation.com/idc/groups/literature/documents/pm/1756-pm008_-en-p.pdf" target="_blank" rel="noopener">RSLogix 5000 Ladder Manual</a></li>
+          <li><a href="http://literature.rockwellautomation.com/idc/groups/literature/documents/rm/1756-rm003_-en-p.pdf" target="_blank" rel="noopener">Instruction Reference</a></li>
+        </ul>
+        <p><em>Giap Van Vy – 2012</em></p>
+      </div>
     </article>
-  </main>
+  </div>
+  <script>
+    function toggleLang() {
+      document.body.classList.toggle('show-en');
+    }
+  </script>
   <!-- Internal links for SEO -->
   <hr>
   <div class="internal-links" style="max-width:900px;margin:auto;padding:1em 0;">
