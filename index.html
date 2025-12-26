@@ -20,14 +20,14 @@
         a { text-decoration: none; transition: 0.3s; color: inherit; }
         ul { list-style: none; }
         
-        /* --- LOGIC NGÔN NGỮ (QUAN TRỌNG) --- */
-        /* Mặc định: Ẩn tiếng Việt, Hiện tiếng Anh */
+        /* --- LOGIC NGÔN NGỮ (HARDCORE FIX) --- */
+        /* Mặc định: Luôn ẨN tiếng Việt, HIỆN tiếng Anh */
         [lang="vi"] { display: none !important; }
         [lang="en"] { display: block !important; }
         span[lang="vi"] { display: none !important; }
         span[lang="en"] { display: inline !important; }
 
-        /* Khi có class .show-vi: Hiện tiếng Việt, Ẩn tiếng Anh */
+        /* Chỉ khi Body có class .show-vi thì mới đảo ngược */
         body.show-vi [lang="vi"] { display: block !important; }
         body.show-vi [lang="en"] { display: none !important; }
         body.show-vi span[lang="vi"] { display: inline !important; }
@@ -39,7 +39,7 @@
         .section-padding { padding: 100px 0; }
         
         /* --- HEADER --- */
-        header { background: rgba(11, 17, 32, 0.8); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 1000; padding: 16px 0; }
+        header { background: rgba(11, 17, 32, 0.9); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 1000; padding: 16px 0; }
         .nav-flex { display: flex; justify-content: space-between; align-items: center; }
         .logo { font-size: 1.6rem; font-weight: 800; color: #fff; letter-spacing: -1px; display: flex; align-items: center; gap: 8px; }
         .logo span { color: var(--primary); }
@@ -72,14 +72,23 @@
         .feature-card h3 { font-size: 1.25rem; margin-bottom: 10px; color: #fff; }
         .feature-card p { font-size: 0.9rem; color: var(--text-sub); }
 
-        /* --- NEWSLETTER FORM --- */
-        .newsletter { padding: 80px 0; text-align: center; background: linear-gradient(180deg, var(--bg-body) 0%, #0f172a 100%); border-top: 1px solid var(--border); }
-        .input-group { max-width: 500px; margin: 30px auto 0; position: relative; }
-        .input-group input { width: 100%; padding: 16px 20px; border-radius: 50px; border: 1px solid var(--border); background: rgba(255,255,255,0.05); color: #fff; outline: none; }
-        .input-group button { position: absolute; right: 5px; top: 5px; background: var(--primary); border: none; color: #fff; padding: 11px 25px; border-radius: 40px; cursor: pointer; font-weight: 600; }
+        /* --- RESOURCES LIST --- */
+        .resources { background: var(--bg-section); }
+        .resource-row { 
+            display: flex; justify-content: space-between; align-items: center; 
+            padding: 20px; background: var(--bg-card); border: 1px solid var(--border); 
+            margin-bottom: 16px; border-radius: 8px; transition: 0.2s;
+        }
+        .resource-row:hover { border-color: var(--text-sub); background: rgba(255,255,255,0.03); }
+        .res-left { display: flex; align-items: center; gap: 16px; }
+        .file-icon { width: 40px; height: 40px; background: rgba(59, 130, 246, 0.1); color: var(--primary); display: flex; align-items: center; justify-content: center; border-radius: 6px; font-weight: bold; }
+        .res-info h4 { font-size: 1rem; color: var(--text-main); }
+        .res-info span { font-size: 0.85rem; color: var(--text-sub); }
+        .download-arrow { color: var(--text-sub); font-size: 1.2rem; }
 
         /* --- FOOTER --- */
         footer { border-top: 1px solid var(--border); padding: 60px 0 30px; font-size: 0.9rem; color: var(--text-sub); background: #020617; }
+        .footer-bottom { border-top: 1px solid var(--border); margin-top: 40px; padding-top: 30px; text-align: center; font-size: 0.8rem; opacity: 0.7; }
 
         @media (max-width: 768px) {
             .hero h1 { font-size: 2.5rem; }
@@ -120,7 +129,7 @@
                 <span lang="en">The definitive archive for Rockwell Automation configuration, Studio 5000 logic patterns, and legacy hardware migration strategies.</span>
                 <span lang="vi">Kho lưu trữ chuyên sâu về cấu hình Rockwell Automation, các mẫu lệnh Studio 5000 và chiến lược chuyển đổi phần cứng cũ.</span>
             </p>
-            <a href="#" class="btn btn-primary">
+            <a href="#resources" class="btn btn-primary">
                 <span lang="en">Browse Database</span>
                 <span lang="vi">Duyệt Dữ liệu</span>
             </a>
@@ -166,56 +175,90 @@
         </div>
     </section>
 
-    <section class="newsletter">
+    <section id="resources" class="section-padding resources">
         <div class="container">
-            <h3>
-                <span lang="en">Stay Updated with Automation Trends</span>
-                <span lang="vi">Cập nhật xu hướng Tự động hóa mới nhất</span>
-            </h3>
-            <p style="color: var(--text-sub); margin-top: 10px;">
-                <span lang="en">Join 15,000+ engineers receiving our monthly technical digest.</span>
-                <span lang="vi">Tham gia cùng 15,000+ kỹ sư nhận bản tin kỹ thuật hàng tháng.</span>
-            </p>
+            <div style="text-align: center; margin-bottom: 40px;">
+                <h2><span lang="en">Featured Resources</span><span lang="vi">Tài nguyên Nổi bật</span></h2>
+            </div>
             
-            <form class="input-group" action="https://docs.google.com/forms/..." method="POST" target="_blank">
-                <input type="email" name="entry.XXXXXX" placeholder="Enter your email..." required>
-                <button type="submit">
-                    <span lang="en">Subscribe</span>
-                    <span lang="vi">Đăng ký</span>
-                </button>
-            </form>
-            
-            <p style="font-size: 0.8rem; margin-top: 15px; opacity: 0.6;">
-                <span lang="en">No spam. Unsubscribe anytime.</span>
-                <span lang="vi">Không spam. Hủy đăng ký bất cứ lúc nào.</span>
-            </p>
+            <a href="#" class="resource-row">
+                <div class="res-left">
+                    <div class="file-icon">PDF</div>
+                    <div class="res-info">
+                        <h4><span lang="en">Studio 5000 v37 Release Notes</span><span lang="vi">Thông tin phát hành Studio 5000 v37</span></h4>
+                        <span>Updated: Dec 2025 • Size: 2.8 MB</span>
+                    </div>
+                </div>
+                <div class="download-arrow">➔</div>
+            </a>
+            <a href="#" class="resource-row">
+                <div class="res-left">
+                    <div class="file-icon">ZIP</div>
+                    <div class="res-info">
+                        <h4><span lang="en">RSLinx Classic Gateway Config Guide</span><span lang="vi">Hướng dẫn cấu hình RSLinx Classic Gateway</span></h4>
+                        <span>Updated: Nov 2025 • Assets Included</span>
+                    </div>
+                </div>
+                <div class="download-arrow">➔</div>
+            </a>
+            <a href="#" class="resource-row">
+                <div class="res-left">
+                    <div class="file-icon">ISO</div>
+                    <div class="res-info">
+                        <h4><span lang="en">Legacy: RSLogix 500 Installer (Archive)</span><span lang="vi">Bản cũ: Bộ cài RSLogix 500 (Lưu trữ)</span></h4>
+                        <span>Legacy Support • VM Ready</span>
+                    </div>
+                </div>
+                <div class="download-arrow">➔</div>
+            </a>
         </div>
     </section>
 
     <footer>
         <div class="container">
-            <div style="text-align: center; opacity: 0.7;">
-                <p>&copy; 2025 Just Automation Platform (JAP). All Rights Reserved.</p>
-                <p style="font-size: 0.8rem; margin-top: 10px;">Disclaimer: Not affiliated with Rockwell Automation.</p>
+            <div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 40px;">
+                <div style="max-width: 300px;">
+                    <div class="logo" style="margin-bottom: 20px;">JAP<span>.vn</span></div>
+                    <p>
+                        <span lang="en">Empowering the next generation of industrial innovators with accessible technical knowledge.</span>
+                        <span lang="vi">Trao quyền cho thế hệ đổi mới công nghiệp tiếp theo với nguồn tri thức kỹ thuật dễ tiếp cận.</span>
+                    </p>
+                </div>
+                <div>
+                    <h4 style="color: #fff; margin-bottom: 20px;">Legal</h4>
+                    <ul>
+                        <li style="margin-bottom: 10px;"><a href="#">Terms of Use</a></li>
+                        <li style="margin-bottom: 10px;"><a href="#">Privacy Policy</a></li>
+                        <li style="margin-bottom: 10px;"><a href="#">DMCA</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>
+                    <span lang="en">Disclaimer: JAP.vn is an independent educational platform and is not affiliated with Rockwell Automation, Inc.</span>
+                    <span lang="vi">Tuyên bố miễn trừ: JAP.vn là nền tảng giáo dục độc lập và không liên kết với Rockwell Automation, Inc.</span>
+                </p>
+                <p style="margin-top: 10px;">&copy; 2025 Just Automation Platform. All Rights Reserved.</p>
             </div>
         </div>
     </footer>
 
     <script>
-        // LOGIC CHUYỂN NGỮ (Đã fix lỗi mặc định)
+        // JS LOGIC MỚI - FIX BUG NGÔN NGỮ
         const savedLang = localStorage.getItem('jap_lang');
         const body = document.body;
         
-        // Chỉ khi nào đã lưu 'vi' thì mới bật tiếng Việt
+        // Chỉ khi nào localStorage có giá trị chính xác là 'vi' thì mới thêm class
+        // Còn nếu là 'en', 'null' hoặc bất cứ cái gì khác -> Mặc định là Anh (do CSS)
         if (savedLang === 'vi') {
             body.classList.add('show-vi');
-        } 
-        // Nếu không (null hoặc 'en'), thì mặc định là tiếng Anh (do CSS đã set sẵn)
+        }
 
         function toggleLanguage() {
             body.classList.toggle('show-vi');
             
-            // Lưu lại lựa chọn
+            // Lưu trạng thái vào bộ nhớ
             if (body.classList.contains('show-vi')) {
                 localStorage.setItem('jap_lang', 'vi');
             } else {
