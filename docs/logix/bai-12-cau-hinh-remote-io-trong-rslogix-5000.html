@@ -19,98 +19,129 @@
   </aside>
   <main class="content">
     <article>
-      <h1>[Logix] Bài 12: Cấu hình Remote I/O trong Rslogix 5000</h1>
-      <p><em>Ngày đăng: 25/10/2012 &mdash; Cập nhật: 2025</em></p>
-      <p><strong>Tiếng Việt</strong> | <a href="#en">English below</a></p>
-      <h2>Mô hình kết nối Remote IO</h2>
-      <ul>
-        <li>Controllogix (như cấu hình các bài trước)</li>
-        <li>Kết nối với một trạm Remote IO qua Ethernet</li>
-      </ul>
-      <p>Remote IO ở đây sử dụng FlexIO thông dụng của Rockwell. Ngoài FlexIO còn có PointIO, việc cấu hình cũng tương tự.</p>
-      <p><img src="../../assets/images/logix/rslogix5000-remoteio-japvn-01.jpg" alt="Sơ đồ kết nối Remote IO"></p>
-      <h3>Thêm mô đun truyền thông Ethernet</h3>
-      <p>Thêm mô đun truyền thông Ethernet trên Chassis chính (ở đây sử dụng mô đun 1756-EN2T)</p>
-      <p><img src="../../assets/images/logix/rslogix5000-remoteio-japvn-02.png" alt="Thêm mô đun Ethernet"></p>
-      <p><img src="../../assets/images/logix/rslogix5000-remoteio-japvn-03.png" alt="Chọn mô đun Ethernet"></p>
-      <h3>Cấu hình mô đun Ethernet</h3>
-      <p><img src="../../assets/images/logix/rslogix5000-remoteio-japvn-04.png" alt="Cấu hình mô đun Ethernet"></p>
-      <p>Sau khi tạo xong mô đun Ethernet, ta thấy xuất hiện biểu tượng “Ethernet”. Đến đây, chọn New Module để tạo các mô đun Remote IO.</p>
-      <p><img src="../../assets/images/logix/rslogix5000-remoteio-japvn-05.png" alt="Ethernet xuất hiện"></p>
-      <h3>Thêm mô đun truyền thông trên Remote IO</h3>
-      <p>Mô đun đầu tiên phải tạo trên Chassis Remote IO chính là mô đun truyền thông Ethernet (ở đây là mô đun 1794-AENT).</p>
-      <p><img src="../../assets/images/logix/rslogix5000-remoteio-japvn-06.png" alt="Thêm mô đun 1794-AENT"></p>
-      <p><img src="../../assets/images/logix/rslogix5000-remoteio-japvn-07.png" alt="Cấu hình mô đun 1794-AENT"></p>
-      <p>Khi cấu hình xong, ta thấy mô đun 1794-AENT xuất hiện, phía dưới có biểu tượng FlexBus, nơi tạo mới thêm các mô đun IO.</p>
-      <p><img src="../../assets/images/logix/rslogix5000-remoteio-japvn-08.png" alt="FlexBus xuất hiện"></p>
-      <h3>Thêm các mô đun IO</h3>
-      <p>Chọn New Module để thêm các mô đun IO (ở đây là 1794-IB32 và 1794-OB16D).</p>
-      <p><img src="../../assets/images/logix/rslogix5000-remoteio-japvn-09.png" alt="Thêm mô đun IO"></p>
-      <p><img src="../../assets/images/logix/rslogix5000-remoteio-japvn-10.png" alt="Chọn mô đun 1794-IB32"></p>
-      <p><img src="../../assets/images/logix/rslogix5000-remoteio-japvn-11.png" alt="Cấu hình mô đun 1794-IB32"></p>
-      <p>OK</p>
-      <p><img src="../../assets/images/logix/rslogix5000-remoteio-japvn-12.png" alt="Thêm mô đun 1794-OB16D"></p>
-      <p><img src="../../assets/images/logix/rslogix5000-remoteio-japvn-13.png" alt="Cấu hình mô đun 1794-OB16D"></p>
-      <p><img src="../../assets/images/logix/rslogix5000-remoteio-japvn-14.png" alt="Các mô đun IO đã xuất hiện"></p>
-      <h3>Kiểm tra Tag IO</h3>
-      <p>Mở “Controller Tag” sẽ thấy thêm các Tag mới xuất hiện, đó chính là các Tag IO cho các mô đun vừa cấu hình. Các Tag remote IO này sử dụng bình thường như các Tag khác trong chương trình.</p>
-      <p><img src="../../assets/images/logix/rslogix5000-remoteio-japvn-15.png" alt="Controller Tag IO"></p>
-      <h3>Ghi chú</h3>
-      <ul>
-        <li>Tùy theo CPU mà số lượng trạm Remote IO tối đa có thể cấu hình.</li>
-        <li>Chú ý Revision của các mô đun khi cấu hình.</li>
-      </ul>
-      <h3>Tài liệu tham khảo</h3>
-      <ul>
-        <li><a href="http://literature.rockwellautomation.com/idc/groups/literature/documents/pm/1756-pm020_-en-p.pdf" target="_blank" rel="noopener">Tài liệu cấu hình Remote IO</a></li>
-      </ul>
-      <p><em>Giap Van Vy – 2012</em></p>
-      <hr>
-      <h2 id="en">[Logix] Lesson 12: Configure Remote I/O in RSLogix 5000</h2>
-      <p><em>English version</em></p>
-      <h3>Remote IO connection model</h3>
-      <ul>
-        <li>Controllogix (as in previous lessons)</li>
-        <li>Connect to a Remote IO station via Ethernet</li>
-      </ul>
-      <p>Remote IO here uses Rockwell's popular FlexIO. Besides FlexIO, there is also PointIO, configuration is similar.</p>
-      <p><img src="../../assets/images/logix/rslogix5000-remoteio-japvn-01.jpg" alt="Remote IO connection diagram"></p>
-      <h3>Add Ethernet communication module</h3>
-      <p>Add Ethernet communication module on the main Chassis (here using 1756-EN2T)</p>
-      <p><img src="../../assets/images/logix/rslogix5000-remoteio-japvn-02.png" alt="Add Ethernet module"></p>
-      <p><img src="../../assets/images/logix/rslogix5000-remoteio-japvn-03.png" alt="Select Ethernet module"></p>
-      <h3>Configure Ethernet module</h3>
-      <p><img src="../../assets/images/logix/rslogix5000-remoteio-japvn-04.png" alt="Configure Ethernet module"></p>
-      <p>After creating the Ethernet module, the “Ethernet” icon appears. Now, select New Module to create Remote IO modules.</p>
-      <p><img src="../../assets/images/logix/rslogix5000-remoteio-japvn-05.png" alt="Ethernet icon appears"></p>
-      <h3>Add communication module on Remote IO</h3>
-      <p>The first module to create on the main Remote IO Chassis is the Ethernet communication module (here 1794-AENT).</p>
-      <p><img src="../../assets/images/logix/rslogix5000-remoteio-japvn-06.png" alt="Add 1794-AENT module"></p>
-      <p><img src="../../assets/images/logix/rslogix5000-remoteio-japvn-07.png" alt="Configure 1794-AENT module"></p>
-      <p>After configuration, the 1794-AENT module appears, below is the FlexBus icon, where you can add IO modules.</p>
-      <p><img src="../../assets/images/logix/rslogix5000-remoteio-japvn-08.png" alt="FlexBus icon appears"></p>
-      <h3>Add IO modules</h3>
-      <p>Select New Module to add IO modules (here 1794-IB32 and 1794-OB16D).</p>
-      <p><img src="../../assets/images/logix/rslogix5000-remoteio-japvn-09.png" alt="Add IO module"></p>
-      <p><img src="../../assets/images/logix/rslogix5000-remoteio-japvn-10.png" alt="Select 1794-IB32 module"></p>
-      <p><img src="../../assets/images/logix/rslogix5000-remoteio-japvn-11.png" alt="Configure 1794-IB32 module"></p>
-      <p>OK</p>
-      <p><img src="../../assets/images/logix/rslogix5000-remoteio-japvn-12.png" alt="Add 1794-OB16D module"></p>
-      <p><img src="../../assets/images/logix/rslogix5000-remoteio-japvn-13.png" alt="Configure 1794-OB16D module"></p>
-      <p><img src="../../assets/images/logix/rslogix5000-remoteio-japvn-14.png" alt="IO modules appear"></p>
-      <h3>Check IO Tags</h3>
-      <p>Open “Controller Tag” to see new Tags, which are IO Tags for the newly configured modules. These remote IO Tags are used like any other Tags in the program.</p>
-      <p><img src="../../assets/images/logix/rslogix5000-remoteio-japvn-15.png" alt="Controller Tag IO"></p>
-      <h4>Notes</h4>
-      <ul>
-        <li>Depending on the CPU, the maximum number of Remote IO stations can be configured.</li>
-        <li>Pay attention to module Revision when configuring.</li>
-      </ul>
-      <h4>Reference</h4>
-      <ul>
-        <li><a href="http://literature.rockwellautomation.com/idc/groups/literature/documents/pm/1756-pm020_-en-p.pdf" target="_blank" rel="noopener">Remote IO Configuration Manual</a></li>
-      </ul>
-      <p><em>Giap Van Vy – 2012</em></p>
+      <div class="bilingual-toggle">
+        <button id="toggle-lang" onclick="document.body.classList.toggle('show-en')">EN/VI</button>
+      </div>
+      <div class="bilingual-content">
+        <div class="vi">
+          <h1>[Logix] Bài 12: Cấu hình Remote I/O trong Rslogix 5000</h1>
+          <p><em>Ngày đăng: 25/10/2012 &mdash; Cập nhật: 2025</em></p>
+          <h2>Mô hình kết nối Remote IO</h2>
+          <ul>
+            <li>Controllogix (như cấu hình các bài trước)</li>
+            <li>Kết nối với một trạm Remote IO qua Ethernet</li>
+          </ul>
+          <p>Remote IO ở đây sử dụng FlexIO thông dụng của Rockwell. Ngoài FlexIO còn có PointIO, việc cấu hình cũng tương tự.</p>
+          <p><img src="../../assets/images/logix/rslogix5000-remoteio-japvn-01.jpg" alt="Sơ đồ kết nối Remote IO"></p>
+          <h3>Thêm mô đun truyền thông Ethernet</h3>
+          <p>Thêm mô đun truyền thông Ethernet trên Chassis chính (ở đây sử dụng mô đun 1756-EN2T)</p>
+          <p><img src="../../assets/images/logix/rslogix5000-remoteio-japvn-02.png" alt="Thêm mô đun Ethernet"></p>
+          <p><img src="../../assets/images/logix/rslogix5000-remoteio-japvn-03.png" alt="Chọn mô đun Ethernet"></p>
+          <h3>Cấu hình mô đun Ethernet</h3>
+          <p><img src="../../assets/images/logix/rslogix5000-remoteio-japvn-04.png" alt="Cấu hình mô đun Ethernet"></p>
+          <p>Sau khi tạo xong mô đun Ethernet, ta thấy xuất hiện biểu tượng “Ethernet”. Đến đây, chọn New Module để tạo các mô đun Remote IO.</p>
+          <p><img src="../../assets/images/logix/rslogix5000-remoteio-japvn-05.png" alt="Ethernet xuất hiện"></p>
+          <h3>Thêm mô đun truyền thông trên Remote IO</h3>
+          <p>Mô đun đầu tiên phải tạo trên Chassis Remote IO chính là mô đun truyền thông Ethernet (ở đây là mô đun 1794-AENT).</p>
+          <p><img src="../../assets/images/logix/rslogix5000-remoteio-japvn-06.png" alt="Thêm mô đun 1794-AENT"></p>
+          <p><img src="../../assets/images/logix/rslogix5000-remoteio-japvn-07.png" alt="Cấu hình mô đun 1794-AENT"></p>
+          <p>Khi cấu hình xong, ta thấy mô đun 1794-AENT xuất hiện, phía dưới có biểu tượng FlexBus, nơi tạo mới thêm các mô đun IO.</p>
+          <p><img src="../../assets/images/logix/rslogix5000-remoteio-japvn-08.png" alt="FlexBus xuất hiện"></p>
+          <h3>Thêm các mô đun IO</h3>
+          <p>Chọn New Module để thêm các mô đun IO (ở đây là 1794-IB32 và 1794-OB16D).</p>
+          <p><img src="../../assets/images/logix/rslogix5000-remoteio-japvn-09.png" alt="Thêm mô đun IO"></p>
+          <p><img src="../../assets/images/logix/rslogix5000-remoteio-japvn-10.png" alt="Chọn mô đun 1794-IB32"></p>
+          <p><img src="../../assets/images/logix/rslogix5000-remoteio-japvn-11.png" alt="Cấu hình mô đun 1794-IB32"></p>
+          <p>OK</p>
+          <p><img src="../../assets/images/logix/rslogix5000-remoteio-japvn-12.png" alt="Thêm mô đun 1794-OB16D"></p>
+          <p><img src="../../assets/images/logix/rslogix5000-remoteio-japvn-13.png" alt="Cấu hình mô đun 1794-OB16D"></p>
+          <p><img src="../../assets/images/logix/rslogix5000-remoteio-japvn-14.png" alt="Các mô đun IO đã xuất hiện"></p>
+          <h3>Kiểm tra Tag IO</h3>
+          <p>Mở “Controller Tag” sẽ thấy thêm các Tag mới xuất hiện, đó chính là các Tag IO cho các mô đun vừa cấu hình. Các Tag remote IO này sử dụng bình thường như các Tag khác trong chương trình.</p>
+          <p><img src="../../assets/images/logix/rslogix5000-remoteio-japvn-15.png" alt="Controller Tag IO"></p>
+          <h3>Ghi chú</h3>
+          <ul>
+            <li>Tùy theo CPU mà số lượng trạm Remote IO tối đa có thể cấu hình.</li>
+            <li>Chú ý Revision của các mô đun khi cấu hình.</li>
+          </ul>
+          <h3>Tài liệu tham khảo</h3>
+          <ul>
+            <li><a href="http://literature.rockwellautomation.com/idc/groups/literature/documents/pm/1756-pm020_-en-p.pdf" target="_blank" rel="noopener">Tài liệu cấu hình Remote IO</a></li>
+          </ul>
+          <p><em>Giap Van Vy – 2012</em></p>
+        </div>
+        <div class="en">
+          <h1>[Logix] Lesson 12: Configure Remote I/O in RSLogix 5000</h1>
+          <p><em>Posted: 25/10/2012 &mdash; Updated: 2025</em></p>
+          <h2>Remote IO connection model</h2>
+          <ul>
+            <li>Controllogix (as in previous lessons)</li>
+            <li>Connect to a Remote IO station via Ethernet</li>
+          </ul>
+          <p>Remote IO here uses Rockwell's popular FlexIO. Besides FlexIO, there is also PointIO, configuration is similar.</p>
+          <p><img src="../../assets/images/logix/rslogix5000-remoteio-japvn-01.jpg" alt="Remote IO connection diagram"></p>
+          <h3>Add Ethernet communication module</h3>
+          <p>Add Ethernet communication module on the main Chassis (here using 1756-EN2T)</p>
+          <p><img src="../../assets/images/logix/rslogix5000-remoteio-japvn-02.png" alt="Add Ethernet module"></p>
+          <p><img src="../../assets/images/logix/rslogix5000-remoteio-japvn-03.png" alt="Select Ethernet module"></p>
+          <h3>Configure Ethernet module</h3>
+          <p><img src="../../assets/images/logix/rslogix5000-remoteio-japvn-04.png" alt="Configure Ethernet module"></p>
+          <p>After creating the Ethernet module, the “Ethernet” icon appears. Now, select New Module to create Remote IO modules.</p>
+          <p><img src="../../assets/images/logix/rslogix5000-remoteio-japvn-05.png" alt="Ethernet icon appears"></p>
+          <h3>Add communication module on Remote IO</h3>
+          <p>The first module to create on the main Remote IO Chassis is the Ethernet communication module (here 1794-AENT).</p>
+          <p><img src="../../assets/images/logix/rslogix5000-remoteio-japvn-06.png" alt="Add 1794-AENT module"></p>
+          <p><img src="../../assets/images/logix/rslogix5000-remoteio-japvn-07.png" alt="Configure 1794-AENT module"></p>
+          <p>After configuration, the 1794-AENT module appears, below is the FlexBus icon, where you can add IO modules.</p>
+          <p><img src="../../assets/images/logix/rslogix5000-remoteio-japvn-08.png" alt="FlexBus icon appears"></p>
+          <h3>Add IO modules</h3>
+          <p>Select New Module to add IO modules (here 1794-IB32 and 1794-OB16D).</p>
+          <p><img src="../../assets/images/logix/rslogix5000-remoteio-japvn-09.png" alt="Add IO module"></p>
+          <p><img src="../../assets/images/logix/rslogix5000-remoteio-japvn-10.png" alt="Select 1794-IB32 module"></p>
+          <p><img src="../../assets/images/logix/rslogix5000-remoteio-japvn-11.png" alt="Configure 1794-IB32 module"></p>
+          <p>OK</p>
+          <p><img src="../../assets/images/logix/rslogix5000-remoteio-japvn-12.png" alt="Add 1794-OB16D module"></p>
+          <p><img src="../../assets/images/logix/rslogix5000-remoteio-japvn-13.png" alt="Configure 1794-OB16D module"></p>
+          <p><img src="../../assets/images/logix/rslogix5000-remoteio-japvn-14.png" alt="IO modules appear"></p>
+          <h3>Check IO Tags</h3>
+          <p>Open “Controller Tag” to see new Tags, which are IO Tags for the newly configured modules. These remote IO Tags are used like any other Tags in the program.</p>
+          <p><img src="../../assets/images/logix/rslogix5000-remoteio-japvn-15.png" alt="Controller Tag IO"></p>
+          <h4>Notes</h4>
+          <ul>
+            <li>Depending on the CPU, the maximum number of Remote IO stations can be configured.</li>
+            <li>Pay attention to module Revision when configuring.</li>
+          </ul>
+          <h4>Reference</h4>
+          <ul>
+            <li><a href="http://literature.rockwellautomation.com/idc/groups/literature/documents/pm/1756-pm020_-en-p.pdf" target="_blank" rel="noopener">Remote IO Configuration Manual</a></li>
+          </ul>
+          <p><em>Giap Van Vy – 2012</em></p>
+        </div>
+      </div>
+      <style>
+        .bilingual-content .en { display: none; }
+        body.show-en .bilingual-content .vi { display: none; }
+        body.show-en .bilingual-content .en { display: block; }
+        .bilingual-toggle { text-align: right; margin-bottom: 1em; }
+        #toggle-lang { padding: 0.3em 1em; border-radius: 4px; border: 1px solid #ccc; background: #f8f8f8; cursor: pointer; }
+      </style>
+      <script>
+        // Persist language toggle across reloads
+        const langKey = 'logix-bilingual-lang';
+        const body = document.body;
+        function setLangFromStorage() {
+          if (localStorage.getItem(langKey) === 'en') {
+            body.classList.add('show-en');
+          } else {
+            body.classList.remove('show-en');
+          }
+        }
+        setLangFromStorage();
+        document.getElementById('toggle-lang').onclick = function() {
+          body.classList.toggle('show-en');
+          localStorage.setItem(langKey, body.classList.contains('show-en') ? 'en' : 'vi');
+        };
+      </script>
     </article>
   </main>
   <!-- Internal links for SEO -->

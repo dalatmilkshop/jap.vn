@@ -26,9 +26,8 @@
 </head>
 <body>
   <div class="container">
-    <div class="lang-switch">
-      <a href="#" onclick="document.getElementById('vi').style.display='block';document.getElementById('en').style.display='none';return false;">Tiếng Việt</a> |
-      <a href="#" onclick="document.getElementById('vi').style.display='none';document.getElementById('en').style.display='block';return false;">English</a>
+    <div class="bilingual-toggle">
+      <button id="toggle-lang" onclick="document.body.classList.toggle('show-en')">EN/VI</button>
     </div>
     <div class="sidebar">
       <h2>Logix Sidebar</h2>
@@ -39,41 +38,68 @@
       </ul>
     </div>
     <div class="content">
-      <div id="vi">
-        <h1>[Logix] Bài 17: Các nguồn tài liệu tham khảo khác (bài cuối)</h1>
-        <h2>Trang tổng quan và các link đến tài liệu chi tiết về Controllogix và Rslogix 5000</h2>
-        <p><a href="http://ab.rockwellautomation.com/Programmable-Controllers/ControlLogix-Standard-Controllers#/tab5" target="_blank">ControlLogix Standard Controllers</a></p>
-        <h2>Trang Sample Code (chương trình mẫu, ví dụ mẫu)</h2>
-        <p><a href="http://samplecode.rockwellautomation.com/" target="_blank">Sample Code Rockwell</a></p>
-        <h2>Trang StartPage (thiết kế mẫu, video cho người mới học)</h2>
-        <p><a href="http://www.rockwellautomation.com/rockwellautomation/products-technologies/integrated-architecture/tools/overview.page" target="_blank">Integrated Architecture Tools</a></p>
-        <h2>Trang hỗ trợ phần mềm và bản quyền</h2>
-        <p><a href="http://www.rockwellautomation.com/rockwellautomation/support/activations.page" target="_blank">Software Activation Support</a></p>
-        <h2>Trang Download Firmware và Updates phần mềm</h2>
-        <p><a href="http://www.rockwellautomation.com/rockwellautomation/support/downloads.page" target="_blank">Firmware & Software Updates</a></p>
-        <h2>Trang hỗ trợ kỹ thuật (Q&A, giải đáp thắc mắc)</h2>
-        <p><a href="https://rockwellautomation.custhelp.com/" target="_blank">Rockwell Technical Support</a></p>
-        <p>Chuỗi bài viết về Hướng dẫn sử dụng Rslogix 5000 đến đây xin tạm dừng. Hi vọng những chia sẻ trên đây hữu ích cho các bạn mới bắt đầu với Rockwell.</p>
-        <p>Tác giả: Giap Van Vy - 2012</p>
-      </div>
-      <div id="en" style="display:none">
-        <h1>[Logix] Lesson 17: Other Reference Resources (final lesson)</h1>
-        <h2>Overview and links to detailed documentation for Controllogix and Rslogix 5000</h2>
-        <p><a href="http://ab.rockwellautomation.com/Programmable-Controllers/ControlLogix-Standard-Controllers#/tab5" target="_blank">ControlLogix Standard Controllers</a></p>
-        <h2>Sample Code Page (example programs, useful for learners)</h2>
-        <p><a href="http://samplecode.rockwellautomation.com/" target="_blank">Sample Code Rockwell</a></p>
-        <h2>StartPage (sample designs, videos for beginners)</h2>
-        <p><a href="http://www.rockwellautomation.com/rockwellautomation/products-technologies/integrated-architecture/tools/overview.page" target="_blank">Integrated Architecture Tools</a></p>
-        <h2>Software and License Support</h2>
-        <p><a href="http://www.rockwellautomation.com/rockwellautomation/support/activations.page" target="_blank">Software Activation Support</a></p>
-        <h2>Firmware and Software Updates</h2>
-        <p><a href="http://www.rockwellautomation.com/rockwellautomation/support/downloads.page" target="_blank">Firmware & Software Updates</a></p>
-        <h2>Technical Support (Q&A, troubleshooting)</h2>
-        <p><a href="https://rockwellautomation.custhelp.com/" target="_blank">Rockwell Technical Support</a></p>
-        <p>This series on Rslogix 5000 usage ends here. Hope these resources are helpful for beginners with Rockwell.</p>
-        <p>Author: Giap Van Vy - 2012</p>
+      <div class="bilingual-content">
+        <div class="vi">
+          <h1>[Logix] Bài 17: Các nguồn tài liệu tham khảo khác (bài cuối)</h1>
+          <h2>Trang tổng quan và các link đến tài liệu chi tiết về Controllogix và Rslogix 5000</h2>
+          <p><a href="http://ab.rockwellautomation.com/Programmable-Controllers/ControlLogix-Standard-Controllers#/tab5" target="_blank">ControlLogix Standard Controllers</a></p>
+          <h2>Trang Sample Code (chương trình mẫu, ví dụ mẫu)</h2>
+          <p><a href="http://samplecode.rockwellautomation.com/" target="_blank">Sample Code Rockwell</a></p>
+          <h2>Trang StartPage (thiết kế mẫu, video cho người mới học)</h2>
+          <p><a href="http://www.rockwellautomation.com/rockwellautomation/products-technologies/integrated-architecture/tools/overview.page" target="_blank">Integrated Architecture Tools</a></p>
+          <h2>Trang hỗ trợ phần mềm và bản quyền</h2>
+          <p><a href="http://www.rockwellautomation.com/rockwellautomation/support/activations.page" target="_blank">Software Activation Support</a></p>
+          <h2>Trang Download Firmware và Updates phần mềm</h2>
+          <p><a href="http://www.rockwellautomation.com/rockwellautomation/support/downloads.page" target="_blank">Firmware & Software Updates</a></p>
+          <h2>Trang hỗ trợ kỹ thuật (Q&A, giải đáp thắc mắc)</h2>
+          <p><a href="https://rockwellautomation.custhelp.com/" target="_blank">Rockwell Technical Support</a></p>
+          <p>Chuỗi bài viết về Hướng dẫn sử dụng Rslogix 5000 đến đây xin tạm dừng. Hi vọng những chia sẻ trên đây hữu ích cho các bạn mới bắt đầu với Rockwell.</p>
+          <p>Tác giả: Giap Van Vy - 2012</p>
+        </div>
+        <div class="en">
+          <h1>[Logix] Lesson 17: Other Reference Resources (final lesson)</h1>
+          <h2>Overview and links to detailed documentation for Controllogix and Rslogix 5000</h2>
+          <p><a href="http://ab.rockwellautomation.com/Programmable-Controllers/ControlLogix-Standard-Controllers#/tab5" target="_blank">ControlLogix Standard Controllers</a></p>
+          <h2>Sample Code Page (example programs, useful for learners)</h2>
+          <p><a href="http://samplecode.rockwellautomation.com/" target="_blank">Sample Code Rockwell</a></p>
+          <h2>StartPage (sample designs, videos for beginners)</h2>
+          <p><a href="http://www.rockwellautomation.com/rockwellautomation/products-technologies/integrated-architecture/tools/overview.page" target="_blank">Integrated Architecture Tools</a></p>
+          <h2>Software and License Support</h2>
+          <p><a href="http://www.rockwellautomation.com/rockwellautomation/support/activations.page" target="_blank">Software Activation Support</a></p>
+          <h2>Firmware and Software Updates</h2>
+          <p><a href="http://www.rockwellautomation.com/rockwellautomation/support/downloads.page" target="_blank">Firmware & Software Updates</a></p>
+          <h2>Technical Support (Q&A, troubleshooting)</h2>
+          <p><a href="https://rockwellautomation.custhelp.com/" target="_blank">Rockwell Technical Support</a></p>
+          <p>This series on Rslogix 5000 usage ends here. Hope these resources are helpful for beginners with Rockwell.</p>
+          <p>Author: Giap Van Vy - 2012</p>
+        </div>
       </div>
       <div class="clear"></div>
+    </div>
+    <style>
+      .bilingual-content .en { display: none; }
+      body.show-en .bilingual-content .vi { display: none; }
+      body.show-en .bilingual-content .en { display: block; }
+      .bilingual-toggle { text-align: right; margin-bottom: 1em; }
+      #toggle-lang { padding: 0.3em 1em; border-radius: 4px; border: 1px solid #ccc; background: #f8f8f8; cursor: pointer; }
+    </style>
+    <script>
+      // Persist language toggle across reloads
+      const langKey = 'logix-bilingual-lang';
+      const body = document.body;
+      function setLangFromStorage() {
+        if (localStorage.getItem(langKey) === 'en') {
+          body.classList.add('show-en');
+        } else {
+          body.classList.remove('show-en');
+        }
+      }
+      setLangFromStorage();
+      document.getElementById('toggle-lang').onclick = function() {
+        body.classList.toggle('show-en');
+        localStorage.setItem(langKey, body.classList.contains('show-en') ? 'en' : 'vi');
+      };
+    </script>
     </div>
   </div>
   <!-- Internal links for SEO -->

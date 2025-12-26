@@ -1,0 +1,4 @@
+domain:seoflox.com
+domain:exlinko.com
+domain:exlinko.net
+domain:seoflx.net
