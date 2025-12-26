@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>[Logix] Bài 6: Upgrade Firmware cho Controllogix/Compactlogix | JAP.vn</title>
+  <meta name="description" content="Hướng dẫn nâng cấp firmware cho Controllogix/Compactlogix, chi tiết từng bước, hình ảnh minh họa, lưu ý thực tế.">
+  <meta name="keywords" content="Upgrade Firmware, Controllogix, Compactlogix, Rslogix 5000, PLC Allen-Bradley, Rockwell Automation, hướng dẫn firmware, JAP.vn, lập trình PLC, PLC training">
+  <link rel="canonical" href="https://jap.vn/docs/logix/bai-6-upgrade-firmware-cho-controllogix-compactlogix.html">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="[Logix] Bài 6: Upgrade Firmware cho Controllogix/Compactlogix | JAP.vn">
+  <meta property="og:description" content="Hướng dẫn nâng cấp firmware cho Controllogix/Compactlogix, chi tiết từng bước, hình ảnh minh họa, lưu ý thực tế.">
+  <meta property="og:url" content="https://jap.vn/docs/logix/bai-6-upgrade-firmware-cho-controllogix-compactlogix.html">
+  <meta property="og:site_name" content="JAP.vn">
+  <meta property="og:locale" content="vi_VN">
+  <meta property="og:image" content="/assets/images/logix/controllogix-firmware-japvn-01.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="[Logix] Bài 6: Upgrade Firmware cho Controllogix/Compactlogix | JAP.vn">
+  <meta name="twitter:description" content="Hướng dẫn nâng cấp firmware cho Controllogix/Compactlogix, chi tiết từng bước, hình ảnh minh họa, lưu ý thực tế.">
+  <meta name="twitter:image" content="/assets/images/logix/controllogix-firmware-japvn-01.png">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://jap.vn/docs/logix/bai-6-upgrade-firmware-cho-controllogix-compactlogix.html"
+    },
+    "headline": "[Logix] Bài 6: Upgrade Firmware cho Controllogix/Compactlogix",
+    "description": "Hướng dẫn nâng cấp firmware cho Controllogix/Compactlogix, chi tiết từng bước, hình ảnh minh họa, lưu ý thực tế.",
+    "image": [
+      "/assets/images/logix/controllogix-firmware-japvn-01.png"
+    ],
+    "author": {
+      "@type": "Person",
+      "name": "JAP.vn Automation Team",
+      "url": "https://jap.vn/about"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "JAP.vn",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "/assets/images/logo.png"
+      }
+    },
+    "datePublished": "2012-10-17",
+    "dateModified": "2025-12-26"
+  }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #0056b3;
+      --text-dark: #333;
+      --text-light: #666;
+      --bg-light: #f8f9fa;
+      --border: #e1e4e8;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Roboto', sans-serif; background-color: #fff; color: var(--text-dark); line-height: 1.7; }
+    a { text-decoration: none; color: var(--primary); }
+    a:hover { text-decoration: underline; }
+    [lang="vi"] { display: none !important; }
+    [lang="en"] { display: block !important; }
+    span[lang="vi"] { display: none !important; }
+    span[lang="en"] { display: inline !important; }
+    body.show-vi [lang="vi"] { display: block !important; }
+    body.show-vi [lang="en"] { display: none !important; }
+    body.show-vi span[lang="vi"] { display: inline !important; }
+    body.show-vi span[lang="en"] { display: none !important; }
+    .container { max-width: 1100px; margin: 0 auto; display: flex; min-height: 100vh; }
+    .sidebar { width: 280px; background: var(--bg-light); border-right: 1px solid var(--border); padding: 30px 20px; display: flex; flex-direction: column; }
+    .logo { font-size: 1.5rem; font-weight: 700; color: #000; margin-bottom: 30px; display: block; text-decoration: none !important; }
+    .logo span { color: var(--primary); }
+    .menu-title { font-size: 0.75rem; text-transform: uppercase; color: #999; margin-bottom: 10px; font-weight: 700; letter-spacing: 1px; margin-top: 20px; }
+    .menu-link { display: block; padding: 8px 0; color: var(--text-light); font-size: 0.95rem; }
+    .menu-link:hover { color: var(--primary); }
+    .lang-btn { background: #fff; border: 1px solid var(--border); padding: 5px 10px; border-radius: 4px; cursor: pointer; font-size: 0.8rem; margin-top: auto; }
+    .lang-btn:hover { border-color: var(--primary); color: var(--primary); }
+    .main { flex: 1; padding: 40px 60px; }
+    .header-top { display: flex; justify-content: space-between; border-bottom: 1px solid var(--border); padding-bottom: 20px; margin-bottom: 40px; }
+    .last-update { font-size: 0.85rem; color: #888; }
+    h1 { font-size: 2.1rem; margin-bottom: 15px; font-weight: 600; color: var(--primary); }
+    h2, h3 { color: var(--primary); }
+    .note { background: #f1f8e9; border-left: 4px solid #8bc34a; padding: 10px 18px; margin: 18px 0; color: #33691e; }
+    img { max-width: 100%; border: 1px solid #eee; border-radius: 4px; margin: 18px 0; }
+    blockquote { border-left: 4px solid var(--primary); background: #f8f9fa; padding: 12px 18px; color: #555; margin: 18px 0; }
+    ul, ol { margin-left: 24px; }
+    .footer-simple { margin-top: 60px; padding-top: 20px; border-top: 1px solid var(--border); font-size: 0.95em; color: #888; display: flex; justify-content: space-between; }
+    @media (max-width: 900px) {
+      .container { flex-direction: column; }
+      .sidebar { width: 100%; border-right: none; border-bottom: 1px solid var(--border); }
+      .main { padding: 30px 20px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <aside class="sidebar">
+      <a href="/index.html" class="logo">JAP<span>.vn</span></a>
+      <div class="menu-title">Navigation</div>
+      <a href="/index.html" class="menu-link">Home / Overview</a>
+      <a href="#" class="menu-link">Hardware Index</a>
+      <a href="#" class="menu-link">Software Archive</a>
+      <a href="#" class="menu-link">Legacy Systems</a>
+      <a href="/docs/logix/bai-6-upgrade-firmware-cho-controllogix-compactlogix.html" class="menu-link" style="color: #0056b3; font-weight: 600;">[Logix] Upgrade Firmware</a>
+      <div class="menu-title">About Project</div>
+      <a href="/story.html" class="menu-link" style="color: var(--primary); font-weight: 500;">
+        <span lang="en">★ The Origin Story</span>
+        <span lang="vi">★ Câu chuyện khởi nguồn</span>
+      </a>
+      <div class="menu-title">External Links</div>
+      <a href="#" class="menu-link">Rockwell Knowledgebase ↗</a>
+      <a href="#" class="menu-link">PLCTalk Forum ↗</a>
+      <div style="margin-top: 30px;">
+        <button class="lang-btn" onclick="toggleLanguage()">🌐 EN / VI</button>
+      </div>
+    </aside>
+    <main class="main">
+      <div class="header-top">
+        <span class="last-update">
+          <span lang="en">System Status: <strong>Online</strong></span>
+          <span lang="vi">Trạng thái hệ thống: <strong>Trực tuyến</strong></span>
+        </span>
+        <span class="last-update">Est. 2012 • Updated 2025</span>
+      </div>
+      <h1>
+        <span lang="vi">[Logix] Bài 6: Upgrade Firmware cho Controllogix/Compactlogix</span>
+        <span lang="en">[Logix] Lesson 6: Upgrade Firmware for Controllogix/Compactlogix</span>
+      </h1>
+      <blockquote>
+        <span lang="vi"><b>Hướng dẫn nâng cấp firmware cho Controllogix/Compactlogix, chi tiết từng bước, hình ảnh minh họa, lưu ý thực tế.</b></span>
+        <span lang="en"><b>How to upgrade firmware for Controllogix/Compactlogix, step-by-step with images and practical notes.</b></span>
+      </blockquote>
+      <span lang="vi">
+        <p>Khi Firmware và Revision của phần mềm Rslogix 5000 khác nhau thì cần phải nâng cấp Firmware của Controller hoặc cài phiên bản Rslogix 5000 tương ứng. Việc nâng cấp Firmware của Controller cũng phải được thực hiện đối với Controller mới vì khi mua về chỉ là Firmware xuất xưởng (thường là 1.008).</p>
+        <p><b>Thực hiện Upgrade Firmware theo các bước sau:</b></p>
+        <ol>
+          <li>Khi cài đặt Rslogix 5000, chương trình tự động cài thêm công cụ FLASH Programming Tool, ngay trong Program Files. Đó chính là công cụ sử dụng để Upgrade/Dowgrade Firmware cho các thiết bị điều khiển của AB.</li>
+          <li><b>Chuẩn bị khi Upgrade/Downgrade:</b>
+            <ul>
+              <li>Backup chương trình vì khi Upgrade/Downgrade chương trình trong CPU sẽ bị xóa</li>
+              <li>Kết nối máy tính đến Controller cần Upgrade.</li>
+              <li><strong>Chuyển khóa trên CPU sang chế độ PROGRAM</strong></li>
+            </ul>
+          </li>
+          <li><img src="/assets/images/logix/controllogix-firmware-japvn-01.png" alt="Chuyển khóa CPU sang PROGRAM"></li>
+          <li>Chạy Flash Programming Tool, NEXT</li>
+          <li><img src="/assets/images/logix/controllogix-firmware-japvn-02.png" alt="Giao diện Flash Programming Tool"></li>
+          <li>Chọn Controller hay Module cần Upgrade. Ở đây chọn CPU Controllogix L75</li>
+          <li>NEXT</li>
+          <li><img src="/assets/images/logix/controllogix-firmware-japvn-03.png" alt="Chọn CPU cần Upgrade"></li>
+          <li>OK</li>
+          <li><img src="/assets/images/logix/controllogix-firmware-japvn-04.png" alt="Chọn phiên bản cần Upgrade"></li>
+          <li>Chọn phiên bản cần Upgrade hoặc Downgrade</li>
+          <li>NEXT</li>
+          <li><img src="/assets/images/logix/controllogix-firmware-japvn-05.png" alt="Xác nhận Upgrade"></li>
+          <li>Finish</li>
+          <li><img src="/assets/images/logix/controllogix-firmware-japvn-06.png" alt="Quá trình Upgrade"></li>
+          <li>Xác nhận</li>
+          <li>YES</li>
+          <li><img src="/assets/images/logix/controllogix-firmware-japvn-07.png" alt="Upgrade thành công"></li>
+          <li>Quá trình Upgrade diễn ra</li>
+          <li><img src="/assets/images/logix/controllogix-firmware-japvn-08.png" alt="Upgrade hoàn tất"></li>
+          <li>Thông báo đã Upgrade xong xuất hiện. Nếu bị lỗi sẽ có thông báo lỗi (màu đỏ)</li>
+          <li><img src="/assets/images/logix/controllogix-firmware-japvn-09.png" alt="Thông báo lỗi nếu có"></li>
+        </ol>
+        <div class="note">
+          <b>Ghi chú:</b>
+          <ul>
+            <li>Việc Upgrade/Downgrade Firmware là công việc bình thường, nhưng do ít khi phải thực hiện nên nhiều người cảm thấy lo lắng không cần thiết.</li>
+            <li>Cần thiết phải duy trì nguồn điện cho CPU và kết nối giữa CPU và máy tính liên tục trong thời gian Upgrade. Nếu bị ngắt giữa chừng thì CPU sẽ trở về phiên bản Firmware xuất xưởng và phải thực hiện Upgrade lại. Tuy nhiên trường hợp này cũng có thể gây ra lỗi và hỏng CPU.</li>
+            <li>Nên thực hiện qua Ethernet hoặc cổng USB (đối với các CPU đời mới), không nên thực hiện qua cổng RS-232 vì rất chậm và hay mất truyền thông.</li>
+            <li>Thời gian Upgrade trung bình từ 3-5 phút (qua Ethernet)</li>
+          </ul>
+        </div>
+        <p style="margin-top:24px;">Giap Van Vy – 2012</p>
+      </span>
+      <span lang="en">
+        <p>If the Firmware and Revision of Rslogix 5000 do not match, you must upgrade the Controller's Firmware or install the matching Rslogix 5000 version. New Controllers also require Firmware upgrade as they ship with factory default (usually 1.008).</p>
+        <p><b>Upgrade Firmware steps:</b></p>
+        <ol>
+          <li>When installing Rslogix 5000, the FLASH Programming Tool is also installed in Program Files. This is used to Upgrade/Downgrade Firmware for AB controllers.</li>
+          <li><b>Preparation for Upgrade/Downgrade:</b>
+            <ul>
+              <li>Backup your program, as upgrading/downgrading will erase the CPU program</li>
+              <li>Connect PC to the target Controller</li>
+              <li><strong>Switch the CPU key to PROGRAM mode</strong></li>
+            </ul>
+          </li>
+          <li><img src="/assets/images/logix/controllogix-firmware-japvn-01.png" alt="Switch CPU key to PROGRAM"></li>
+          <li>Run Flash Programming Tool, NEXT</li>
+          <li><img src="/assets/images/logix/controllogix-firmware-japvn-02.png" alt="Flash Programming Tool interface"></li>
+          <li>Select the Controller or Module to upgrade. Here, select Controllogix L75 CPU</li>
+          <li>NEXT</li>
+          <li><img src="/assets/images/logix/controllogix-firmware-japvn-03.png" alt="Select CPU to upgrade"></li>
+          <li>OK</li>
+          <li><img src="/assets/images/logix/controllogix-firmware-japvn-04.png" alt="Select version to upgrade"></li>
+          <li>Select the version to Upgrade or Downgrade</li>
+          <li>NEXT</li>
+          <li><img src="/assets/images/logix/controllogix-firmware-japvn-05.png" alt="Confirm Upgrade"></li>
+          <li>Finish</li>
+          <li><img src="/assets/images/logix/controllogix-firmware-japvn-06.png" alt="Upgrade process"></li>
+          <li>Confirm</li>
+          <li>YES</li>
+          <li><img src="/assets/images/logix/controllogix-firmware-japvn-07.png" alt="Upgrade successful"></li>
+          <li>Upgrade in progress</li>
+          <li><img src="/assets/images/logix/controllogix-firmware-japvn-08.png" alt="Upgrade completed"></li>
+          <li>Upgrade complete notification appears. If error, a red error message will show</li>
+          <li><img src="/assets/images/logix/controllogix-firmware-japvn-09.png" alt="Error notification if any"></li>
+        </ol>
+        <div class="note">
+          <b>Notes:</b>
+          <ul>
+            <li>Upgrading/Downgrading Firmware is normal, but many feel anxious as it's rarely done.</li>
+            <li>Keep CPU powered and PC-CPU connection stable during upgrade. If interrupted, CPU reverts to factory firmware and must be upgraded again. This can sometimes cause errors or damage.</li>
+            <li>Use Ethernet or USB (for new CPUs), avoid RS-232 as it's slow and unreliable.</li>
+            <li>Upgrade time: 3-5 minutes (via Ethernet)</li>
+          </ul>
+        </div>
+        <p style="margin-top:24px;">Giap Van Vy – 2012</p>
+      </span>
+      <div class="footer-simple">
+        <div>&copy; 2025 JAP.vn Documentation Project.</div>
+        <div>Independent Platform. Not affiliated with Rockwell Automation.</div>
+      </div>
+    </main>
+  </div>
+  <script>
+    const savedLang = localStorage.getItem('jap_lang');
+    const body = document.body;
+    if (savedLang === 'vi') body.classList.add('show-vi');
+    function toggleLanguage() {
+      body.classList.toggle('show-vi');
+      localStorage.setItem('jap_lang', body.classList.contains('show-vi') ? 'vi' : 'en');
+    }
+  </script>
+</body>
+</html>

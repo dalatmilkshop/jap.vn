@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>[Logix] Bài 8: Sử dụng kiểu dữ liệu User Defined trong RSLogix 5000 | JAP.VN</title>
+  <meta name="description" content="Hướng dẫn sử dụng User Defined Data Type trong RSLogix 5000. Tối ưu hóa lập trình PLC với kiểu dữ liệu do người dùng định nghĩa.">
+  <meta name="keywords" content="RSLogix 5000, User Defined Data Type, PLC, Rockwell, lập trình PLC, hướng dẫn RSLogix">
+  <meta property="og:title" content="[Logix] Bài 8: Sử dụng kiểu dữ liệu User Defined trong RSLogix 5000">
+  <meta property="og:description" content="Hướng dẫn sử dụng User Defined Data Type trong RSLogix 5000. Tối ưu hóa lập trình PLC với kiểu dữ liệu do người dùng định nghĩa.">
+  <meta property="og:type" content="article">
+  <meta property="og:image" content="assets/images/logix/rslogix5000-userdefined-japvn-01.png">
+  <link rel="canonical" href="https://jap.vn/logix/bai-8-su-dung-kieu-du-lieu-user-defined-trong-rslogix-5000.html">
+  <link rel="stylesheet" href="../../assets/css/main.css">
+</head>
+<body>
+  <aside class="sidebar">
+    <!-- ...sidebar content/navigation... -->
+  </aside>
+  <main class="content">
+    <article>
+      <h1>[Logix] Bài 8: Sử dụng kiểu dữ liệu User Defined trong RSLogix 5000</h1>
+      <p><em>Ngày đăng: 21/10/2012 &mdash; Cập nhật: 2025</em></p>
+      <p><strong>Tiếng Việt</strong> | <a href="#en">English below</a></p>
+      <p><img src="../../assets/images/logix/rslogix5000-userdefined-japvn-01.png" alt="User Defined Data Type trong RSLogix 5000"></p>
+      <p>Ngoài các kiểu dữ liệu cơ bản như <strong>INT, DINT, BOOL, STRING</strong>, RSLogix 5000 cho phép người dùng định nghĩa các kiểu dữ liệu riêng (User Defined Data Type) để tối ưu hóa lập trình hướng đối tượng. Ví dụ: tạo đối tượng <strong>MOTOR</strong> với các thành phần <strong>START, STOP, RUNNING, FAULT</strong>...</p>
+      <h2>Tạo mới User Defined Data Type</h2>
+      <p>Chọn <strong>New Data Type</strong> trong phần cấu hình.</p>
+      <p><em>(Một số hình minh họa không còn file gốc, vui lòng tham khảo tài liệu chính thức bên dưới)</em></p>
+      <ul>
+        <li>Nhập tên kiểu dữ liệu cho đối tượng mới (ví dụ: MOTOR).</li>
+        <li>Nhập các thành phần của đối tượng và chọn OK để hoàn tất.</li>
+        <li>Kiểu dữ liệu mới sẽ xuất hiện trong danh sách.</li>
+      </ul>
+      <h2>Tạo Tag mới với kiểu dữ liệu vừa tạo</h2>
+      <p>Trong <strong>Controller Tag</strong>, tạo Tag mới (ví dụ: MOTOR1) với kiểu dữ liệu là MOTOR.</p>
+      <p><img src="../../assets/images/logix/rslogix5000-userdefined-japvn-07.png" alt="Tag với User Defined Data Type"></p>
+      <p>Các thành phần của MOTOR sẽ tự động được tạo ra và sẵn sàng sử dụng trong chương trình.</p>
+      <h3>Ghi chú</h3>
+      <ul>
+        <li>Khi chỉnh sửa kiểu dữ liệu, các Tag liên quan sẽ tự động cập nhật.</li>
+        <li>Có thể Export/Import kiểu dữ liệu giữa các chương trình.</li>
+      </ul>
+      <h3>Tài liệu tham khảo</h3>
+      <p><a href="http://literature.rockwellautomation.com/idc/groups/literature/documents/pm/1756-pm004_-en-p.pdf" target="_blank" rel="noopener">Tài liệu chính thức của Rockwell Automation</a></p>
+      <p><em>Giap Van Vy – 2012</em></p>
+      <hr>
+      <h2 id="en">[Logix] Lesson 8: Using User Defined Data Types in RSLogix 5000</h2>
+      <p><em>English version</em></p>
+      <p>Besides basic data types like <strong>INT, DINT, BOOL, STRING</strong>, RSLogix 5000 allows users to define custom data types (User Defined Data Type) for object-oriented programming. For example, create a <strong>MOTOR</strong> object with <strong>START, STOP, RUNNING, FAULT</strong> fields...</p>
+      <h3>Create a new User Defined Data Type</h3>
+      <ul>
+        <li>Select <strong>New Data Type</strong> in the configuration.</li>
+        <li>Enter the name for the new data type (e.g., MOTOR).</li>
+        <li>Enter the fields and click OK to finish.</li>
+        <li>The new data type will appear in the list.</li>
+      </ul>
+      <h3>Create a new Tag with the new data type</h3>
+      <p>In <strong>Controller Tag</strong>, create a new Tag (e.g., MOTOR1) with data type MOTOR.</p>
+      <p><img src="../../assets/images/logix/rslogix5000-userdefined-japvn-07.png" alt="Tag with User Defined Data Type"></p>
+      <p>The MOTOR fields will be automatically created and ready to use in your program.</p>
+      <h4>Notes</h4>
+      <ul>
+        <li>Editing the data type will automatically update all related Tags.</li>
+        <li>You can Export/Import data types between projects.</li>
+      </ul>
+      <h4>Reference</h4>
+      <p><a href="http://literature.rockwellautomation.com/idc/groups/literature/documents/pm/1756-pm004_-en-p.pdf" target="_blank" rel="noopener">Official Rockwell Automation documentation</a></p>
+      <p><em>Giap Van Vy – 2012</em></p>
+    </article>
+  </main>
+</body>
+</html>

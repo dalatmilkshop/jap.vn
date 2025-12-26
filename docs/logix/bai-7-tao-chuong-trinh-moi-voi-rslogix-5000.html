@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>[Logix] Bài 7: Tạo chương trình mới với RSLogix 5000 | JAP.vn</title>
+  <meta name="description" content="Hướng dẫn tạo dự án mới với RSLogix 5000, cấu hình phần cứng, các khái niệm cơ bản, hình ảnh minh họa từng bước.">
+  <meta name="keywords" content="RSLogix 5000, tạo project mới, hướng dẫn RSLogix, PLC Allen-Bradley, Rockwell Automation, lập trình PLC, JAP.vn, ControlLogix, CompactLogix, PLC training">
+  <link rel="canonical" href="https://jap.vn/docs/logix/bai-7-tao-chuong-trinh-moi-voi-rslogix-5000.html">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="[Logix] Bài 7: Tạo chương trình mới với RSLogix 5000 | JAP.vn">
+  <meta property="og:description" content="Hướng dẫn tạo dự án mới với RSLogix 5000, cấu hình phần cứng, các khái niệm cơ bản, hình ảnh minh họa từng bước.">
+  <meta property="og:url" content="https://jap.vn/docs/logix/bai-7-tao-chuong-trinh-moi-voi-rslogix-5000.html">
+  <meta property="og:site_name" content="JAP.vn">
+  <meta property="og:locale" content="vi_VN">
+  <meta property="og:image" content="/assets/images/logix/rslogix5000-taoproject-japvn-01.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="[Logix] Bài 7: Tạo chương trình mới với RSLogix 5000 | JAP.vn">
+  <meta name="twitter:description" content="Hướng dẫn tạo dự án mới với RSLogix 5000, cấu hình phần cứng, các khái niệm cơ bản, hình ảnh minh họa từng bước.">
+  <meta name="twitter:image" content="/assets/images/logix/rslogix5000-taoproject-japvn-01.png">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://jap.vn/docs/logix/bai-7-tao-chuong-trinh-moi-voi-rslogix-5000.html"
+    },
+    "headline": "[Logix] Bài 7: Tạo chương trình mới với RSLogix 5000",
+    "description": "Hướng dẫn tạo dự án mới với RSLogix 5000, cấu hình phần cứng, các khái niệm cơ bản, hình ảnh minh họa từng bước.",
+    "image": [
+      "/assets/images/logix/rslogix5000-taoproject-japvn-01.png"
+    ],
+    "author": {
+      "@type": "Person",
+      "name": "JAP.vn Automation Team",
+      "url": "https://jap.vn/about"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "JAP.vn",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "/assets/images/logo.png"
+      }
+    },
+    "datePublished": "2012-10-19",
+    "dateModified": "2025-12-26"
+  }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #0056b3;
+      --text-dark: #333;
+      --text-light: #666;
+      --bg-light: #f8f9fa;
+      --border: #e1e4e8;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Roboto', sans-serif; background-color: #fff; color: var(--text-dark); line-height: 1.7; }
+    a { text-decoration: none; color: var(--primary); }
+    a:hover { text-decoration: underline; }
+    [lang="vi"] { display: none !important; }
+    [lang="en"] { display: block !important; }
+    span[lang="vi"] { display: none !important; }
+    span[lang="en"] { display: inline !important; }
+    body.show-vi [lang="vi"] { display: block !important; }
+    body.show-vi [lang="en"] { display: none !important; }
+    body.show-vi span[lang="vi"] { display: inline !important; }
+    body.show-vi span[lang="en"] { display: none !important; }
+    .container { max-width: 1100px; margin: 0 auto; display: flex; min-height: 100vh; }
+    .sidebar { width: 280px; background: var(--bg-light); border-right: 1px solid var(--border); padding: 30px 20px; display: flex; flex-direction: column; }
+    .logo { font-size: 1.5rem; font-weight: 700; color: #000; margin-bottom: 30px; display: block; text-decoration: none !important; }
+    .logo span { color: var(--primary); }
+    .menu-title { font-size: 0.75rem; text-transform: uppercase; color: #999; margin-bottom: 10px; font-weight: 700; letter-spacing: 1px; margin-top: 20px; }
+    .menu-link { display: block; padding: 8px 0; color: var(--text-light); font-size: 0.95rem; }
+    .menu-link:hover { color: var(--primary); }
+    .lang-btn { background: #fff; border: 1px solid var(--border); padding: 5px 10px; border-radius: 4px; cursor: pointer; font-size: 0.8rem; margin-top: auto; }
+    .lang-btn:hover { border-color: var(--primary); color: var(--primary); }
+    .main { flex: 1; padding: 40px 60px; }
+    .header-top { display: flex; justify-content: space-between; border-bottom: 1px solid var(--border); padding-bottom: 20px; margin-bottom: 40px; }
+    .last-update { font-size: 0.85rem; color: #888; }
+    h1 { font-size: 2.1rem; margin-bottom: 15px; font-weight: 600; color: var(--primary); }
+    h2, h3 { color: var(--primary); }
+    .note { background: #f1f8e9; border-left: 4px solid #8bc34a; padding: 10px 18px; margin: 18px 0; color: #33691e; }
+    img { max-width: 100%; border: 1px solid #eee; border-radius: 4px; margin: 18px 0; }
+    blockquote { border-left: 4px solid var(--primary); background: #f8f9fa; padding: 12px 18px; color: #555; margin: 18px 0; }
+    ul, ol { margin-left: 24px; }
+    .footer-simple { margin-top: 60px; padding-top: 20px; border-top: 1px solid var(--border); font-size: 0.95em; color: #888; display: flex; justify-content: space-between; }
+    @media (max-width: 900px) {
+      .container { flex-direction: column; }
+      .sidebar { width: 100%; border-right: none; border-bottom: 1px solid var(--border); }
+      .main { padding: 30px 20px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <aside class="sidebar">
+      <a href="/index.html" class="logo">JAP<span>.vn</span></a>
+      <div class="menu-title">Navigation</div>
+      <a href="/index.html" class="menu-link">Home / Overview</a>
+      <a href="#" class="menu-link">Hardware Index</a>
+      <a href="#" class="menu-link">Software Archive</a>
+      <a href="#" class="menu-link">Legacy Systems</a>
+      <a href="/docs/logix/bai-7-tao-chuong-trinh-moi-voi-rslogix-5000.html" class="menu-link" style="color: #0056b3; font-weight: 600;">[Logix] Tạo chương trình mới</a>
+      <div class="menu-title">About Project</div>
+      <a href="/story.html" class="menu-link" style="color: var(--primary); font-weight: 500;">
+        <span lang="en">★ The Origin Story</span>
+        <span lang="vi">★ Câu chuyện khởi nguồn</span>
+      </a>
+      <div class="menu-title">External Links</div>
+      <a href="#" class="menu-link">Rockwell Knowledgebase ↗</a>
+      <a href="#" class="menu-link">PLCTalk Forum ↗</a>
+      <div style="margin-top: 30px;">
+        <button class="lang-btn" onclick="toggleLanguage()">🌐 EN / VI</button>
+      </div>
+    </aside>
+    <main class="main">
+      <div class="header-top">
+        <span class="last-update">
+          <span lang="en">System Status: <strong>Online</strong></span>
+          <span lang="vi">Trạng thái hệ thống: <strong>Trực tuyến</strong></span>
+        </span>
+        <span class="last-update">Est. 2012 • Updated 2025</span>
+      </div>
+      <h1>
+        <span lang="vi">[Logix] Bài 7: Tạo chương trình mới với RSLogix 5000</span>
+        <span lang="en">[Logix] Lesson 7: Create a new project with RSLogix 5000</span>
+      </h1>
+      <blockquote>
+        <span lang="vi"><b>Hướng dẫn tạo dự án mới, cấu hình phần cứng, các khái niệm cơ bản, hình ảnh minh họa từng bước.</b></span>
+        <span lang="en"><b>How to create a new project, hardware configuration, basic concepts, step-by-step with images.</b></span>
+      </blockquote>
+      <span lang="vi">
+        <ul>
+          <li>Các bước tạo một dự án đầu tiên với Rslogix 5000</li>
+          <li>Các khái niệm cơ bản sử dụng trong chương trình Rslogix 5000</li>
+        </ul>
+        <img src="/assets/images/logix/rslogix5000-taoproject-japvn-01.png" alt="Tổng quan phần cứng">
+        <p>Phần cứng trình bày trong bài này (và các bài sau):</p>
+        <ul>
+          <li>Chassis 10 Slot</li>
+          <li>CPU Controllogix L75 gắn ở Slot 0</li>
+          <li>Module Input 32 ngõ vào DC gắn ở Slot số 5</li>
+          <li>Module Output 32 ngõ ra DC gắn ở Slot số 6</li>
+        </ul>
+        <p>Ta tạo một dự án mới với Rslogix 5000 với phần cứng trên như sau</p>
+        <img src="/assets/images/logix/rslogix5000-taoproject-japvn-02.png" alt="Tạo project mới">
+        <p>Từ màn hình chính chọn New hoặc File > New</p>
+        <img src="/assets/images/logix/rslogix5000-taoproject-japvn-03.png" alt="Chọn thông số CPU">
+        <p>Trong cửa sổ này, cần chọn đúng các thông số của CPU:</p>
+        <ul>
+          <li>Loại CPU, chọn đúng loại mà bạn có (ở đây 1756-L75)</li>
+          <li><strong>Revision: </strong> chọn phiên bản phần mềm Rslogix 5000 đang sử dụng (ở đây là Version 20). Phải chọn tương thích với Firmware phần cứng bên dưới (Xem bài 6: Firmware)</li>
+          <li><strong>Name: </strong>Đặt tên cho Project. Bắt buộc phải đặt tên và tên này sẽ hiển thị bên cạnh CPU trong RSLinx để biết CPU nào là của chương trình nào.</li>
+          <li><strong>Chassis Type:</strong> Chọn đúng loại Chassis sử dụng, ở đây là 10 Slot</li>
+          <li><strong>Slot:</strong> CPU dự định cắm vào Slot nào thì chọn ở đây cho đúng.</li>
+          <li><strong>Create In:</strong> chọn nơi lưu File chương trình trên máy tính</li>
+        </ul>
+        <p>Sau khi chọn xong thì OK.</p>
+        <p>Project được tạo ra như sau:</p>
+        <img src="/assets/images/logix/rslogix5000-taoproject-japvn-04.png" alt="Project mới tạo">
+        <p>Ta tạo thêm 2 Module IO nữa. Để tạo Module mới, từ IO Configuration, Click phải và chọn New Module:</p>
+        <img src="/assets/images/logix/rslogix5000-taoproject-japvn-05.png" alt="Tạo IO Module mới">
+        <p>Cửa sổ mới xuất hiện:</p>
+        <img src="/assets/images/logix/rslogix5000-taoproject-japvn-06.png" alt="Chọn module IB32">
+        <p>Chỉ cần chọn, hoặc gõ IB32 vào khung tìm kiếm, chương trình sẽ liệt kê các module tương ứng, chọn và Create.</p>
+        <img src="/assets/images/logix/rslogix5000-taoproject-japvn-07.png" alt="Đặt tên và chọn Slot cho module">
+        <p>Tại cửa sổ mới xuất hiện, đặt tên cho Module và chọn đúng Slot sẽ gắn Module trên Chassis (ở đây là Slot 5), sau đó OK. Một cửa sổ nữa xuất hiện, chọn OK (sau này khi sử dụng quen các bạn sẽ tự biết cấu hình khi cần)</p>
+        <p>Ta thấy Module IB32 vừa tạo đã xuất hiện trong I/O Configuration. Và tương tự ta tạo thêm Module OB32 để được như hình dưới:</p>
+        <img src="/assets/images/logix/rslogix5000-taoproject-japvn-08.png" alt="Cấu hình IO hoàn chỉnh">
+        <p><b>Với Compactlogix</b></p>
+        <p>Việc tạo chương trình mới với Compactlogix tương tự như với Controllogix ở trên. Tuy nhiên cũng có một số khác biệt nhỏ cần lưu ý:</p>
+        <img src="/assets/images/logix/rslogix5000-taoproject-japvn-09.png" alt="Compactlogix xác định số module mở rộng">
+        <img src="/assets/images/logix/rslogix5000-taoproject-japvn-10.png" alt="Thêm IO mới cho Compactlogix">
+        <p>Để thêm IO mới, Chọn New Module tại Expansion I/O Module.</p>
+        <div class="note">
+          <b>Ghi chú:</b>
+          <ul>
+            <li>Ở trên là các bước cơ bản để tạo cấu hình phần cứng của Project trong Rslogix 5000.</li>
+            <li>Đối với Controllogix (các mô đun 1756-) có thể tạo Online bằng chức năng Discovery của Rslogix 5000</li>
+          </ul>
+        </div>
+        <div class="note">
+          <b>Tài liệu tham khảo:</b> <a href="https://literature.rockwellautomation.com/idc/groups/literature/documents/pm/1756-pm004_-en-p.pdf" target="_blank">1756-pm004_-en-p.pdf</a>
+        </div>
+        <p style="margin-top:24px;">giap van vy – 2012</p>
+      </span>
+      <span lang="en">
+        <ul>
+          <li>Steps to create your first project with RSLogix 5000</li>
+          <li>Basic concepts in RSLogix 5000 programming</li>
+        </ul>
+        <img src="/assets/images/logix/rslogix5000-taoproject-japvn-01.png" alt="Hardware overview">
+        <p>Hardware in this lesson (and next):</p>
+        <ul>
+          <li>10 Slot Chassis</li>
+          <li>Controllogix L75 CPU in Slot 0</li>
+          <li>32-point DC Input Module in Slot 5</li>
+          <li>32-point DC Output Module in Slot 6</li>
+        </ul>
+        <p>Create a new project with RSLogix 5000 as follows:</p>
+        <img src="/assets/images/logix/rslogix5000-taoproject-japvn-02.png" alt="Create new project">
+        <p>From main screen, select New or File > New</p>
+        <img src="/assets/images/logix/rslogix5000-taoproject-japvn-03.png" alt="Select CPU parameters">
+        <p>In this window, select correct CPU parameters:</p>
+        <ul>
+          <li>CPU type (here: 1756-L75)</li>
+          <li><strong>Revision:</strong> select RSLogix 5000 version (here: Version 20). Must match hardware firmware (see lesson 6: Firmware)</li>
+          <li><strong>Name:</strong> Project name (required, shown in RSLinx next to CPU)</li>
+          <li><strong>Chassis Type:</strong> select correct chassis (here: 10 Slot)</li>
+          <li><strong>Slot:</strong> select slot for CPU</li>
+          <li><strong>Create In:</strong> select file save location</li>
+        </ul>
+        <p>Click OK when done.</p>
+        <p>Project is created as below:</p>
+        <img src="/assets/images/logix/rslogix5000-taoproject-japvn-04.png" alt="New project created">
+        <p>Add 2 IO Modules. To add, right-click IO Configuration and select New Module:</p>
+        <img src="/assets/images/logix/rslogix5000-taoproject-japvn-05.png" alt="Add new IO Module">
+        <p>New window appears:</p>
+        <img src="/assets/images/logix/rslogix5000-taoproject-japvn-06.png" alt="Select IB32 module">
+        <p>Type or select IB32, choose from list, then Create.</p>
+        <img src="/assets/images/logix/rslogix5000-taoproject-japvn-07.png" alt="Name and select slot for module">
+        <p>In new window, name the module and select correct slot (here: Slot 5), then OK. Another window appears, click OK (you'll learn to configure as needed later)</p>
+        <p>IB32 module now appears in I/O Configuration. Similarly, add OB32 module as below:</p>
+        <img src="/assets/images/logix/rslogix5000-taoproject-japvn-08.png" alt="Complete IO configuration">
+        <p><b>With Compactlogix</b></p>
+        <p>Creating a new project with Compactlogix is similar to Controllogix above, with some small differences:</p>
+        <img src="/assets/images/logix/rslogix5000-taoproject-japvn-09.png" alt="Compactlogix expansion module count">
+        <img src="/assets/images/logix/rslogix5000-taoproject-japvn-10.png" alt="Add new IO for Compactlogix">
+        <p>To add new IO, select New Module at Expansion I/O Module.</p>
+        <div class="note">
+          <b>Notes:</b>
+          <ul>
+            <li>Above are basic steps to configure project hardware in RSLogix 5000.</li>
+            <li>For Controllogix (1756- modules), you can create Online using RSLogix 5000 Discovery</li>
+          </ul>
+        </div>
+        <div class="note">
+          <b>Reference:</b> <a href="https://literature.rockwellautomation.com/idc/groups/literature/documents/pm/1756-pm004_-en-p.pdf" target="_blank">1756-pm004_-en-p.pdf</a>
+        </div>
+        <p style="margin-top:24px;">giap van vy – 2012</p>
+      </span>
+      <div class="footer-simple">
+        <div>&copy; 2025 JAP.vn Documentation Project.</div>
+        <div>Independent Platform. Not affiliated with Rockwell Automation.</div>
+      </div>
+    </main>
+  </div>
+  <script>
+    const savedLang = localStorage.getItem('jap_lang');
+    const body = document.body;
+    if (savedLang === 'vi') body.classList.add('show-vi');
+    function toggleLanguage() {
+      body.classList.toggle('show-vi');
+      localStorage.setItem('jap_lang', body.classList.contains('show-vi') ? 'vi' : 'en');
+    }
+  </script>
+</body>
+</html>

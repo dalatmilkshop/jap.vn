@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>[Logix] Bài 2: Giới thiệu phần cứng Controllogix | JAP.vn</title>
+  <meta name="description" content="Tổng quan về phần cứng Controllogix (1756-L6x, 1756-L7x), ứng dụng, cấu trúc chassis, slot, module, và các đặc điểm nổi bật. Bài viết chuẩn hóa, song ngữ, tối ưu SEO.">
+  <meta name="keywords" content="Controllogix, 1756-L6x, 1756-L7x, Rockwell Automation, PLC, PAC, chassis, slot, module, JAP.vn, hướng dẫn PLC, automation, hardware, ControlLogix hardware, lập trình PLC">
+  <link rel="canonical" href="https://jap.vn/docs/logix/bai-2-gioi-thieu-phan-cung-controllogix.html">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="[Logix] Bài 2: Giới thiệu phần cứng Controllogix | JAP.vn">
+  <meta property="og:description" content="Tổng quan về phần cứng Controllogix (1756-L6x, 1756-L7x), ứng dụng, cấu trúc chassis, slot, module, và các đặc điểm nổi bật.">
+  <meta property="og:url" content="https://jap.vn/docs/logix/bai-2-gioi-thieu-phan-cung-controllogix.html">
+  <meta property="og:site_name" content="JAP.vn">
+  <meta property="og:locale" content="vi_VN">
+  <meta property="og:image" content="/assets/images/logix/clx_chassis-japvn-01.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="[Logix] Bài 2: Giới thiệu phần cứng Controllogix | JAP.vn">
+  <meta name="twitter:description" content="Tổng quan về phần cứng Controllogix (1756-L6x, 1756-L7x), ứng dụng, cấu trúc chassis, slot, module, và các đặc điểm nổi bật.">
+  <meta name="twitter:image" content="/assets/images/logix/clx_chassis-japvn-01.png">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://jap.vn/docs/logix/bai-2-gioi-thieu-phan-cung-controllogix.html"
+    },
+    "headline": "[Logix] Bài 2: Giới thiệu phần cứng Controllogix",
+    "description": "Tổng quan về phần cứng Controllogix (1756-L6x, 1756-L7x), ứng dụng, cấu trúc chassis, slot, module, và các đặc điểm nổi bật.",
+    "image": [
+      "/assets/images/logix/clx_chassis-japvn-01.png"
+    ],
+    "author": {
+      "@type": "Person",
+      "name": "JAP.vn Automation Team",
+      "url": "https://jap.vn/about"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "JAP.vn",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "/assets/images/logo.png"
+      }
+    },
+    "datePublished": "2012-10-09",
+    "dateModified": "2025-12-26"
+  }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #0056b3;
+      --text-dark: #333;
+      --text-light: #666;
+      --bg-light: #f8f9fa;
+      --border: #e1e4e8;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Roboto', sans-serif; background-color: #fff; color: var(--text-dark); line-height: 1.7; }
+    a { text-decoration: none; color: var(--primary); }
+    a:hover { text-decoration: underline; }
+    [lang="vi"] { display: none !important; }
+    [lang="en"] { display: block !important; }
+    span[lang="vi"] { display: none !important; }
+    span[lang="en"] { display: inline !important; }
+    body.show-vi [lang="vi"] { display: block !important; }
+    body.show-vi [lang="en"] { display: none !important; }
+    body.show-vi span[lang="vi"] { display: inline !important; }
+    body.show-vi span[lang="en"] { display: none !important; }
+    .container { max-width: 1100px; margin: 0 auto; display: flex; min-height: 100vh; }
+    .sidebar { width: 280px; background: var(--bg-light); border-right: 1px solid var(--border); padding: 30px 20px; display: flex; flex-direction: column; }
+    .logo { font-size: 1.5rem; font-weight: 700; color: #000; margin-bottom: 30px; display: block; text-decoration: none !important; }
+    .logo span { color: var(--primary); }
+    .menu-title { font-size: 0.75rem; text-transform: uppercase; color: #999; margin-bottom: 10px; font-weight: 700; letter-spacing: 1px; margin-top: 20px; }
+    .menu-link { display: block; padding: 8px 0; color: var(--text-light); font-size: 0.95rem; }
+    .menu-link:hover { color: var(--primary); }
+    .lang-btn { background: #fff; border: 1px solid var(--border); padding: 5px 10px; border-radius: 4px; cursor: pointer; font-size: 0.8rem; margin-top: auto; }
+    .lang-btn:hover { border-color: var(--primary); color: var(--primary); }
+    .main { flex: 1; padding: 40px 60px; }
+    .header-top { display: flex; justify-content: space-between; border-bottom: 1px solid var(--border); padding-bottom: 20px; margin-bottom: 40px; }
+    .last-update { font-size: 0.85rem; color: #888; }
+    h1 { font-size: 2.1rem; margin-bottom: 15px; font-weight: 600; color: var(--primary); }
+    h2, h3 { color: var(--primary); }
+    .note { background: #f1f8e9; border-left: 4px solid #8bc34a; padding: 10px 18px; margin: 18px 0; color: #33691e; }
+    img { max-width: 100%; border: 1px solid #eee; border-radius: 4px; margin: 18px 0; }
+    blockquote { border-left: 4px solid var(--primary); background: #f8f9fa; padding: 12px 18px; color: #555; margin: 18px 0; }
+    ul, ol { margin-left: 24px; }
+    .footer-simple { margin-top: 60px; padding-top: 20px; border-top: 1px solid var(--border); font-size: 0.95em; color: #888; display: flex; justify-content: space-between; }
+    @media (max-width: 900px) {
+      .container { flex-direction: column; }
+      .sidebar { width: 100%; border-right: none; border-bottom: 1px solid var(--border); }
+      .main { padding: 30px 20px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <aside class="sidebar">
+      <a href="/index.html" class="logo">JAP<span>.vn</span></a>
+      <div class="menu-title">Navigation</div>
+      <a href="/index.html" class="menu-link">Home / Overview</a>
+      <a href="#" class="menu-link">Hardware Index</a>
+      <a href="#" class="menu-link">Software Archive</a>
+      <a href="#" class="menu-link">Legacy Systems</a>
+      <a href="/docs/logix/bai-2-gioi-thieu-phan-cung-controllogix.html" class="menu-link" style="color: #0056b3; font-weight: 600;">[Logix] Giới thiệu phần cứng Controllogix</a>
+      <div class="menu-title">About Project</div>
+      <a href="/story.html" class="menu-link" style="color: var(--primary); font-weight: 500;">
+        <span lang="en">★ The Origin Story</span>
+        <span lang="vi">★ Câu chuyện khởi nguồn</span>
+      </a>
+      <div class="menu-title">External Links</div>
+      <a href="#" class="menu-link">Rockwell Knowledgebase ↗</a>
+      <a href="#" class="menu-link">PLCTalk Forum ↗</a>
+      <div style="margin-top: 30px;">
+        <button class="lang-btn" onclick="toggleLanguage()">🌐 EN / VI</button>
+      </div>
+    </aside>
+    <main class="main">
+      <div class="header-top">
+        <span class="last-update">
+          <span lang="en">System Status: <strong>Online</strong></span>
+          <span lang="vi">Trạng thái hệ thống: <strong>Trực tuyến</strong></span>
+        </span>
+        <span class="last-update">Est. 2012 • Updated 2025</span>
+      </div>
+      <h1>
+        <span lang="vi">[Logix] Bài 2: Giới thiệu phần cứng Controllogix</span>
+        <span lang="en">[Logix] Lesson 2: Introduction to Controllogix Hardware</span>
+      </h1>
+      <blockquote>
+        <span lang="vi"><b>Tổng quan thực tế về phần cứng Controllogix (1756-L6x, 1756-L7x), ứng dụng, cấu trúc chassis, slot, module, và các đặc điểm nổi bật.</b></span>
+        <span lang="en"><b>Practical overview of Controllogix hardware (1756-L6x, 1756-L7x), applications, chassis structure, slots, modules, and key features.</b></span>
+      </blockquote>
+      <span lang="vi">
+        <ul>
+          <li>Là dòng PAC cỡ lớn của Rockwell Automation, sử dụng cho các ứng dụng điều khiển phức tạp, DCS, nhiều loại mạng truyền thông và có số lượng I/O lớn (hơn 1000).</li>
+          <li>Có 2 dòng sản phẩm: 1765-L6x và 1756-L7x. L7x mới được giới thiệu được vài năm với nhiều tính năng mới cũng như hiệu suất cao gấp đôi so với 1756-L6x, dùng thay thế cho các 1756-L6x cũ. Hiện tại tại các nhà máy vẫn phổ biến là 1756-L6x.</li>
+          <li>Bộ nhớ CPU lớn nhất là 32MB (1756-L75)</li>
+          <li>Số lượng I/O tối đa có thể quản lý là <strong>128.000 I/O</strong></li>
+          <li>Thẻ nhớ SD (L7x) để Backup chương trình</li>
+          <li>Cổng USB 2.0 để lập trình (L7x).</li>
+          <li>Tích hợp Motion</li>
+          <li>Không sử dụng pin.</li>
+        </ul>
+        <p><strong>Chassis, Slot và Module</strong></p>
+        <ul>
+          <li>Chassis là khung gồm có bộ nguồn, các khe cắm (slot) để gắn các Module. Chassis có nhiều kích cỡ từ 4, 7, 10, 13 và 17 Slot.</li>
+          <li>Bộ nguồn cấp nguồn cho các Module trên Chassis. Bộ nguồn có nhiều loại AC, DC, Redundant cũng như nhiều công suất khác nhau và phải mua riêng (không kèm theo chassis).</li>
+        </ul>
+        <img src="/assets/images/logix/clx_chassis-japvn-01.png" alt="Chassis Controllogix">
+        <ul>
+          <li>Slot là khe cắm các module, tất cả các module 1756-xxx đều có thể gắn trên Chassis vào các Slot</li>
+          <li>Module bao gồm cả CPU, Module I/O và module truyền thông mạng. Các module có thể gắn ở Slot bất kì trên Chassis.
+            <ul>
+              <li>Có thể có nhiều CPU trên một Chassis</li>
+              <li>Các module trên chassis có thể tháo lắp mà không cần tắt nguồn.</li>
+              <li>Có thể có hoặc không có CPU trên Chassis. (khi đó Chassis đóng vai trò như một trạm Remote IO)</li>
+            </ul>
+          </li>
+        </ul>
+        <p><strong>Ứng dụng</strong></p>
+        <p>Controllogix phù hợp cho các ứng dụng:</p>
+        <ul>
+          <li>Điều khiển phức tạp, tích hợp hệ thống như DCS, Batch</li>
+          <li>Yêu cầu Redundant (cấu hình dự phòng sự cố)</li>
+          <li>Số lượng IO lớn, phân tán (tối đa 128.000 I/O)</li>
+          <li>Ứng dụng gồm nhiều loại truyền thông công nghiệp khác nhau như Controlnet, Ethernet, DeviceNet, DH+….</li>
+        </ul>
+        <p><em>Tham khảo thêm</em></p>
+        <p><em><a href="https://ab.rockwellautomation.com/Programmable-Controllers/ControlLogix-Standard-Controllers#/tab5">Rockwell ControlLogix Standard Controllers</a></em></p>
+        <p><strong>Giáp Văn Vỹ – 2012</strong></p>
+      </span>
+      <span lang="en">
+        <ul>
+          <li>This is Rockwell Automation’s large PAC line, designed for complex control applications, DCS, multiple network types, and high I/O count (over 1,000).</li>
+          <li>There are two main product lines: 1765-L6x and 1756-L7x. The L7x series, introduced in recent years, offers new features and double the performance of the older 1756-L6x, but 1756-L6x is still common in factories.</li>
+          <li>Maximum CPU memory is 32MB (1756-L75)</li>
+          <li>Maximum I/O capacity: <strong>128,000 I/O</strong></li>
+          <li>SD card (L7x) for program backup</li>
+          <li>USB 2.0 port for programming (L7x)</li>
+          <li>Integrated Motion</li>
+          <li>No battery required.</li>
+        </ul>
+        <p><strong>Chassis, Slot, and Module</strong></p>
+        <ul>
+          <li>The chassis is a frame with a power supply and slots for modules. Chassis come in various sizes: 4, 7, 10, 13, and 17 slots.</li>
+          <li>The power supply provides power to all modules in the chassis. There are many types (AC, DC, Redundant) and capacities, and must be purchased separately (not included with chassis).</li>
+        </ul>
+        <img src="/assets/images/logix/clx_chassis-japvn-01.png" alt="Controllogix Chassis">
+        <ul>
+          <li>Slots are for inserting modules; all 1756-xxx modules can be installed in any slot.</li>
+          <li>Modules include CPU, I/O modules, and network communication modules. Modules can be installed in any slot.
+            <ul>
+              <li>Multiple CPUs can be installed in one chassis</li>
+              <li>Modules can be hot-swapped (removed/inserted without power-off)</li>
+              <li>Chassis can have no CPU (acting as a Remote IO station)</li>
+            </ul>
+          </li>
+        </ul>
+        <p><strong>Applications</strong></p>
+        <p>Controllogix is suitable for:</p>
+        <ul>
+          <li>Complex control, integrated systems like DCS, Batch</li>
+          <li>Redundant (fault-tolerant) configurations</li>
+          <li>Large, distributed IO (up to 128,000 I/O)</li>
+          <li>Applications with multiple industrial network types: Controlnet, Ethernet, DeviceNet, DH+, etc.</li>
+        </ul>
+        <p><em>Further reading</em></p>
+        <p><em><a href="https://ab.rockwellautomation.com/Programmable-Controllers/ControlLogix-Standard-Controllers#/tab5">Rockwell ControlLogix Standard Controllers</a></em></p>
+        <p><strong>Giáp Văn Vỹ – 2012</strong></p>
+      </span>
+      <div class="footer-simple">
+        <div>&copy; 2025 JAP.vn Documentation Project.</div>
+        <div>Independent Platform. Not affiliated with Rockwell Automation.</div>
+      </div>
+    </main>
+  </div>
+  <script>
+    const savedLang = localStorage.getItem('jap_lang');
+    const body = document.body;
+    if (savedLang === 'vi') body.classList.add('show-vi');
+    function toggleLanguage() {
+      body.classList.toggle('show-vi');
+      localStorage.setItem('jap_lang', body.classList.contains('show-vi') ? 'vi' : 'en');
+    }
+  </script>
+</body>
+</html>

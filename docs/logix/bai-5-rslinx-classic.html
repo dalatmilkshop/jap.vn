@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>[Logix] Bài 5: RSLinx Classic | JAP.vn</title>
+  <meta name="description" content="Hướng dẫn sử dụng RSLinx Classic để kết nối phần mềm với PLC Allen-Bradley, chi tiết từng bước, hình ảnh minh họa, lưu ý thực tế.">
+  <meta name="keywords" content="RSLinx Classic, hướng dẫn RSLinx, PLC Allen-Bradley, Rockwell Automation, kết nối PLC, OPC Server, JAP.vn, lập trình PLC, Ethernet/IP, ControlLogix, CompactLogix, PLC training">
+  <link rel="canonical" href="https://jap.vn/docs/logix/bai-5-rslinx-classic.html">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="[Logix] Bài 5: RSLinx Classic | JAP.vn">
+  <meta property="og:description" content="Hướng dẫn sử dụng RSLinx Classic để kết nối phần mềm với PLC Allen-Bradley, chi tiết từng bước, hình ảnh minh họa, lưu ý thực tế.">
+  <meta property="og:url" content="https://jap.vn/docs/logix/bai-5-rslinx-classic.html">
+  <meta property="og:site_name" content="JAP.vn">
+  <meta property="og:locale" content="vi_VN">
+  <meta property="og:image" content="/assets/images/logix/rslinx-classic-japvn-01.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="[Logix] Bài 5: RSLinx Classic | JAP.vn">
+  <meta name="twitter:description" content="Hướng dẫn sử dụng RSLinx Classic để kết nối phần mềm với PLC Allen-Bradley, chi tiết từng bước, hình ảnh minh họa, lưu ý thực tế.">
+  <meta name="twitter:image" content="/assets/images/logix/rslinx-classic-japvn-01.png">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://jap.vn/docs/logix/bai-5-rslinx-classic.html"
+    },
+    "headline": "[Logix] Bài 5: RSLinx Classic",
+    "description": "Hướng dẫn sử dụng RSLinx Classic để kết nối phần mềm với PLC Allen-Bradley, chi tiết từng bước, hình ảnh minh họa, lưu ý thực tế.",
+    "image": [
+      "/assets/images/logix/rslinx-classic-japvn-01.png"
+    ],
+    "author": {
+      "@type": "Person",
+      "name": "JAP.vn Automation Team",
+      "url": "https://jap.vn/about"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "JAP.vn",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "/assets/images/logo.png"
+      }
+    },
+    "datePublished": "2012-10-17",
+    "dateModified": "2025-12-26"
+  }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #0056b3;
+      --text-dark: #333;
+      --text-light: #666;
+      --bg-light: #f8f9fa;
+      --border: #e1e4e8;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Roboto', sans-serif; background-color: #fff; color: var(--text-dark); line-height: 1.7; }
+    a { text-decoration: none; color: var(--primary); }
+    a:hover { text-decoration: underline; }
+    [lang="vi"] { display: none !important; }
+    [lang="en"] { display: block !important; }
+    span[lang="vi"] { display: none !important; }
+    span[lang="en"] { display: inline !important; }
+    body.show-vi [lang="vi"] { display: block !important; }
+    body.show-vi [lang="en"] { display: none !important; }
+    body.show-vi span[lang="vi"] { display: inline !important; }
+    body.show-vi span[lang="en"] { display: none !important; }
+    .container { max-width: 1100px; margin: 0 auto; display: flex; min-height: 100vh; }
+    .sidebar { width: 280px; background: var(--bg-light); border-right: 1px solid var(--border); padding: 30px 20px; display: flex; flex-direction: column; }
+    .logo { font-size: 1.5rem; font-weight: 700; color: #000; margin-bottom: 30px; display: block; text-decoration: none !important; }
+    .logo span { color: var(--primary); }
+    .menu-title { font-size: 0.75rem; text-transform: uppercase; color: #999; margin-bottom: 10px; font-weight: 700; letter-spacing: 1px; margin-top: 20px; }
+    .menu-link { display: block; padding: 8px 0; color: var(--text-light); font-size: 0.95rem; }
+    .menu-link:hover { color: var(--primary); }
+    .lang-btn { background: #fff; border: 1px solid var(--border); padding: 5px 10px; border-radius: 4px; cursor: pointer; font-size: 0.8rem; margin-top: auto; }
+    .lang-btn:hover { border-color: var(--primary); color: var(--primary); }
+    .main { flex: 1; padding: 40px 60px; }
+    .header-top { display: flex; justify-content: space-between; border-bottom: 1px solid var(--border); padding-bottom: 20px; margin-bottom: 40px; }
+    .last-update { font-size: 0.85rem; color: #888; }
+    h1 { font-size: 2.1rem; margin-bottom: 15px; font-weight: 600; color: var(--primary); }
+    h2, h3 { color: var(--primary); }
+    .note { background: #f1f8e9; border-left: 4px solid #8bc34a; padding: 10px 18px; margin: 18px 0; color: #33691e; }
+    img { max-width: 100%; border: 1px solid #eee; border-radius: 4px; margin: 18px 0; }
+    blockquote { border-left: 4px solid var(--primary); background: #f8f9fa; padding: 12px 18px; color: #555; margin: 18px 0; }
+    ul, ol { margin-left: 24px; }
+    .footer-simple { margin-top: 60px; padding-top: 20px; border-top: 1px solid var(--border); font-size: 0.95em; color: #888; display: flex; justify-content: space-between; }
+    @media (max-width: 900px) {
+      .container { flex-direction: column; }
+      .sidebar { width: 100%; border-right: none; border-bottom: 1px solid var(--border); }
+      .main { padding: 30px 20px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <aside class="sidebar">
+      <a href="/index.html" class="logo">JAP<span>.vn</span></a>
+      <div class="menu-title">Navigation</div>
+      <a href="/index.html" class="menu-link">Home / Overview</a>
+      <a href="#" class="menu-link">Hardware Index</a>
+      <a href="#" class="menu-link">Software Archive</a>
+      <a href="#" class="menu-link">Legacy Systems</a>
+      <a href="/docs/logix/bai-5-rslinx-classic.html" class="menu-link" style="color: #0056b3; font-weight: 600;">[Logix] RSLinx Classic</a>
+      <div class="menu-title">About Project</div>
+      <a href="/story.html" class="menu-link" style="color: var(--primary); font-weight: 500;">
+        <span lang="en">★ The Origin Story</span>
+        <span lang="vi">★ Câu chuyện khởi nguồn</span>
+      </a>
+      <div class="menu-title">External Links</div>
+      <a href="#" class="menu-link">Rockwell Knowledgebase ↗</a>
+      <a href="#" class="menu-link">PLCTalk Forum ↗</a>
+      <div style="margin-top: 30px;">
+        <button class="lang-btn" onclick="toggleLanguage()">🌐 EN / VI</button>
+      </div>
+    </aside>
+    <main class="main">
+      <div class="header-top">
+        <span class="last-update">
+          <span lang="en">System Status: <strong>Online</strong></span>
+          <span lang="vi">Trạng thái hệ thống: <strong>Trực tuyến</strong></span>
+        </span>
+        <span class="last-update">Est. 2012 • Updated 2025</span>
+      </div>
+      <h1>
+        <span lang="vi">[Logix] Bài 5: RSLinx Classic</span>
+        <span lang="en">[Logix] Lesson 5: RSLinx Classic</span>
+      </h1>
+      <blockquote>
+        <span lang="vi"><b>Hướng dẫn sử dụng RSLinx Classic để kết nối phần mềm với PLC Allen-Bradley, chi tiết từng bước, hình ảnh minh họa, lưu ý thực tế.</b></span>
+        <span lang="en"><b>How to use RSLinx Classic to connect software to Allen-Bradley PLCs, step-by-step with images and practical notes.</b></span>
+      </blockquote>
+      <span lang="vi">
+        <p>Trong chương trình lập trình với Rslogix 5000, ta sử dụng Rslinx Classic cho mục đích Download, Upload, Online,…</p>
+        <p><b>Các bước sử dụng như sau:</b></p>
+        <ol>
+          <li>Kết nối máy tính đến các Controller cần kết nối (ví dụ: máy tính và các Controller kết nối đến 1 Ethernet Switch, cùng lớp địa chỉ IP), đặt địa chỉ IP cho Card mạng máy tính (ví dụ: 192.168.1.190).</li>
+          <li>Khởi động Rslinx Classic</li>
+          <li><img src="/assets/images/logix/rslinx-classic-japvn-01.png" alt="Khởi động RSLinx Classic"></li>
+          <li>Chọn Driver kết nối (Communication &gt; Driver)</li>
+          <li>Chọn Ethernet/IP và Add Net</li>
+          <li><img src="/assets/images/logix/rslinx-classic-japvn-02.png" alt="Chọn Ethernet/IP và Add Net"></li>
+          <li><img src="/assets/images/logix/rslinx-classic-japvn-03.png" alt="Cấu hình Driver"></li>
+          <li>OK, chọn Card mạng đang kết nối đến Controller</li>
+          <li><img src="/assets/images/logix/rslinx-classic-japvn-04.png" alt="Chọn Card mạng"></li>
+          <li>Add New và thấy Status là Running như hình sau</li>
+          <li><img src="/assets/images/logix/rslinx-classic-japvn-05.png" alt="Status Running"></li>
+          <li>Trở lại màn hình chính, chọn mở rộng Driver mới tạo, các Controller đang kết nối với máy tính sẽ xuất hiện tương tự như hình bên dưới.</li>
+          <li><img src="/assets/images/logix/rslinx-classic-japvn-06.png" alt="Danh sách Controller kết nối"></li>
+        </ol>
+        <div class="note">
+          <b>Ghi chú:</b>
+          <ul>
+            <li>Đối với các dòng PLC cũ của AB như PLC-5, SLC-500,… thì chọn Driver tương ứng tùy theo chuẩn kết nối (DH+, DF1…). Các Controller mới đều sử dụng Ethernet nên dễ dàng hơn nhiều.</li>
+            <li>Ngay tại màn hình Rslinx này có thể xem được tận các module IO trên từng Chassis</li>
+            <li>Có thể thay đổi địa chỉ IP của các thiết bị mạng ngay tại Rslinx Classic.</li>
+            <li>Rslinx Classic có thể đóng vai trò là OPC Server cho các ứng dụng khác.</li>
+          </ul>
+        </div>
+        <p style="margin-top:24px;">Giap Van Vy – 2012</p>
+      </span>
+      <span lang="en">
+        <p>In RSLogix 5000 programming, RSLinx Classic is used for Download, Upload, Online, etc.</p>
+        <p><b>Usage steps:</b></p>
+        <ol>
+          <li>Connect your PC to the target Controllers (e.g., via Ethernet Switch, same IP subnet), set PC network card IP (e.g., 192.168.1.190).</li>
+          <li>Start RSLinx Classic</li>
+          <li><img src="/assets/images/logix/rslinx-classic-japvn-01.png" alt="Start RSLinx Classic"></li>
+          <li>Select Communication &gt; Driver</li>
+          <li>Select Ethernet/IP and Add Net</li>
+          <li><img src="/assets/images/logix/rslinx-classic-japvn-02.png" alt="Select Ethernet/IP and Add Net"></li>
+          <li><img src="/assets/images/logix/rslinx-classic-japvn-03.png" alt="Configure Driver"></li>
+          <li>OK, select the network card connected to the Controller</li>
+          <li><img src="/assets/images/logix/rslinx-classic-japvn-04.png" alt="Select network card"></li>
+          <li>Add New and see Status is Running as below</li>
+          <li><img src="/assets/images/logix/rslinx-classic-japvn-05.png" alt="Status Running"></li>
+          <li>Return to main screen, expand the new Driver, connected Controllers will appear as below.</li>
+          <li><img src="/assets/images/logix/rslinx-classic-japvn-06.png" alt="Connected Controllers"></li>
+        </ol>
+        <div class="note">
+          <b>Notes:</b>
+          <ul>
+            <li>For old AB PLCs (PLC-5, SLC-500, etc.), select the appropriate Driver (DH+, DF1, ...). New Controllers use Ethernet, much easier.</li>
+            <li>You can view IO modules on each Chassis directly in RSLinx.</li>
+            <li>IP addresses of network devices can be changed right in RSLinx Classic.</li>
+            <li>RSLinx Classic can act as an OPC Server for other applications.</li>
+          </ul>
+        </div>
+        <p style="margin-top:24px;">Giap Van Vy – 2012</p>
+      </span>
+      <div class="footer-simple">
+        <div>&copy; 2025 JAP.vn Documentation Project.</div>
+        <div>Independent Platform. Not affiliated with Rockwell Automation.</div>
+      </div>
+    </main>
+  </div>
+  <script>
+    const savedLang = localStorage.getItem('jap_lang');
+    const body = document.body;
+    if (savedLang === 'vi') body.classList.add('show-vi');
+    function toggleLanguage() {
+      body.classList.toggle('show-vi');
+      localStorage.setItem('jap_lang', body.classList.contains('show-vi') ? 'vi' : 'en');
+    }
+  </script>
+</body>
+</html>

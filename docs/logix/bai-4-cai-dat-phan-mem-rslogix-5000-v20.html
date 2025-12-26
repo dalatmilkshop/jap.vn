@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>[Logix] Bài 4: Cài đặt phần mềm RSLogix 5000 V20 | JAP.vn</title>
+  <meta name="description" content="Hướng dẫn cài đặt phần mềm RSLogix 5000 V20 chi tiết, kèm hình ảnh từng bước, lưu ý bản quyền và kinh nghiệm thực tế. Step-by-step installation guide for RSLogix 5000 V20.">
+  <meta name="keywords" content="RSLogix 5000, cài đặt RSLogix 5000, hướng dẫn RSLogix 5000, PLC Rockwell, JAP.vn, lập trình PLC, phần mềm PLC, Rockwell Automation, Studio 5000, ControlLogix, Allen-Bradley, PLC training">
+  <link rel="canonical" href="https://jap.vn/docs/logix/bai-4-cai-dat-phan-mem-rslogix-5000-v20.html">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="[Logix] Bài 4: Cài đặt phần mềm RSLogix 5000 V20 | JAP.vn">
+  <meta property="og:description" content="Hướng dẫn cài đặt phần mềm RSLogix 5000 V20 chi tiết, kèm hình ảnh từng bước, lưu ý bản quyền và kinh nghiệm thực tế.">
+  <meta property="og:url" content="https://jap.vn/docs/logix/bai-4-cai-dat-phan-mem-rslogix-5000-v20.html">
+  <meta property="og:site_name" content="JAP.vn">
+  <meta property="og:locale" content="vi_VN">
+  <meta property="og:image" content="/assets/images/logix/rslogix5000v20-caidat-japvn-01.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="[Logix] Bài 4: Cài đặt phần mềm RSLogix 5000 V20 | JAP.vn">
+  <meta name="twitter:description" content="Hướng dẫn cài đặt phần mềm RSLogix 5000 V20 chi tiết, kèm hình ảnh từng bước, lưu ý bản quyền và kinh nghiệm thực tế.">
+  <meta name="twitter:image" content="/assets/images/logix/rslogix5000v20-caidat-japvn-01.png">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://jap.vn/docs/logix/bai-4-cai-dat-phan-mem-rslogix-5000-v20.html"
+    },
+    "headline": "[Logix] Bài 4: Cài đặt phần mềm RSLogix 5000 V20",
+    "description": "Hướng dẫn cài đặt phần mềm RSLogix 5000 V20 chi tiết, kèm hình ảnh từng bước, lưu ý bản quyền và kinh nghiệm thực tế.",
+    "image": [
+      "/assets/images/logix/rslogix5000v20-caidat-japvn-01.png"
+    ],
+    "author": {
+      "@type": "Person",
+      "name": "JAP.vn Automation Team",
+      "url": "https://jap.vn/about"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "JAP.vn",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "/assets/images/logo.png"
+      }
+    },
+    "datePublished": "2012-10-16",
+    "dateModified": "2025-12-26"
+  }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #0056b3;
+      --text-dark: #333;
+      --text-light: #666;
+      --bg-light: #f8f9fa;
+      --border: #e1e4e8;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Roboto', sans-serif; background-color: #fff; color: var(--text-dark); line-height: 1.7; }
+    a { text-decoration: none; color: var(--primary); }
+    a:hover { text-decoration: underline; }
+    [lang="vi"] { display: none !important; }
+    [lang="en"] { display: block !important; }
+    span[lang="vi"] { display: none !important; }
+    span[lang="en"] { display: inline !important; }
+    body.show-vi [lang="vi"] { display: block !important; }
+    body.show-vi [lang="en"] { display: none !important; }
+    body.show-vi span[lang="vi"] { display: inline !important; }
+    body.show-vi span[lang="en"] { display: none !important; }
+    .container { max-width: 1100px; margin: 0 auto; display: flex; min-height: 100vh; }
+    .sidebar { width: 280px; background: var(--bg-light); border-right: 1px solid var(--border); padding: 30px 20px; display: flex; flex-direction: column; }
+    .logo { font-size: 1.5rem; font-weight: 700; color: #000; margin-bottom: 30px; display: block; text-decoration: none !important; }
+    .logo span { color: var(--primary); }
+    .menu-title { font-size: 0.75rem; text-transform: uppercase; color: #999; margin-bottom: 10px; font-weight: 700; letter-spacing: 1px; margin-top: 20px; }
+    .menu-link { display: block; padding: 8px 0; color: var(--text-light); font-size: 0.95rem; }
+    .menu-link:hover { color: var(--primary); }
+    .lang-btn { background: #fff; border: 1px solid var(--border); padding: 5px 10px; border-radius: 4px; cursor: pointer; font-size: 0.8rem; margin-top: auto; }
+    .lang-btn:hover { border-color: var(--primary); color: var(--primary); }
+    .main { flex: 1; padding: 40px 60px; }
+    .header-top { display: flex; justify-content: space-between; border-bottom: 1px solid var(--border); padding-bottom: 20px; margin-bottom: 40px; }
+    .last-update { font-size: 0.85rem; color: #888; }
+    h1 { font-size: 2.1rem; margin-bottom: 15px; font-weight: 600; color: var(--primary); }
+    h2, h3 { color: var(--primary); }
+    .note { background: #f1f8e9; border-left: 4px solid #8bc34a; padding: 10px 18px; margin: 18px 0; color: #33691e; }
+    img { max-width: 100%; border: 1px solid #eee; border-radius: 4px; margin: 18px 0; }
+    blockquote { border-left: 4px solid var(--primary); background: #f8f9fa; padding: 12px 18px; color: #555; margin: 18px 0; }
+    ul, ol { margin-left: 24px; }
+    .footer-simple { margin-top: 60px; padding-top: 20px; border-top: 1px solid var(--border); font-size: 0.95em; color: #888; display: flex; justify-content: space-between; }
+    @media (max-width: 900px) {
+      .container { flex-direction: column; }
+      .sidebar { width: 100%; border-right: none; border-bottom: 1px solid var(--border); }
+      .main { padding: 30px 20px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <aside class="sidebar">
+      <a href="/index.html" class="logo">JAP<span>.vn</span></a>
+      <div class="menu-title">Navigation</div>
+      <a href="/index.html" class="menu-link">Home / Overview</a>
+      <a href="#" class="menu-link">Hardware Index</a>
+      <a href="#" class="menu-link">Software Archive</a>
+      <a href="#" class="menu-link">Legacy Systems</a>
+      <a href="/docs/logix/bai-4-cai-dat-phan-mem-rslogix-5000-v20.html" class="menu-link" style="color: #0056b3; font-weight: 600;">[Logix] Cài đặt RSLogix 5000 V20</a>
+      <div class="menu-title">About Project</div>
+      <a href="/story.html" class="menu-link" style="color: var(--primary); font-weight: 500;">
+        <span lang="en">★ The Origin Story</span>
+        <span lang="vi">★ Câu chuyện khởi nguồn</span>
+      </a>
+      <div class="menu-title">External Links</div>
+      <a href="#" class="menu-link">Rockwell Knowledgebase ↗</a>
+      <a href="#" class="menu-link">PLCTalk Forum ↗</a>
+      <div style="margin-top: 30px;">
+        <button class="lang-btn" onclick="toggleLanguage()">🌐 EN / VI</button>
+      </div>
+    </aside>
+    <main class="main">
+      <div class="header-top">
+        <span class="last-update">
+          <span lang="en">System Status: <strong>Online</strong></span>
+          <span lang="vi">Trạng thái hệ thống: <strong>Trực tuyến</strong></span>
+        </span>
+        <span class="last-update">Est. 2012 • Updated 2025</span>
+      </div>
+      <h1>
+        <span lang="vi">[Logix] Bài 4: Cài đặt phần mềm RSLogix 5000 V20</span>
+        <span lang="en">[Logix] Lesson 4: Installing RSLogix 5000 V20</span>
+      </h1>
+      <blockquote>
+        <span lang="vi"><b>Hướng dẫn cài đặt chi tiết, hình ảnh từng bước, lưu ý bản quyền và kinh nghiệm thực tế.</b></span>
+        <span lang="en"><b>Step-by-step installation guide with images, licensing notes, and practical experience.</b></span>
+      </blockquote>
+      <span lang="vi">
+        <ul>
+          <li>Intel Core i5 2.4GHz processor</li>
+          <li>8 GB RAM</li>
+          <li>Ổ cứng trống 20GB</li>
+          <li>DirectX 9 graphics device with WDDM 1.0 or higher driver</li>
+        </ul>
+        <p>Hệ điều hành hỗ trợ:</p>
+        <ul>
+          <li>Microsoft Windows 7 Professional (64-bit) with Service Pack 1</li>
+          <li>Microsoft Windows 7 Home Premium (64-bit) with Service Pack 1</li>
+          <li>Microsoft Windows 7 Home Premium (32-bit) with Service Pack 1</li>
+          <li>Microsoft Windows Vista Business (32-bit) with Service Pack 2</li>
+          <li>Microsoft Windows XP Professional với <strong>Service Pack 3</strong></li>
+          <li>Microsoft Windows Server 2008 R2 Standard Edition với Service Pack 1</li>
+          <li>Microsoft Windows Server 2008 Standard Edition với Service Pack 2</li>
+          <li>Microsoft Windows Server 2003 R2 Standard Edition với Service Pack 2</li>
+        </ul>
+        <p>Kinh nghiệm cá nhân sử dụng trên hệ điều hành Windows 7 Pro 64 bit rất ổn định.</p>
+        <p>Cài đặt từ DVD hoặc Ổ cứng theo các bước sau:</p>
+        <img src="/assets/images/logix/rslogix5000v20-caidat-japvn-01.png" alt="Bước 1: Mở giao diện cài đặt RSLogix 5000 V20">
+        <p>&gt;&gt; Continue</p>
+        <img src="/assets/images/logix/rslogix5000v20-caidat-japvn-02.png" alt="Bước 2: Chọn phần mềm cần cài đặt">
+        <p>&gt;&gt; Phần mềm sẽ tự chọn những phần cần cài (hoặc chọn hết)</p>
+        <p>&gt;&gt; Next</p>
+        <img src="/assets/images/logix/rslogix5000v20-caidat-japvn-03.png" alt="Bước 3: Nhập serial number">
+        <p>&gt;&gt; Nhập số Serial của phần mềm (khi mua sẽ có một tờ giấy License trong đó ghi Serial Number và Product Key)</p>
+        <p>&gt;&gt;Next</p>
+        <img src="/assets/images/logix/rslogix5000v20-caidat-japvn-04.png" alt="Bước 4: Chọn các option">
+        <p>&gt;&gt;Next</p>
+        <img src="/assets/images/logix/rslogix5000v20-caidat-japvn-05.png" alt="Bước 5: Chọn firmware">
+        <p>&gt;&gt;Chọn thêm các Option</p>
+        <p>&gt;&gt;Next</p>
+        <img src="/assets/images/logix/rslogix5000v20-caidat-japvn-06.png" alt="Bước 6: Chọn firmware cần cài">
+        <p>&gt;&gt; Next</p>
+        <img src="/assets/images/logix/rslogix5000v20-caidat-japvn-07.png" alt="Bước 7: Install">
+        <p>&gt;&gt; Install</p>
+        <p>&gt;&gt; Chờ đến khi Finish là xong.</p>
+        <div class="note">
+          <ul>
+            <li>Trong quá trình cài đặt Rslogix 5000 sẽ hỏi một số thông tin hoặc yêu cầu cài thêm .NetFramework nếu máy tính chưa có</li>
+            <li>Thời gian khá lâu (khi cài Rslinx Classic). Tổng thời gian cài đặt trung bình khoảng 1 tiếng</li>
+            <li>Sau khi cài đặt xong, dùng chương trình Factorytalk Activation Manager để kích hoạt bản quyền phần mềm.</li>
+            <li>Khi cài Rslogix 5000, chương trình sẽ tự cài thêm phần mềm Rslinx Classic Version 2.59. Nếu máy tính đã có phần mềm này, phiên bản cũ hơn thì nó sẽ tự gỡ ra và cài bản mới. Nếu Rslinx Classic 2.59 không tự cài đặt, bạn phải cài đặt nó thủ công (cùng chung DVD với Rslogix 5000 V20)</li>
+          </ul>
+        </div>
+      </span>
+      <span lang="en">
+        <ul>
+          <li>Intel Core i5 2.4GHz processor</li>
+          <li>8 GB RAM</li>
+          <li>20GB free hard disk space</li>
+          <li>DirectX 9 graphics device with WDDM 1.0 or higher driver</li>
+        </ul>
+        <p>Supported operating systems:</p>
+        <ul>
+          <li>Microsoft Windows 7 Professional (64-bit) with Service Pack 1</li>
+          <li>Microsoft Windows 7 Home Premium (64-bit) with Service Pack 1</li>
+          <li>Microsoft Windows 7 Home Premium (32-bit) with Service Pack 1</li>
+          <li>Microsoft Windows Vista Business (32-bit) with Service Pack 2</li>
+          <li>Microsoft Windows XP Professional with <strong>Service Pack 3</strong></li>
+          <li>Microsoft Windows Server 2008 R2 Standard Edition with Service Pack 1</li>
+          <li>Microsoft Windows Server 2008 Standard Edition with Service Pack 2</li>
+          <li>Microsoft Windows Server 2003 R2 Standard Edition with Service Pack 2</li>
+        </ul>
+        <p>Personal experience: very stable on Windows 7 Pro 64 bit.</p>
+        <p>Install from DVD or hard drive as follows:</p>
+        <img src="/assets/images/logix/rslogix5000v20-caidat-japvn-01.png" alt="Step 1: RSLogix 5000 V20 setup interface">
+        <p>&gt;&gt; Continue</p>
+        <img src="/assets/images/logix/rslogix5000v20-caidat-japvn-02.png" alt="Step 2: Select software to install">
+        <p>&gt;&gt; The software will auto-select required components (or select all)</p>
+        <p>&gt;&gt; Next</p>
+        <img src="/assets/images/logix/rslogix5000v20-caidat-japvn-03.png" alt="Step 3: Enter serial number">
+        <p>&gt;&gt; Enter the software serial number (provided with license paper)</p>
+        <p>&gt;&gt;Next</p>
+        <img src="/assets/images/logix/rslogix5000v20-caidat-japvn-04.png" alt="Step 4: Select options">
+        <p>&gt;&gt;Next</p>
+        <img src="/assets/images/logix/rslogix5000v20-caidat-japvn-05.png" alt="Step 5: Select firmware">
+        <p>&gt;&gt;Select additional options</p>
+        <p>&gt;&gt;Next</p>
+        <img src="/assets/images/logix/rslogix5000v20-caidat-japvn-06.png" alt="Step 6: Select firmware">
+        <p>&gt;&gt; Next</p>
+        <img src="/assets/images/logix/rslogix5000v20-caidat-japvn-07.png" alt="Step 7: Install">
+        <p>&gt;&gt; Install</p>
+        <p>&gt;&gt; Wait until Finish.</p>
+        <div class="note">
+          <ul>
+            <li>During installation, RSLogix 5000 may prompt for additional info or require .NetFramework if not already installed</li>
+            <li>Installation takes a while (especially RSLinx Classic). Total time ~1 hour</li>
+            <li>After installation, use Factorytalk Activation Manager to activate the license.</li>
+            <li>RSLogix 5000 will auto-install RSLinx Classic Version 2.59. If an older version exists, it will be replaced. If RSLinx Classic 2.59 is not auto-installed, install it manually (on the same DVD as RSLogix 5000 V20)</li>
+          </ul>
+        </div>
+      </span>
+      <div class="footer-simple">
+        <div>&copy; 2025 JAP.vn Documentation Project.</div>
+        <div>Independent Platform. Not affiliated with Rockwell Automation.</div>
+      </div>
+    </main>
+  </div>
+  <script>
+    const savedLang = localStorage.getItem('jap_lang');
+    const body = document.body;
+    if (savedLang === 'vi') body.classList.add('show-vi');
+    function toggleLanguage() {
+      body.classList.toggle('show-vi');
+      localStorage.setItem('jap_lang', body.classList.contains('show-vi') ? 'vi' : 'en');
+    }
+  </script>
+</body>
+</html>
