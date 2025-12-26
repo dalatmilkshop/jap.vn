@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
+    <style>
+      [lang="en"] { display: none; }
+      body.show-en [lang="vi"] { display: none; }
+      body.show-en [lang="en"] { display: inline; }
+      .lang-btn { background: #fff; border: 1px solid #e1e4e8; padding: 5px 10px; border-radius: 4px; cursor: pointer; font-size: 0.8rem; margin: 10px 0; }
+      .lang-btn:hover { border-color: #0056b3; color: #0056b3; }
+    </style>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>[Logix] Bài 10: Download/Upload và chỉnh sửa Online trong RSLogix 5000 | JAP.VN</title>
@@ -14,62 +21,67 @@
   <link rel="stylesheet" href="../../assets/css/main.css">
 </head>
 <body>
-  <aside class="sidebar">
-    <!-- ...sidebar content/navigation... -->
-  </aside>
-  <main class="content">
+  <div style="max-width:900px;margin:auto;">
+    <button class="lang-btn" onclick="toggleLang()">🌐 EN / VI</button>
     <article>
-      <h1>[Logix] Bài 10: Download/Upload và chỉnh sửa Online trong RSLogix 5000</h1>
-      <p><em>Ngày đăng: 22/10/2012 &mdash; Cập nhật: 2025</em></p>
-      <p><strong>Tiếng Việt</strong> | <a href="#en">English below</a></p>
-      <h2>Download/Upload và Online Edit</h2>
-      <p>Có nhiều cách Download/Upload chương trình cho <strong>Controllogix</strong>, <strong>Compactlogix</strong>:</p>
-      <ul>
-        <li>Qua cổng <strong>USB</strong> (Controllogix L7x, Compactlogix 5370 mới)</li>
-        <li>Qua cổng <strong>Serial RS-232</strong> (các dòng PAC, PLC đời cũ như L6x, L5x, tốc độ chậm)</li>
-        <li>Qua cổng <strong>Ethernet</strong> (thường dùng nhất, tốc độ cao, dễ cấu hình)</li>
-      </ul>
-      <p><img src="../../assets/images/logix/rslogix5000-downloadupload-japvn-01.png" alt="Chọn phương thức kết nối PLC RSLogix 5000"></p>
-      <p><img src="../../assets/images/logix/rslogix5000-downloadupload-japvn-02.png" alt="Giao diện RSWho trong RSLogix 5000"></p>
-      <p><img src="../../assets/images/logix/rslogix5000-downloadupload-japvn-03.png" alt="Giao diện Download chương trình RSLogix 5000"></p>
-      <p><img src="../../assets/images/logix/rslogix5000-downloadupload-japvn-04.png" alt="Giao diện xác nhận Download RSLogix 5000"></p>
-      <h3>Ghi chú</h3>
-      <ul>
-        <li>Luôn kiểm tra kỹ trước khi Download để tránh ghi đè chương trình đang chạy.</li>
-        <li>Chỉnh sửa Online giúp giảm thời gian dừng máy nhưng cần thao tác cẩn thận.</li>
-        <li>Nên lưu lại chương trình trước và sau khi chỉnh sửa.</li>
-      </ul>
-      <h3>Tài liệu tham khảo</h3>
-      <ul>
-        <li><a href="http://literature.rockwellautomation.com/idc/groups/literature/documents/pm/1756-pm020_-en-p.pdf" target="_blank" rel="noopener">Tài liệu Download/Upload RSLogix 5000</a></li>
-      </ul>
-      <p><em>Giáp Văn Vỹ – 2012</em></p>
-      <hr>
-      <h2 id="en">[Logix] Lesson 10: Download/Upload and Online Edit in RSLogix 5000</h2>
-      <p><em>English version</em></p>
-      <h3>Download/Upload and Online Edit</h3>
-      <ul>
-        <li>Via <strong>USB</strong> port (newer Controllogix L7x, Compactlogix 5370)</li>
-        <li>Via <strong>Serial RS-232</strong> (older PAC, PLC like L6x, L5x, slower)</li>
-        <li>Via <strong>Ethernet</strong> (most common, fast, easy to configure)</li>
-      </ul>
-      <p><img src="../../assets/images/logix/rslogix5000-downloadupload-japvn-01.png" alt="Select PLC connection method RSLogix 5000"></p>
-      <p><img src="../../assets/images/logix/rslogix5000-downloadupload-japvn-02.png" alt="RSWho interface in RSLogix 5000"></p>
-      <p><img src="../../assets/images/logix/rslogix5000-downloadupload-japvn-03.png" alt="Download dialog in RSLogix 5000"></p>
-      <p><img src="../../assets/images/logix/rslogix5000-downloadupload-japvn-04.png" alt="Download confirmation RSLogix 5000"></p>
-      <h4>Notes</h4>
-      <ul>
-        <li>Always double-check before Downloading to avoid overwriting a running program.</li>
-        <li>Online Edit reduces downtime but requires careful operation.</li>
-        <li>Save your program before and after editing.</li>
-      </ul>
-      <h4>Reference</h4>
-      <ul>
-        <li><a href="http://literature.rockwellautomation.com/idc/groups/literature/documents/pm/1756-pm020_-en-p.pdf" target="_blank" rel="noopener">RSLogix 5000 Download/Upload Manual</a></li>
-      </ul>
-      <p><em>Giap Van Vy – 2012</em></p>
+      <div lang="vi">
+        <h1>[Logix] Bài 10: Download/Upload và chỉnh sửa Online trong RSLogix 5000</h1>
+        <p><em>Ngày đăng: 22/10/2012 &mdash; Cập nhật: 2025</em></p>
+        <h2>Download/Upload và Online Edit</h2>
+        <p>Có nhiều cách Download/Upload chương trình cho <strong>Controllogix</strong>, <strong>Compactlogix</strong>:</p>
+        <ul>
+          <li>Qua cổng <strong>USB</strong> (Controllogix L7x, Compactlogix 5370 mới)</li>
+          <li>Qua cổng <strong>Serial RS-232</strong> (các dòng PAC, PLC đời cũ như L6x, L5x, tốc độ chậm)</li>
+          <li>Qua cổng <strong>Ethernet</strong> (thường dùng nhất, tốc độ cao, dễ cấu hình)</li>
+        </ul>
+        <p><img src="../../assets/images/logix/rslogix5000-downloadupload-japvn-01.png" alt="Chọn phương thức kết nối PLC RSLogix 5000"></p>
+        <p><img src="../../assets/images/logix/rslogix5000-downloadupload-japvn-02.png" alt="Giao diện RSWho trong RSLogix 5000"></p>
+        <p><img src="../../assets/images/logix/rslogix5000-downloadupload-japvn-03.png" alt="Giao diện Download chương trình RSLogix 5000"></p>
+        <p><img src="../../assets/images/logix/rslogix5000-downloadupload-japvn-04.png" alt="Giao diện xác nhận Download RSLogix 5000"></p>
+        <h3>Ghi chú</h3>
+        <ul>
+          <li>Luôn kiểm tra kỹ trước khi Download để tránh ghi đè chương trình đang chạy.</li>
+          <li>Chỉnh sửa Online giúp giảm thời gian dừng máy nhưng cần thao tác cẩn thận.</li>
+          <li>Nên lưu lại chương trình trước và sau khi chỉnh sửa.</li>
+        </ul>
+        <h3>Tài liệu tham khảo</h3>
+        <ul>
+          <li><a href="http://literature.rockwellautomation.com/idc/groups/literature/documents/pm/1756-pm020_-en-p.pdf" target="_blank" rel="noopener">Tài liệu Download/Upload RSLogix 5000</a></li>
+        </ul>
+        <p><em>Giáp Văn Vỹ – 2012</em></p>
+      </div>
+      <div lang="en">
+        <h1>[Logix] Lesson 10: Download/Upload and Online Edit in RSLogix 5000</h1>
+        <p><em>Published: 22/10/2012 &mdash; Updated: 2025</em></p>
+        <h3>Download/Upload and Online Edit</h3>
+        <ul>
+          <li>Via <strong>USB</strong> port (newer Controllogix L7x, Compactlogix 5370)</li>
+          <li>Via <strong>Serial RS-232</strong> (older PAC, PLC like L6x, L5x, slower)</li>
+          <li>Via <strong>Ethernet</strong> (most common, fast, easy to configure)</li>
+        </ul>
+        <p><img src="../../assets/images/logix/rslogix5000-downloadupload-japvn-01.png" alt="Select PLC connection method RSLogix 5000"></p>
+        <p><img src="../../assets/images/logix/rslogix5000-downloadupload-japvn-02.png" alt="RSWho interface in RSLogix 5000"></p>
+        <p><img src="../../assets/images/logix/rslogix5000-downloadupload-japvn-03.png" alt="Download dialog in RSLogix 5000"></p>
+        <p><img src="../../assets/images/logix/rslogix5000-downloadupload-japvn-04.png" alt="Download confirmation RSLogix 5000"></p>
+        <h4>Notes</h4>
+        <ul>
+          <li>Always double-check before Downloading to avoid overwriting a running program.</li>
+          <li>Online Edit reduces downtime but requires careful operation.</li>
+          <li>Save your program before and after editing.</li>
+        </ul>
+        <h4>Reference</h4>
+        <ul>
+          <li><a href="http://literature.rockwellautomation.com/idc/groups/literature/documents/pm/1756-pm020_-en-p.pdf" target="_blank" rel="noopener">RSLogix 5000 Download/Upload Manual</a></li>
+        </ul>
+        <p><em>Giap Van Vy – 2012</em></p>
+      </div>
     </article>
-  </main>
+  </div>
+  <script>
+    function toggleLang() {
+      document.body.classList.toggle('show-en');
+    }
+  </script>
 </body>
 </html>
 <!-- Internal links for SEO -->
