@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>[Logix] Bài 16: Cấu hình Redundancy với Controllogix qua Ethernet/IP | JAP.VN</title>
+  <meta name="description" content="Hệ thống dự phòng sự cố, cấu hình Redundancy với Controllogix qua Ethernet/IP, hướng dẫn từng bước, hình ảnh minh họa, tối ưu SEO, song ngữ Việt-Anh.">
+  <meta name="keywords" content="Redundancy, Controllogix, Ethernet/IP, PLC, Rockwell, JAP.VN, dự phòng sự cố, hướng dẫn, song ngữ">
+  <link rel="canonical" href="https://jap.vn/docs/logix/bai-16-cau-hinh-redundancy-controllogix-ethernetip.html">
+  <meta property="og:title" content="[Logix] Bài 16: Cấu hình Redundancy với Controllogix qua Ethernet/IP">
+  <meta property="og:description" content="Hệ thống dự phòng sự cố, cấu hình Redundancy với Controllogix qua Ethernet/IP, hướng dẫn từng bước, hình ảnh minh họa.">
+  <meta property="og:image" content="/assets/images/logix/redundancy-controllogix-ethernetip-01.jpg">
+  <meta property="og:type" content="article">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="[Logix] Bài 16: Cấu hình Redundancy với Controllogix qua Ethernet/IP">
+  <meta name="twitter:description" content="Hệ thống dự phòng sự cố, cấu hình Redundancy với Controllogix qua Ethernet/IP, hướng dẫn từng bước, hình ảnh minh họa.">
+  <meta name="twitter:image" content="/assets/images/logix/redundancy-controllogix-ethernetip-01.jpg">
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #f8f8f8; }
+    .container { max-width: 900px; margin: auto; background: #fff; padding: 2em; box-shadow: 0 0 10px #ccc; }
+    h1, h2 { color: #00529b; }
+    .sidebar { float: left; width: 220px; margin-right: 2em; }
+    .content { margin-left: 240px; }
+    img { max-width: 100%; height: auto; margin: 1em 0; }
+    .lang-switch { float: right; margin-top: -2em; }
+    .clear { clear: both; }
+    @media (max-width: 700px) { .sidebar, .content { float: none; width: 100%; margin: 0; } .lang-switch { float: none; margin-top: 1em; } }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="lang-switch">
+      <a href="#" onclick="document.getElementById('vi').style.display='block';document.getElementById('en').style.display='none';return false;">Tiếng Việt</a> |
+      <a href="#" onclick="document.getElementById('vi').style.display='none';document.getElementById('en').style.display='block';return false;">English</a>
+    </div>
+    <div class="sidebar">
+      <h2>Logix Sidebar</h2>
+      <ul>
+        <li><a href="/docs/logix/bai-15-rslogix5000-powerflex.html">Bài 15: PowerFlex</a></li>
+        <li><strong>Bài 16: Redundancy với Controllogix</strong></li>
+        <li><a href="/docs/logix/bai-17-tai-lieu-tham-khao.html">Bài 17: Tài liệu tham khảo</a></li>
+      </ul>
+    </div>
+    <div class="content">
+      <div id="vi">
+        <h1>[Logix] Bài 16: Cấu hình Redundancy với Controllogix qua Ethernet/IP</h1>
+        <p><strong>Hệ thống dự phòng sự cố</strong></p>
+        <p>Trong các ứng dụng đòi hỏi độ tin cậy cao, người ta thường sử dụng các hệ thống điều khiển có cấu hình Hot Backup, Warm Backup hoặc Redundancy. Về cơ bản hệ thống gồm 2 CPU cùng chạy một chương trình, trong đó một CPU chạy chính, CPU còn lại ở chế độ Standby. Khi CPU chính bị sự cố, CPU Standby sẽ nhận quyền điều khiển để duy trì chương trình hoạt động và trở thành CPU chính. Trong các cấu hình dự phòng sự cố này, Hot backup, warm backup được thực hiện thông qua việc lập trình trong chương trình và thời gian chuyển đổi khi gặp sự cố khoảng vài trăm ms, còn Redundancy thực hiện hoàn toàn dựa trên phần cứng, thời gian chuyển đổi sự cố nhỏ hơn 20ms.</p>
+        <p>Bài này sẽ giới thiệu cách cấu hình Redundancy với Controllogix thông qua mạng Ethernet/IP.</p>
+        <h2>Cơ bản</h2>
+        <ul>
+          <li>Chỉ Controllogix mới thực hiện được Redundancy (Compactlogix chỉ có thể thực hiện Hot backup, warm backup…)</li>
+          <li>Để Redundancy với Ethernet/IP, Firmware thấp nhất là 19.5 (Firmware hỗ trợ Redundancy thường có dạng xx.5yy)</li>
+          <li>Trên Chassis CPU chỉ có CPU, Module truyền thông và Module Redundancy (1756-RM), không được gắn Module IO.</li>
+          <li>Toàn bộ IO trong hệ thống Redundancy đều là Remote IO</li>
+        </ul>
+        <p><strong>Mô hình hệ thống:</strong></p>
+        <img src="/assets/images/logix/redundancy-controllogix-ethernetip-01.jpg" alt="Mô hình hệ thống Redundancy Controllogix qua Ethernet/IP">
+        <h2>Cấu hình phần cứng</h2>
+        <ul>
+          <li>Chassis A và B hoàn toàn giống nhau:
+            <ul>
+              <li>Slot 0: CPU L63</li>
+              <li>Slot 1: Ethernet module 1756-EN2TR (Dual-Ethernet port), IP: 192.168.1.50</li>
+              <li>Slot 7: Ethernet module 1756-EN2TR (Dual-Ethernet port), IP: 192.168.1.60</li>
+              <li>Slot 9: Redundancy Module 1756-RM</li>
+            </ul>
+          </li>
+          <li>Chassis Remote IO:
+            <ul>
+              <li>Slot 0: Ethernet module 1756-EN2TR, IP: 192.168.1.52</li>
+              <li>Slot 5: 1756-IB32</li>
+              <li>Slot 6: 1756-OB32</li>
+            </ul>
+          </li>
+          <li>Network: Remote IO và các mô đun Ethernet kết nối thành mạng vòng DLR (Device Level Ring).</li>
+        </ul>
+        <h2>Các bước thực hiện</h2>
+        <ol>
+          <li>Lắp đặt phần cứng trên Chassis A và B giống nhau</li>
+          <li>Nâng cấp Firmware cho các Module trên Chassis A và B giống nhau</li>
+          <li>Cài đặt địa chỉ IP cho các mô đun tương ứng giữa 2 Chassis giống nhau</li>
+          <li>Viết chương trình bình thường, cấu hình Redundancy. Download cho một CPU (Primary), CPU còn lại sẽ tự động cập nhật chương trình qua Module 1756-RM</li>
+          <li>Kết nối cáp quang giữa 2 mô đun 1756-RM trên 2 chassis</li>
+          <li>Bật nguồn một CPU và download chương trình</li>
+          <li>Bật nguồn CPU còn lại</li>
+          <li>Kiểm tra trạng thái Redundancy (Module 1756-RM của Chassis Primary hiện “PRIM”, Chassis Standby hiện “SYN”)</li>
+        </ol>
+        <h2>Switch Over</h2>
+        <p>Switch Over là việc chuyển từ CPU Primary sang CPU Standby khi CPU Primary bị sự cố. Các trường hợp Switch Over:</p>
+        <ul>
+          <li>Mất nguồn CPU Primary</li>
+          <li>Major Fault trên CPU Primary</li>
+          <li>Mất truyền thông trên Chassis Primary</li>
+          <li>Người dùng ra lệnh chuyển</li>
+        </ul>
+        <h2>Thực hiện</h2>
+        <p>Download Firmware mới 20.54 từ trang Rockwell, cài đặt Firmware và RMC Tool.</p>
+        <img src="/assets/images/logix/redundancy-controllogix-ethernetip-02.png" alt="Download Firmware mới từ Rockwell">
+        <p>Trong Rslogix 5000, khi tạo Project mới chọn Redundancy Enabled:</p>
+        <img src="/assets/images/logix/redundancy-controllogix-ethernetip-03.png" alt="Chọn Redundancy Enabled trong Rslogix 5000">
+        <p>Các bước cấu hình còn lại như chương trình bình thường. Ví dụ luôn ON ngõ ra O6.0:</p>
+        <img src="/assets/images/logix/redundancy-controllogix-ethernetip-04.png" alt="Ví dụ cấu hình chương trình">
+        <p>Download chương trình xuống CPU A:</p>
+        <img src="/assets/images/logix/redundancy-controllogix-ethernetip-05.png" alt="Download chương trình xuống CPU A">
+        <p>Kiểm tra trên Rslinx Classic, chọn Module Configuration:</p>
+        <img src="/assets/images/logix/redundancy-controllogix-ethernetip-06.png" alt="Kiểm tra Module Configuration trên Rslinx Classic">
+        <p>Chọn “Sychronization Status” để xem trạng thái. Nếu OK sẽ thấy “Full”:</p>
+        <img src="/assets/images/logix/redundancy-controllogix-ethernetip-07.png" alt="Sychronization Status Full">
+        <p>Module RM trên Chassi Primary khi chạy:</p>
+        <img src="/assets/images/logix/redundancy-controllogix-ethernetip-08.jpg" alt="Module RM trên Chassi Primary">
+        <p>Module RM trên Chassis Standby khi chạy:</p>
+        <img src="/assets/images/logix/redundancy-controllogix-ethernetip-09.jpg" alt="Module RM trên Chassis Standby">
+        <h2>Ghi chú</h2>
+        <p>Đây là các bước cơ bản để tạo chương trình Redundancy với Controllogix qua Ethernet/IP. Để sử dụng hiệu quả, cần tìm hiểu thêm các kỹ thuật tối ưu hệ thống. Tài liệu tham khảo:
+          <a href="https://literature.rockwellautomation.com/idc/groups/literature/documents/um/1756-um535_-en-p.pdf" target="_blank">1756-um535_-en-p.pdf</a>
+        </p>
+        <p>Tác giả: Giap Van Vy – 2012</p>
+      </div>
+      <div id="en" style="display:none">
+        <h1>[Logix] Lesson 16: Configuring Redundancy with Controllogix via Ethernet/IP</h1>
+        <p><strong>Fault Tolerance System</strong></p>
+        <p>In high-reliability applications, control systems often use Hot Backup, Warm Backup, or Redundancy configurations. Basically, the system consists of two CPUs running the same program, with one as the main CPU and the other in Standby mode. If the main CPU fails, the Standby CPU takes over to maintain operation and becomes the main CPU. In these configurations, Hot backup and warm backup are implemented via programming, with switchover times of several hundred ms, while Redundancy is fully hardware-based, with switchover times under 20ms.</p>
+        <p>This lesson introduces how to configure Redundancy with Controllogix via Ethernet/IP.</p>
+        <h2>Basics</h2>
+        <ul>
+          <li>Only Controllogix supports Redundancy (Compactlogix only supports Hot backup, warm backup…)</li>
+          <li>For Redundancy with Ethernet/IP, minimum firmware is 19.5 (Redundancy firmware usually has format xx.5yy)</li>
+          <li>On the CPU Chassis, only CPU, communication module, and Redundancy module (1756-RM) are allowed; no IO modules.</li>
+          <li>All IO in Redundancy systems are Remote IO</li>
+        </ul>
+        <p><strong>System diagram:</strong></p>
+        <img src="/assets/images/logix/redundancy-controllogix-ethernetip-01.jpg" alt="Redundancy Controllogix system diagram via Ethernet/IP">
+        <h2>Hardware configuration</h2>
+        <ul>
+          <li>Chassis A and B are identical:
+            <ul>
+              <li>Slot 0: CPU L63</li>
+              <li>Slot 1: Ethernet module 1756-EN2TR (Dual-Ethernet port), IP: 192.168.1.50</li>
+              <li>Slot 7: Ethernet module 1756-EN2TR (Dual-Ethernet port), IP: 192.168.1.60</li>
+              <li>Slot 9: Redundancy Module 1756-RM</li>
+            </ul>
+          </li>
+          <li>Remote IO Chassis:
+            <ul>
+              <li>Slot 0: Ethernet module 1756-EN2TR, IP: 192.168.1.52</li>
+              <li>Slot 5: 1756-IB32</li>
+              <li>Slot 6: 1756-OB32</li>
+            </ul>
+          </li>
+          <li>Network: Remote IO and Ethernet modules connect in a DLR (Device Level Ring) topology.</li>
+        </ul>
+        <h2>Steps</h2>
+        <ol>
+          <li>Install hardware on Chassis A and B identically</li>
+          <li>Upgrade firmware for modules on both Chassis</li>
+          <li>Set IP addresses for corresponding modules on both Chassis</li>
+          <li>Write the program as usual, configure Redundancy. Download to one CPU (Primary), the other CPU auto-updates via 1756-RM</li>
+          <li>Connect fiber cable between 1756-RM modules on both chassis</li>
+          <li>Power on one CPU and download the program</li>
+          <li>Power on the other CPU</li>
+          <li>Check Redundancy status (1756-RM module on Primary shows “PRIM”, Standby shows “SYN”)</li>
+        </ol>
+        <h2>Switch Over</h2>
+        <p>Switch Over is the transition from Primary to Standby CPU when the Primary fails. Conditions for Switch Over:</p>
+        <ul>
+          <li>Primary CPU power loss</li>
+          <li>Major Fault on Primary CPU</li>
+          <li>Communication loss on Primary Chassis</li>
+          <li>User-initiated switchover</li>
+        </ul>
+        <h2>Implementation</h2>
+        <p>Download new Firmware 20.54 from Rockwell, install Firmware and RMC Tool.</p>
+        <img src="/assets/images/logix/redundancy-controllogix-ethernetip-02.png" alt="Download new Firmware from Rockwell">
+        <p>In Rslogix 5000, when creating a new Project, select Redundancy Enabled:</p>
+        <img src="/assets/images/logix/redundancy-controllogix-ethernetip-03.png" alt="Select Redundancy Enabled in Rslogix 5000">
+        <p>Other configuration steps are as usual. Example: always ON output O6.0:</p>
+        <img src="/assets/images/logix/redundancy-controllogix-ethernetip-04.png" alt="Example program configuration">
+        <p>Download the program to CPU A:</p>
+        <img src="/assets/images/logix/redundancy-controllogix-ethernetip-05.png" alt="Download program to CPU A">
+        <p>Check in Rslinx Classic, select Module Configuration:</p>
+        <img src="/assets/images/logix/redundancy-controllogix-ethernetip-06.png" alt="Check Module Configuration in Rslinx Classic">
+        <p>Select “Sychronization Status” to view status. If OK, “Full” is shown:</p>
+        <img src="/assets/images/logix/redundancy-controllogix-ethernetip-07.png" alt="Sychronization Status Full">
+        <p>RM module on Primary Chassis running:</p>
+        <img src="/assets/images/logix/redundancy-controllogix-ethernetip-08.jpg" alt="RM module on Primary Chassis">
+        <p>RM module on Standby Chassis running:</p>
+        <img src="/assets/images/logix/redundancy-controllogix-ethernetip-09.jpg" alt="RM module on Standby Chassis">
+        <h2>Note</h2>
+        <p>These are the basic steps to create a Redundancy program with Controllogix via Ethernet/IP. For best results, study advanced techniques to optimize your system. Reference:
+          <a href="https://literature.rockwellautomation.com/idc/groups/literature/documents/um/1756-um535_-en-p.pdf" target="_blank">1756-um535_-en-p.pdf</a>
+        </p>
+        <p>Author: Giap Van Vy – 2012</p>
+      </div>
+      <div class="clear"></div>
+    </div>
+  </div>
+</body>
+</html>
