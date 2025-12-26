@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Hướng dẫn mô phỏng RSLogix 5000 với RSEmulate 5000, kinh nghiệm thực chiến từ kỹ sư tự động hóa 15 năm kinh nghiệm.">
+  <title>[Logix] Bài 11: Mô phỏng RSLogix 5000 với RSEmulate 5000</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Roboto', sans-serif; background: #fff; color: #222; line-height: 1.7; max-width: 800px; margin: 0 auto; padding: 32px 12px; }
+    h1, h2, h3 { color: #0056b3; }
+    img { max-width: 100%; border: 1px solid #eee; border-radius: 4px; margin: 18px 0; }
+    blockquote { border-left: 4px solid #0056b3; background: #f8f9fa; padding: 12px 18px; color: #555; margin: 18px 0; }
+    ul, ol { margin-left: 24px; }
+    .note { background: #f1f8e9; border-left: 4px solid #8bc34a; padding: 10px 18px; margin: 18px 0; color: #33691e; }
+    .footer { margin-top: 40px; font-size: 0.95em; color: #888; border-top: 1px solid #eee; padding-top: 18px; }
+  </style>
+</head>
+<body>
+  <h1>[Logix] Bài 11: Mô phỏng chương trình RSLogix 5000 với RSEmulate 5000</h1>
+  <blockquote><b>Chia sẻ từ kinh nghiệm thực tế của một kỹ sư tự động hóa hơn 15 năm trong nghề.</b></blockquote>
+  <p>Mô phỏng là công cụ không thể thiếu với bất kỳ ai làm lập trình PLC. Nhờ mô phỏng, chúng ta kiểm tra logic, phát hiện lỗi và tối ưu chương trình trước khi triển khai lên hệ thống thực tế – tiết kiệm rất nhiều thời gian, chi phí và tránh rủi ro khi vận hành.</p>
+
+  <h2>1. Lựa chọn phần mềm mô phỏng</h2>
+  <p>Để mô phỏng cho RSLogix 5000, bạn có hai lựa chọn: <b>RSEmulate 5000</b> hoặc <b>SoftLogix</b>. Thông thường, nếu chỉ cần mô phỏng, RSEmulate 5000 là lựa chọn tối ưu vì thao tác đơn giản, không cần cấu hình lại IO khi thay đổi CPU.</p>
+  <div class="note">
+    <ul>
+      <li>Phải dùng đúng phiên bản RSEmulate 5000 tương ứng với RSLogix 5000 (ví dụ: version 20).</li>
+      <li>RSEmulate 5000 hoạt động như một CPU thật trên chassis ảo.</li>
+    </ul>
+  </div>
+
+  <h2>2. Tạo CPU giả lập trên RSEmulate 5000</h2>
+  <p>Khởi động phần mềm, bạn sẽ thấy giao diện với các slot trống trên chassis:</p>
+  <img src="../../assets/images/logix/mo-phong-rslogix5000-chassis-banquyen-japvn-01.png" alt="Chassis ban đầu">
+  <ul>
+    <li>Click phải vào slot trống (nên chọn từ slot 2 trở đi, slot 1 dành cho RSLinx Enterprise).</li>
+  </ul>
+  <img src="../../assets/images/logix/mo-phong-rslogix5000-chon-slot-japvn-02.png" alt="Chọn slot">
+  <ul>
+    <li>Chọn loại CPU phù hợp, nhấn OK.</li>
+  </ul>
+  <img src="../../assets/images/logix/mo-phong-rslogix5000-chon-cpu-japvn-03.png" alt="Chọn CPU">
+  <ul>
+    <li>Next liên tục để xác nhận các thông số mặc định.</li>
+  </ul>
+  <img src="../../assets/images/logix/mo-phong-rslogix5000-next1-japvn-04.png" alt="Next 1">
+  <img src="../../assets/images/logix/mo-phong-rslogix5000-next2-japvn-05.png" alt="Next 2">
+  <ul>
+    <li>Finish để hoàn tất.</li>
+  </ul>
+  <img src="../../assets/images/logix/mo-phong-rslogix5000-finish-japvn-06.png" alt="Finish">
+  <ul>
+    <li>CPU sẽ xuất hiện trên chassis ảo:</li>
+  </ul>
+  <img src="../../assets/images/logix/mo-phong-rslogix5000-cpu-tao-xong-japvn-07.png" alt="CPU đã tạo">
+  <p>Bạn có thể tạo nhiều CPU trên chassis ảo, tương tự như phần cứng thật.</p>
+
+  <h2>3. Cấu hình RSLinx Classic để nhận CPU mô phỏng</h2>
+  <p>Để RSLogix 5000 giao tiếp với CPU mô phỏng, cần cấu hình driver trong RSLinx Classic:</p>
+  <ul>
+    <li>Mở RSLinx Classic, chọn <b>Configure Drivers</b>.</li>
+  </ul>
+  <img src="../../assets/images/logix/mo-phong-rslogix5000-configure-drivers-japvn-08.png" alt="Configure Drivers">
+  <ul>
+    <li>Thêm driver mới, chọn <b>Virtual Backplane</b> và nhấn <b>Add New</b>.</li>
+  </ul>
+  <img src="../../assets/images/logix/mo-phong-rslogix5000-virtual-backplane-japvn-09.png" alt="Chọn Virtual Backplane">
+  <img src="../../assets/images/logix/mo-phong-rslogix5000-add-new-japvn-10.png" alt="Add New">
+  <ul>
+    <li>Nhấn OK để xác nhận.</li>
+  </ul>
+  <img src="../../assets/images/logix/mo-phong-rslogix5000-ok-japvn-11.png" alt="OK">
+  <ul>
+    <li>Sau khi cấu hình xong, CPU mô phỏng sẽ xuất hiện trong RSLinx:</li>
+  </ul>
+  <img src="../../assets/images/logix/mo-phong-rslogix5000-cpu-xuat-hien-japvn-12.png" alt="CPU xuất hiện">
+
+  <h2>4. Download/Upload và chỉnh sửa Online với CPU mô phỏng</h2>
+  <ul>
+    <li>Trong RSLogix 5000, thay CPU thật bằng CPU mô phỏng:
+      <ul>
+        <li>Click phải vào CPU, chọn <b>Properties</b>.</li>
+      </ul>
+    </li>
+  </ul>
+  <img src="../../assets/images/logix/mo-phong-rslogix5000-properties-japvn-13.png" alt="Properties">
+  <ul>
+    <li>Chọn <b>Change Controller</b>.</li>
+  </ul>
+  <img src="../../assets/images/logix/mo-phong-rslogix5000-change-controller-japvn-14.png" alt="Change Controller">
+  <ul>
+    <li>Chọn <b>Emulator</b>, đúng revision, nhấn OK.</li>
+  </ul>
+  <img src="../../assets/images/logix/mo-phong-rslogix5000-chon-emulator-japvn-15.png" alt="Chọn Emulator">
+  <ul>
+    <li>Xác nhận, chọn đúng slot đã cấu hình (ví dụ: slot 2).</li>
+  </ul>
+  <img src="../../assets/images/logix/mo-phong-rslogix5000-xac-nhan-japvn-16.png" alt="Xác nhận">
+  <img src="../../assets/images/logix/mo-phong-rslogix5000-chon-slot2-japvn-17.png" alt="Chọn slot">
+  <ul>
+    <li>Bây giờ bạn có thể <b>Download</b> chương trình:</li>
+  </ul>
+  <img src="../../assets/images/logix/mo-phong-rslogix5000-download-japvn-18.png" alt="Download">
+  <ul>
+    <li>Và <b>Online</b> để kiểm tra, chỉnh sửa trực tiếp:</li>
+  </ul>
+  <img src="../../assets/images/logix/mo-phong-rslogix5000-online-japvn-19.png" alt="Online">
+  <p>Các thao tác upload, chỉnh sửa online hoàn toàn tương tự như trên CPU thật.</p>
+
+  <h2>5. Ghi chú thực tế</h2>
+  <ul>
+    <li>RSEmulate 5000 là phần mềm thương mại, cần mua license.</li>
+    <li>Khi lập trình, nên chủ động viết các đoạn code kiểm thử mô phỏng để kiểm tra logic, giảm thiểu lỗi khi triển khai thực tế.</li>
+  </ul>
+
+  <div class="footer">
+    Bài viết được biên soạn lại từ kinh nghiệm thực chiến, hy vọng giúp ích cho anh em kỹ sư tự động hóa.<br>
+    &copy; 2025 JAP.vn
+  </div>
+</body>
+</html>
