@@ -3,144 +3,138 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="JAP - Just Automation Platform. The ultimate archive for Rockwell Automation, Studio 5000, PLC programming resources. Nền tảng chia sẻ tài liệu Tự động hóa và Rockwell hàng đầu.">
-    <title>JAP.vn - Just Automation Platform | Rockwell Automation Archive</title>
+    <meta name="description" content="JAP - Just Automation Platform. The premier knowledge base for Industrial Automation, Rockwell configurations, and system optimization.">
+    <title>JAP.vn - Just Automation Platform | Industrial Knowledge Base</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
     <style>
-        /* --- RESET & BASE STYLES --- */
+        /* --- CORE VARIABLES --- */
         :root {
-            --primary-color: #003366; /* Màu xanh Rockwell cổ điển */
-            --accent-color: #e63946; /* Màu đỏ điểm nhấn */
-            --text-dark: #1d3557;
-            --text-light: #6c757d;
-            --bg-light: #f8f9fa;
+            --bg-body: #0f172a; /* Màu xanh đen thẫm (Slate 900) - Trend công nghệ 2025 */
+            --bg-card: #1e293b; /* Slate 800 */
+            --primary: #3b82f6; /* Electric Blue */
+            --accent: #f59e0b; /* Amber Industrial */
+            --text-main: #f1f5f9;
+            --text-sub: #94a3b8;
             --white: #ffffff;
         }
-        
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
             line-height: 1.6;
-            color: var(--text-dark);
-            background-color: var(--bg-light);
+            overflow-x: hidden;
         }
 
-        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        a { text-decoration: none; transition: all 0.3s ease; }
         ul { list-style: none; }
 
-        /* --- TYPOGRAPHY --- */
-        .en-text { font-weight: 600; color: var(--text-dark); display: block; }
-        .vi-text { font-weight: 400; color: var(--text-light); font-size: 0.9em; font-style: italic; display: block; margin-top: 4px; }
-        
+        /* --- UTILITIES --- */
+        .container { max-width: 1280px; margin: 0 auto; padding: 0 24px; }
+        .text-gradient {
+            background: linear-gradient(to right, #60a5fa, #3b82f6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .bilingual { display: flex; flex-direction: column; }
+        .en { font-weight: 600; color: var(--text-main); font-size: 1.1rem; }
+        .vi { font-weight: 300; color: var(--text-sub); font-size: 0.9rem; font-style: normal; margin-top: 2px; }
+
         /* --- HEADER --- */
         header {
-            background: var(--white);
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-            position: sticky; top: 0; z-index: 100;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            position: sticky; top: 0; z-index: 1000;
+            padding: 20px 0;
         }
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
-        
-        .nav-wrapper {
-            display: flex; justify-content: space-between; align-items: center; height: 80px;
-        }
-
-        .logo { font-size: 28px; font-weight: 800; color: var(--primary-color); letter-spacing: -1px; }
-        .logo span { color: var(--accent-color); }
-        .brand-tagline { font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: var(--text-light); border-left: 1px solid #ddd; padding-left: 15px; margin-left: 15px; }
-
-        .nav-links { display: flex; gap: 30px; }
-        .nav-item { text-align: right; }
-        .nav-item:hover .en-text { color: var(--primary-color); }
+        .nav-flex { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.8rem; font-weight: 800; letter-spacing: -0.05em; color: var(--white); }
+        .logo span { color: var(--primary); }
+        .nav-links { display: flex; gap: 40px; }
+        .nav-links a:hover .en { color: var(--primary); }
 
         /* --- HERO SECTION --- */
         .hero {
-            background: linear-gradient(135deg, #003366 0%, #021a33 100%);
-            color: var(--white);
-            padding: 100px 0;
+            padding: 120px 0;
             text-align: center;
+            background: radial-gradient(circle at top center, #1e293b 0%, #0f172a 70%);
         }
-        
-        .hero h1 { font-size: 3.5rem; margin-bottom: 20px; line-height: 1.2; }
-        .hero p { font-size: 1.2rem; color: rgba(255,255,255,0.8); max-width: 700px; margin: 0 auto 40px; }
-        
-        .btn {
+        .hero h1 {
+            font-size: 4rem; line-height: 1.1; margin-bottom: 24px; font-weight: 800;
+        }
+        .hero p {
+            font-size: 1.25rem; color: var(--text-sub); max-width: 800px; margin: 0 auto 48px;
+        }
+        .cta-btn {
             display: inline-block;
-            padding: 15px 35px;
-            background-color: var(--accent-color);
+            background: var(--primary);
             color: var(--white);
-            border-radius: 4px;
-            font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            box-shadow: 0 4px 15px rgba(230, 57, 70, 0.3);
+            padding: 16px 40px;
+            border-radius: 50px;
+            font-weight: 600;
+            box-shadow: 0 10px 25px -5px rgba(59, 130, 246, 0.5);
         }
-        .btn:hover { background-color: #d62828; transform: translateY(-2px); }
+        .cta-btn:hover { transform: translateY(-3px); box-shadow: 0 20px 30px -10px rgba(59, 130, 246, 0.6); }
 
         /* --- FEATURES GRID --- */
-        .features { padding: 80px 0; }
-        .section-header { text-align: center; margin-bottom: 60px; }
-        .section-header h2 { font-size: 2.5rem; color: var(--primary-color); margin-bottom: 10px; }
+        .features { padding: 100px 0; background: #0b1120; }
+        .section-title { text-align: center; margin-bottom: 80px; }
+        .section-title h2 { font-size: 2.5rem; margin-bottom: 16px; }
         
-        .grid {
+        .grid-3 {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 30px;
         }
 
         .card {
-            background: var(--white);
+            background: var(--bg-card);
             padding: 40px;
-            border-radius: 8px;
-            border: 1px solid #eee;
-            transition: 0.3s;
-            position: relative;
-            overflow: hidden;
+            border-radius: 16px;
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative; overflow: hidden;
         }
-        .card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.08); border-color: var(--primary-color); }
-        .card-icon { font-size: 40px; margin-bottom: 20px; color: var(--primary-color); }
-        .card h3 { font-size: 1.5rem; margin-bottom: 15px; }
+        .card::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            opacity: 0; transition: 0.3s;
+        }
+        .card:hover { transform: translateY(-10px); border-color: rgba(59, 130, 246, 0.3); }
+        .card:hover::before { opacity: 1; }
         
+        .icon-box {
+            width: 60px; height: 60px; background: rgba(59, 130, 246, 0.1);
+            border-radius: 12px; display: flex; align-items: center; justify-content: center;
+            font-size: 24px; color: var(--primary); margin-bottom: 24px;
+        }
+
         /* --- FOOTER --- */
-        footer { background: #111; color: #888; padding: 60px 0; font-size: 14px; }
-        .footer-content { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 40px; }
-        .footer-logo { color: var(--white); font-weight: bold; font-size: 20px; margin-bottom: 10px; display: block; }
+        footer { border-top: 1px solid rgba(255,255,255,0.1); padding: 80px 0 40px; color: var(--text-sub); font-size: 0.9rem; }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 60px; margin-bottom: 60px; }
+        .legal { font-size: 0.8rem; opacity: 0.6; text-align: center; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 40px; }
 
         /* --- RESPONSIVE --- */
         @media (max-width: 768px) {
             .hero h1 { font-size: 2.5rem; }
-            .nav-links { display: none; } /* Giấu menu trên mobile cho gọn */
-            .brand-tagline { display: none; }
+            .nav-links { display: none; }
+            .footer-grid { grid-template-columns: 1fr; gap: 40px; }
         }
     </style>
 </head>
 <body>
 
     <header>
-        <div class="container nav-wrapper">
-            <div style="display: flex; align-items: center;">
-                <a href="#" class="logo">JAP<span>.vn</span></a>
-                <span class="brand-tagline">Just Automation Platform</span>
-            </div>
+        <div class="container nav-flex">
+            <a href="#" class="logo">JAP<span>.vn</span></a>
             <nav>
                 <ul class="nav-links">
-                    <li class="nav-item">
-                        <a href="#">
-                            <span class="en-text">Software</span>
-                            <span class="vi-text">Phần mềm</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#">
-                            <span class="en-text">Manuals</span>
-                            <span class="vi-text">Tài liệu</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#">
-                            <span class="en-text">Troubleshooting</span>
-                            <span class="vi-text">Sửa lỗi</span>
-                        </a>
-                    </li>
+                    <li><a href="#" class="bilingual"><span class="en">Documentation</span><span class="vi">Tài liệu Kỹ thuật</span></a></li>
+                    <li><a href="#" class="bilingual"><span class="en">System Config</span><span class="vi">Cấu hình Hệ thống</span></a></li>
+                    <li><a href="#" class="bilingual"><span class="en">Community</span><span class="vi">Cộng đồng</span></a></li>
                 </ul>
             </nav>
         </div>
@@ -149,67 +143,107 @@
     <section class="hero">
         <div class="container">
             <h1>
-                Mastering Industrial Automation<br>
-                <span style="font-size: 0.5em; font-weight: 300; opacity: 0.9; display: block; margin-top: 15px;">Chinh phục Công nghệ Tự động hóa Công nghiệp</span>
+                Optimizing <span class="text-gradient">Industrial Intelligence</span>
+                <br>
+                <span style="font-size: 0.5em; font-weight: 300; color: #fff; display: block; margin-top: 20px;">Tối ưu hóa Trí tuệ Công nghiệp & Tự động hóa</span>
             </h1>
             <p>
-                The comprehensive archive for Rockwell Automation, Studio 5000, and legacy PLC systems.
-                <br>
-                <span style="font-size: 0.9em; font-style: italic; color: #aaa;">Kho lưu trữ toàn diện về Rockwell Automation, Studio 5000 và các hệ thống PLC.</span>
+                The definitive technical knowledge base for Rockwell Automation ecosystems. 
+                We provide configuration guides, troubleshooting protocols, and legacy system support.
+                <br><br>
+                <em>Kho tri thức kỹ thuật chuyên sâu về hệ sinh thái Rockwell Automation. Cung cấp hướng dẫn cấu hình, quy trình xử lý lỗi và hỗ trợ các hệ thống cũ.</em>
             </p>
-            <a href="#resources" class="btn">Explore Resources / Khám phá ngay</a>
+            <a href="#solutions" class="cta-btn">Start Exploring / Khám phá ngay</a>
         </div>
     </section>
 
-    <section id="resources" class="features container">
-        <div class="section-header">
-            <h2>Core Resources / Tài nguyên cốt lõi</h2>
-            <p class="vi-text">Cập nhật kiến thức và công cụ mới nhất cho kỹ sư</p>
-        </div>
+    <section id="solutions" class="features">
+        <div class="container">
+            <div class="section-title">
+                <h2>Technical Resources / Tài nguyên Kỹ thuật</h2>
+                <p class="vi" style="font-size: 1.1rem; color: var(--text-sub);">Comprehensive guides for Engineers & Integrators</p>
+            </div>
 
-        <div class="grid">
-            <a href="rslogix-download.html" class="card">
-                <div class="card-icon">⚙️</div>
-                <h3>
-                    <span class="en-text">Software Downloads</span>
-                    <span class="vi-text">Tải xuống Phần mềm</span>
-                </h3>
-                <p>Access the latest versions of Studio 5000, RSLinx Classic, and firmware kits.</p>
-                <p class="vi-text">Truy cập các phiên bản mới nhất của Studio 5000, RSLinx và Firmware.</p>
-            </a>
+            <div class="grid-3">
+                <article class="card">
+                    <div class="icon-box">⚙️</div>
+                    <div class="bilingual">
+                        <span class="en">Environment Setup</span>
+                        <span class="vi">Thiết lập Môi trường</span>
+                    </div>
+                    <p style="margin-top: 15px; color: var(--text-sub);">
+                        Detailed walkthroughs on setting up Studio 5000 Logix Designer and RSLinx Classic for optimal performance on Windows 10/11.
+                    </p>
+                    <p style="margin-top: 10px; font-style: italic; font-size: 0.9rem; color: #64748b;">
+                        Hướng dẫn chi tiết cài đặt môi trường làm việc Studio 5000 & RSLinx để đạt hiệu suất tối đa.
+                    </p>
+                </article>
 
-            <a href="troubleshooting.html" class="card">
-                <div class="card-icon">🛠️</div>
-                <h3>
-                    <span class="en-text">Troubleshooting Guide</span>
-                    <span class="vi-text">Hướng dẫn Xử lý lỗi</span>
-                </h3>
-                <p>Step-by-step solutions for common PLC connection and programming errors.</p>
-                <p class="vi-text">Các bước xử lý chi tiết cho các lỗi kết nối PLC và lập trình thường gặp.</p>
-            </a>
+                <article class="card">
+                    <div class="icon-box">🛡️</div>
+                    <div class="bilingual">
+                        <span class="en">Error Diagnostics</span>
+                        <span class="vi">Chẩn đoán Lỗi</span>
+                    </div>
+                    <p style="margin-top: 15px; color: var(--text-sub);">
+                        Database of error codes for ControlLogix & CompactLogix systems. Solutions for connection timeouts and firmware mismatches.
+                    </p>
+                    <p style="margin-top: 10px; font-style: italic; font-size: 0.9rem; color: #64748b;">
+                        Cơ sở dữ liệu mã lỗi và giải pháp khắc phục sự cố mất kết nối, lệch firmware.
+                    </p>
+                </article>
 
-            <a href="legacy-archive.html" class="card">
-                <div class="card-icon">📂</div>
-                <h3>
-                    <span class="en-text">Legacy Archive</span>
-                    <span class="vi-text">Kho lưu trữ Cũ</span>
-                </h3>
-                <p>Documentation for retired systems: PLC-5, SLC 500, and PanelView Standard.</p>
-                <p class="vi-text">Tài liệu cho các hệ thống đã ngưng sản xuất: PLC-5, SLC 500...</p>
-            </a>
+                <article class="card">
+                    <div class="icon-box">💾</div>
+                    <div class="bilingual">
+                        <span class="en">Legacy Migration</span>
+                        <span class="vi">Chuyển đổi Hệ thống cũ</span>
+                    </div>
+                    <p style="margin-top: 15px; color: var(--text-sub);">
+                        Strategies for maintaining or upgrading retired hardware like PLC-5 and SLC 500 to modern Ethernet/IP architectures.
+                    </p>
+                    <p style="margin-top: 10px; font-style: italic; font-size: 0.9rem; color: #64748b;">
+                        Chiến lược bảo trì hoặc nâng cấp các phần cứng cũ lên kiến trúc mạng hiện đại.
+                    </p>
+                </article>
+            </div>
         </div>
     </section>
 
     <footer>
-        <div class="container footer-content">
-            <div>
-                <span class="footer-logo">JAP.vn</span>
-                <p>Just Automation Platform.</p>
-                <p style="margin-top: 10px; font-size: 12px; color: #555;">Est. 2012. Re-established 2025.</p>
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <h3 class="logo" style="margin-bottom: 20px;">JAP<span>.vn</span></h3>
+                    <p>Just Automation Platform.</p>
+                    <p>Empowering the next generation of Automation Engineers.</p>
+                </div>
+                <div>
+                    <h4 style="color: #fff; margin-bottom: 20px;">Resources</h4>
+                    <ul>
+                        <li style="margin-bottom: 10px;"><a href="#">Knowledge Base</a></li>
+                        <li style="margin-bottom: 10px;"><a href="#">System Specs</a></li>
+                        <li style="margin-bottom: 10px;"><a href="#">Best Practices</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 style="color: #fff; margin-bottom: 20px;">Contact</h4>
+                    <ul>
+                        <li style="margin-bottom: 10px;">support@jap.vn</li>
+                        <li>Da Nang, Vietnam</li>
+                    </ul>
+                </div>
             </div>
-            <div style="text-align: right;">
-                <p class="en-text">Disclaimer: Not affiliated with Rockwell Automation.</p>
-                <p class="vi-text">Tuyên bố miễn trừ: Không liên kết trực tiếp với Rockwell Automation.</p>
+            
+            <div class="legal">
+                <p>
+                    <strong>Disclaimer:</strong> JAP.vn is an independent knowledge base and is NOT affiliated with, endorsed by, or sponsored by Rockwell Automation, Inc. 
+                    "Rockwell Automation", "Allen-Bradley", "Studio 5000", and "FactoryTalk" are trademarks of Rockwell Automation, Inc.
+                </p>
+                <p style="margin-top: 10px;">
+                    <strong>Tuyên bố miễn trừ:</strong> JAP.vn là nền tảng chia sẻ kiến thức độc lập, KHÔNG trực thuộc hay được ủy quyền bởi Rockwell Automation. Chúng tôi không lưu trữ hay phân phối tệp tin cài đặt vi phạm bản quyền.
+                </p>
+                <p style="margin-top: 20px;">&copy; 2025 Just Automation Platform. All rights reserved.</p>
             </div>
         </div>
     </footer>
