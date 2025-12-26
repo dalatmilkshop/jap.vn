@@ -1,173 +1,220 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="JAP.vn - The origin story. Why this project was revived and the journey of the Vietnamese automation community.">
     <title>The Origin Story - JAP.vn</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Merriweather:ital,wght@0,300;0,700;1,300&display=swap" rel="stylesheet">
+    <!-- SEO & Social -->
+    <meta property="og:title" content="The Origin Story - JAP.vn">
+    <meta property="og:description" content="Why JAP.vn was revived. The journey of the Vietnamese automation community.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://jap.vn/story.html">
+    <meta property="og:site_name" content="JAP.vn">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="The Origin Story - JAP.vn">
+    <meta name="twitter:description" content="Why JAP.vn was revived. The journey of the Vietnamese automation community.">
+    <link rel="canonical" href="https://jap.vn/story.html">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "The Origin Story - JAP.vn",
+      "description": "Why JAP.vn was revived. The journey of the Vietnamese automation community.",
+      "author": {"@type": "Person", "name": "JAP Documentation Project"},
+      "publisher": {"@type": "Organization", "name": "JAP.vn"},
+      "datePublished": "2025-12-26"
+    }
+    </script>
     <style>
-        /* --- CORE STYLES --- */
-        :root { --primary: #0056b3; --text-dark: #333; --bg-light: #f8f9fa; --border: #e1e4e8; }
+        :root {
+            --primary: #0056b3;
+            --text-dark: #333;
+            --text-light: #666;
+            --bg-light: #f8f9fa;
+            --border: #e1e4e8;
+        }
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Roboto', sans-serif; background-color: #fff; color: var(--text-dark); line-height: 1.8; }
-        
+        body { font-family: 'Roboto', sans-serif; background-color: #fff; color: var(--text-dark); line-height: 1.7; }
+        a { text-decoration: none; color: var(--primary); }
+        a:hover { text-decoration: underline; }
+
         /* LOGIC NGÔN NGỮ */
         [lang="vi"] { display: none !important; }
         [lang="en"] { display: block !important; }
         span[lang="vi"] { display: none !important; }
         span[lang="en"] { display: inline !important; }
-        
         body.show-vi [lang="vi"] { display: block !important; }
         body.show-vi [lang="en"] { display: none !important; }
         body.show-vi span[lang="vi"] { display: inline !important; }
         body.show-vi span[lang="en"] { display: none !important; }
 
-        .container { max-width: 800px; margin: 0 auto; padding: 60px 20px; }
-        
-        /* --- STORY STYLES --- */
-        .back-link { font-size: 0.9rem; text-decoration: none; color: #999; display: inline-block; margin-bottom: 40px; transition: 0.3s; }
-        .back-link:hover { color: var(--primary); transform: translateX(-5px); }
+        .container { max-width: 1100px; margin: 0 auto; display: flex; min-height: 100vh; }
+        .sidebar { width: 280px; background: var(--bg-light); border-right: 1px solid var(--border); padding: 30px 20px; display: flex; flex-direction: column; }
+        .logo { font-size: 1.5rem; font-weight: 700; color: #000; margin-bottom: 30px; display: block; text-decoration: none !important; }
+        .logo span { color: var(--primary); }
+        .menu-title { font-size: 0.75rem; text-transform: uppercase; color: #999; margin-bottom: 10px; font-weight: 700; letter-spacing: 1px; margin-top: 20px; }
+        .menu-link { display: block; padding: 8px 0; color: var(--text-light); font-size: 0.95rem; }
+        .menu-link:hover { color: var(--primary); }
+        .lang-btn { background: #fff; border: 1px solid var(--border); padding: 5px 10px; border-radius: 4px; cursor: pointer; font-size: 0.8rem; margin-top: auto; }
+        .lang-btn:hover { border-color: var(--primary); color: var(--primary); }
+
+        .main { flex: 1; padding: 40px 60px; }
+        .header-top { display: flex; justify-content: space-between; border-bottom: 1px solid var(--border); padding-bottom: 20px; margin-bottom: 40px; }
+        .last-update { font-size: 0.85rem; color: #888; }
 
         h1 { font-family: 'Merriweather', serif; font-size: 2.5rem; margin-bottom: 10px; font-weight: 700; color: #111; }
         .subtitle { font-size: 1.1rem; color: #777; font-style: italic; margin-bottom: 50px; border-bottom: 1px solid var(--border); padding-bottom: 30px; }
-
         .story-block { margin-bottom: 50px; }
-        .year-badge { 
-            background: var(--text-dark); color: #fff; padding: 5px 12px; font-weight: bold; 
-            font-size: 0.85rem; border-radius: 4px; display: inline-block; margin-bottom: 15px;
-        }
-        
+        .year-badge { background: var(--text-dark); color: #fff; padding: 5px 12px; font-weight: bold; font-size: 0.85rem; border-radius: 4px; display: inline-block; margin-bottom: 15px; }
         h2 { font-size: 1.5rem; margin-bottom: 15px; color: var(--primary); }
         p { margin-bottom: 20px; font-size: 1.05rem; color: #444; }
-        
-        .highlight-box {
-            background: #f0f7ff; border-left: 4px solid var(--primary); padding: 25px;
-            font-family: 'Merriweather', serif; font-style: italic; color: #004085; margin: 40px 0;
-        }
-
+        .highlight-box { background: #f0f7ff; border-left: 4px solid var(--primary); padding: 25px; font-family: 'Merriweather', serif; font-style: italic; color: #004085; margin: 40px 0; }
         .signature { margin-top: 60px; border-top: 1px solid var(--border); padding-top: 30px; }
         .sign-name { font-weight: bold; font-size: 1.1rem; }
         .sign-role { font-size: 0.9rem; color: #777; }
 
-        .lang-btn { position: fixed; top: 20px; right: 20px; background: #fff; border: 1px solid var(--border); padding: 8px 16px; border-radius: 20px; cursor: pointer; box-shadow: 0 2px 10px rgba(0,0,0,0.1); z-index: 100; }
-        .lang-btn:hover { border-color: var(--primary); color: var(--primary); }
+        @media (max-width: 768px) {
+            .container { flex-direction: column; }
+            .sidebar { width: 100%; border-right: none; border-bottom: 1px solid var(--border); }
+            .main { padding: 30px 20px; }
+        }
     </style>
 </head>
 <body>
-
-    <button class="lang-btn" onclick="toggleLanguage()">🌐 EN / VI</button>
-
     <div class="container">
-        <a href="index.html" class="back-link">
-            <span lang="en">← Back to Documentation Hub</span>
-            <span lang="vi">← Quay lại Trang chủ</span>
-        </a>
-
-        <h1>
-            <span lang="en">Why We Are Here</span>
-            <span lang="vi">Tại Sao Chúng Tôi Ở Đây</span>
-        </h1>
-        <div class="subtitle">
-            <span lang="en">A journey from a struggling engineer to a community custodian.</span>
-            <span lang="vi">Hành trình từ một kỹ sư đầy khó khăn đến người gìn giữ cộng đồng.</span>
-        </div>
-
-        <div class="story-block">
-            <span class="year-badge">2012</span>
-            <h2>
-                <span lang="en">The FDI Era & The Language Barrier</span>
-                <span lang="vi">Thời kỳ FDI & Rào cản Ngôn ngữ</span>
-            </h2>
-            <p>
-                <span lang="en">
-                    It was my first year stepping into a Foreign Direct Investment (FDI) factory. 
-                    The machines were massive, the systems were complex, and everything ran on <strong>Rockwell Automation</strong>.
-                </span>
-                <span lang="vi">
-                    Đó là năm đầu tiên tôi bước chân vào làm việc tại một nhà máy FDI. 
-                    Máy móc đồ sộ, hệ thống phức tạp, và tất cả đều vận hành trên nền tảng <strong>Rockwell Automation</strong>.
-                </span>
-            </p>
-            <p>
-                <span lang="en">
-                    Back then, resources were scarce. My English was limited, and looking for Vietnamese documentation for Rockwell was like finding a needle in a haystack. 
-                    I felt overwhelmed, staring at thousands of lines of Ladder Logic without a guide.
-                </span>
-                <span lang="vi">
-                    Thời điểm đó, tài liệu vô cùng khan hiếm. Tiếng Anh của tôi thì bập bẹ, còn tìm tài liệu Rockwell bằng tiếng Việt thì như "mò kim đáy bể". 
-                    Tôi cảm thấy choáng ngợp khi nhìn vào hàng ngàn dòng lệnh Ladder mà không có người hướng dẫn.
-                </span>
-            </p>
-        </div>
-
-        <div class="highlight-box">
-            <span lang="en">
-                "And then I found JAP.vn. It was the only blog in Vietnam breaking down complex Rockwell concepts into simple, understandable Vietnamese."
-            </span>
-            <span lang="vi">
-                "Và rồi tôi tìm thấy JAP.vn. Đó là blog duy nhất tại Việt Nam thời bấy giờ giải mã các khái niệm Rockwell phức tạp thành tiếng Việt đơn giản, dễ hiểu."
-            </span>
-        </div>
-
-        <div class="story-block">
-            <p>
-                <span lang="en">
-                    Those basic articles saved me. They were the foundation that helped me survive my probation, master the technology, and eventually build a career in automation and software. 
-                    I owe a debt of gratitude to the original founder who took the time to share when no one else did.
-                </span>
-                <span lang="vi">
-                    Những bài viết cơ bản ấy đã cứu tôi. Chúng là nền tảng giúp tôi vượt qua kỳ thử việc, làm chủ công nghệ và sau này xây dựng sự nghiệp trong ngành tự động hóa và phần mềm. 
-                    Tôi nợ người sáng lập ban đầu một lời cảm ơn sâu sắc vì đã dành thời gian chia sẻ khi chưa ai làm điều đó.
-                </span>
-            </p>
-        </div>
-
-        <div class="story-block">
-            <span class="year-badge">2025</span>
-            <h2>
-                <span lang="en">Paying It Forward</span>
-                <span lang="vi">Tiếp nối & Tri ân</span>
-            </h2>
-            <p>
-                <span lang="en">
-                    Years have passed. Technology has evolved from RSLogix 5000 to Studio 5000 v37. 
-                    When I realized the original domain had expired, I knew I couldn't let this legacy disappear.
-                </span>
-                <span lang="vi">
-                    Năm tháng trôi qua. Công nghệ đã tiến hóa từ RSLogix 5000 lên Studio 5000 v37. 
-                    Khi tôi nhận ra tên miền gốc đã hết hạn, tôi biết mình không thể để di sản này biến mất.
-                </span>
-            </p>
-            <p>
-                <span lang="en">
-                    I decided to re-acquire and rebuild JAP.vn, not for profit, but to continue the spirit of sharing. 
-                    <strong>"Pay it forward"</strong> — As we grow, we return to our roots to support those who are starting exactly where we once did.
-                </span>
-                <span lang="vi">
-                    Tôi quyết định mua lại và xây dựng lại JAP.vn, không phải vì lợi nhuận, mà để tiếp nối tinh thần chia sẻ. 
-                    <strong>"Uống nước nhớ nguồn"</strong> — Khi đã vững bước, chúng ta quay lại bồi đắp cội nguồn để hỗ trợ những người đang bắt đầu ở vạch xuất phát giống mình ngày xưa.
-                </span>
-            </p>
-        </div>
-
-        <div class="signature">
-            <div class="sign-name">
-                <span lang="en">The New Custodian</span>
-                <span lang="vi">Người Tiếp Quản</span>
+        <aside class="sidebar">
+            <a href="index.html" class="logo">JAP<span>.vn</span></a>
+            <div class="menu-title">Navigation</div>
+            <a href="index.html" class="menu-link">Home / Overview</a>
+            <a href="#" class="menu-link">Hardware Index</a>
+            <a href="#" class="menu-link">Software Archive</a>
+            <a href="#" class="menu-link">Legacy Systems</a>
+            <a href="docs/logix/bai-11-mo-phong-rslogix-5000-voi-rsemulate-5000.html" class="menu-link" style="color: #0056b3; font-weight: 600;">[Logix] Mô phỏng RSLogix 5000 với RSEmulate 5000</a>
+            <div class="menu-title">About Project</div>
+            <a href="story.html" class="menu-link" style="color: var(--primary); font-weight: 500;">
+                <span lang="en">★ The Origin Story</span>
+                <span lang="vi">★ Câu chuyện khởi nguồn</span>
+            </a>
+            <div class="menu-title">External Links</div>
+            <a href="#" class="menu-link">Rockwell Knowledgebase ↗</a>
+            <a href="#" class="menu-link">PLCTalk Forum ↗</a>
+            <div style="margin-top: 30px;">
+                <button class="lang-btn" onclick="toggleLanguage()">🌐 EN / VI</button>
             </div>
-            <div class="sign-role">
-                <span lang="en">JAP Documentation Project</span>
-                <span lang="vi">Dự án Tư liệu JAP</span>
+        </aside>
+        <main class="main">
+            <div class="header-top">
+                <span class="last-update">
+                    <span lang="en">System Status: <strong>Online</strong></span>
+                    <span lang="vi">Trạng thái hệ thống: <strong>Trực tuyến</strong></span>
+                </span>
+                <span class="last-update">Est. 2012 • Re-indexed 2025</span>
             </div>
-        </div>
-
+            <h1>
+                <span lang="en">Why We Are Here</span>
+                <span lang="vi">Tại Sao Chúng Tôi Ở Đây</span>
+            </h1>
+            <div class="subtitle">
+                <span lang="en">A journey from a struggling engineer to a community custodian.</span>
+                <span lang="vi">Hành trình từ một kỹ sư đầy khó khăn đến người gìn giữ cộng đồng.</span>
+            </div>
+            <div class="story-block">
+                <span class="year-badge">2012</span>
+                <h2>
+                    <span lang="en">The FDI Era & The Language Barrier</span>
+                    <span lang="vi">Thời kỳ FDI & Rào cản Ngôn ngữ</span>
+                </h2>
+                <p>
+                    <span lang="en">
+                        It was my first year stepping into a Foreign Direct Investment (FDI) factory. 
+                        The machines were massive, the systems were complex, and everything ran on <strong>Rockwell Automation</strong>.
+                    </span>
+                    <span lang="vi">
+                        Đó là năm đầu tiên tôi bước chân vào làm việc tại một nhà máy FDI. 
+                        Máy móc đồ sộ, hệ thống phức tạp, và tất cả đều vận hành trên nền tảng <strong>Rockwell Automation</strong>.
+                    </span>
+                </p>
+                <p>
+                    <span lang="en">
+                        Back then, resources were scarce. My English was limited, and looking for Vietnamese documentation for Rockwell was like finding a needle in a haystack. 
+                        I felt overwhelmed, staring at thousands of lines of Ladder Logic without a guide.
+                    </span>
+                    <span lang="vi">
+                        Thời điểm đó, tài liệu vô cùng khan hiếm. Tiếng Anh của tôi thì bập bẹ, còn tìm tài liệu Rockwell bằng tiếng Việt thì như "mò kim đáy bể". 
+                        Tôi cảm thấy choáng ngợp khi nhìn vào hàng ngàn dòng lệnh Ladder mà không có người hướng dẫn.
+                    </span>
+                </p>
+            </div>
+            <div class="highlight-box">
+                <span lang="en">
+                    "And then I found JAP.vn. It was the only blog in Vietnam breaking down complex Rockwell concepts into simple, understandable Vietnamese."
+                </span>
+                <span lang="vi">
+                    "Và rồi tôi tìm thấy JAP.vn. Đó là blog duy nhất tại Việt Nam thời bấy giờ giải mã các khái niệm Rockwell phức tạp thành tiếng Việt đơn giản, dễ hiểu."
+                </span>
+            </div>
+            <div class="story-block">
+                <p>
+                    <span lang="en">
+                        Those basic articles saved me. They were the foundation that helped me survive my probation, master the technology, and eventually build a career in automation and software. 
+                        I owe a debt of gratitude to the original founder who took the time to share when no one else did.
+                    </span>
+                    <span lang="vi">
+                        Những bài viết cơ bản ấy đã cứu tôi. Chúng là nền tảng giúp tôi vượt qua kỳ thử việc, làm chủ công nghệ và sau này xây dựng sự nghiệp trong ngành tự động hóa và phần mềm. 
+                        Tôi nợ người sáng lập ban đầu một lời cảm ơn sâu sắc vì đã dành thời gian chia sẻ khi chưa ai làm điều đó.
+                    </span>
+                </p>
+            </div>
+            <div class="story-block">
+                <span class="year-badge">2025</span>
+                <h2>
+                    <span lang="en">Paying It Forward</span>
+                    <span lang="vi">Tiếp nối & Tri ân</span>
+                </h2>
+                <p>
+                    <span lang="en">
+                        Years have passed. Technology has evolved from RSLogix 5000 to Studio 5000 v37. 
+                        When I realized the original domain had expired, I knew I couldn't let this legacy disappear.
+                    </span>
+                    <span lang="vi">
+                        Năm tháng trôi qua. Công nghệ đã tiến hóa từ RSLogix 5000 lên Studio 5000 v37. 
+                        Khi tôi nhận ra tên miền gốc đã hết hạn, tôi biết mình không thể để di sản này biến mất.
+                    </span>
+                </p>
+                <p>
+                    <span lang="en">
+                        I decided to re-acquire and rebuild JAP.vn, not for profit, but to continue the spirit of sharing. 
+                        <strong>"Pay it forward"</strong> — As we grow, we return to our roots to support those who are starting exactly where we once did.
+                    </span>
+                    <span lang="vi">
+                        Tôi quyết định mua lại và xây dựng lại JAP.vn, không phải vì lợi nhuận, mà để tiếp nối tinh thần chia sẻ. 
+                        <strong>"Uống nước nhớ nguồn"</strong> — Khi đã vững bước, chúng ta quay lại bồi đắp cội nguồn để hỗ trợ những người đang bắt đầu ở vạch xuất phát giống mình ngày xưa.
+                    </span>
+                </p>
+            </div>
+            <div class="signature">
+                <div class="sign-name">
+                    <span lang="en">The New Custodian</span>
+                    <span lang="vi">Người Tiếp Quản</span>
+                </div>
+                <div class="sign-role">
+                    <span lang="en">JAP Documentation Project</span>
+                    <span lang="vi">Dự án Tư liệu JAP</span>
+                </div>
+            </div>
+            <div class="footer-simple" style="margin-top:60px; padding-top:20px; border-top:1px solid var(--border); font-size:0.85rem; color:#999; display:flex; justify-content:space-between;">
+                <div>&copy; 2025 JAP.vn Documentation Project.</div>
+                <div>Independent Platform. Not affiliated with Rockwell Automation.</div>
+            </div>
+        </main>
     </div>
-
     <script>
         const savedLang = localStorage.getItem('jap_lang');
         const body = document.body;
         if (savedLang === 'vi') body.classList.add('show-vi');
-
         function toggleLanguage() {
             body.classList.toggle('show-vi');
             localStorage.setItem('jap_lang', body.classList.contains('show-vi') ? 'vi' : 'en');
