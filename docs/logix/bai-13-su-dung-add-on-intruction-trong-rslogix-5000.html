@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>[Logix] Bài 13: Sử dụng Add On Instruction trong Rslogix 5000 | JAP.VN</title>
+  <meta name="description" content="Hướng dẫn tạo và sử dụng Add On Instruction (AOI) trong Rslogix 5000. Tối ưu hóa lập trình, tái sử dụng code, bảo trì dễ dàng, bảo vệ mã nguồn.">
+  <meta name="keywords" content="RSLogix 5000, Add On Instruction, AOI, Rockwell, hướng dẫn RSLogix, lập trình PLC, tái sử dụng code, bảo trì PLC">
+  <meta property="og:title" content="[Logix] Bài 13: Sử dụng Add On Instruction trong Rslogix 5000">
+  <meta property="og:description" content="Hướng dẫn tạo và sử dụng Add On Instruction (AOI) trong Rslogix 5000. Tối ưu hóa lập trình, tái sử dụng code, bảo trì dễ dàng, bảo vệ mã nguồn.">
+  <meta property="og:type" content="article">
+  <meta property="og:image" content="../../assets/images/logix/rslogix5000-aoi-japvn-01.png">
+  <link rel="canonical" href="https://jap.vn/logix/bai-13-su-dung-add-on-intruction-trong-rslogix-5000.html">
+  <link rel="stylesheet" href="../../assets/css/main.css">
+</head>
+<body>
+  <aside class="sidebar">
+    <!-- ...sidebar content/navigation... -->
+  </aside>
+  <main class="content">
+    <article>
+      <h1>[Logix] Bài 13: Sử dụng Add On Instruction trong Rslogix 5000</h1>
+      <p><em>Ngày đăng: 26/10/2012 &mdash; Cập nhật: 2025</em></p>
+      <p><strong>Tiếng Việt</strong> | <a href="#en">English below</a></p>
+      <h2>Lợi ích của AOI</h2>
+      <ul>
+        <li>Có thể sử dụng lại Code nhiều lần, lập trình nhanh hơn.</li>
+        <li>Viết một lần, sử dụng cho nhiều dự án (Export/Import AOI).</li>
+        <li>Chương trình dễ hiểu hơn, tổ chức thành các khối điều khiển.</li>
+        <li>Dễ bảo trì chương trình, chỉnh sửa thuật toán tập trung.</li>
+        <li>Bảo vệ tài sản trí tuệ, khóa mã nguồn AOI.</li>
+      </ul>
+      <h3>Các bước tạo AOI</h3>
+      <p>Ví dụ minh họa một AOI đơn giản. Ban đầu có đoạn chương trình như sau:</p>
+      <p><img src="../../assets/images/logix/rslogix5000-aoi-japvn-01.png" alt="Chương trình ban đầu"></p>
+      <p>Tạo New Add-On Instruction:</p>
+      <p><img src="../../assets/images/logix/rslogix5000-aoi-japvn-02.png" alt="Tạo AOI mới"></p>
+      <p>Nhập thông tin AOI:</p>
+      <ul>
+        <li>Tên AOI</li>
+        <li>Type: Chọn ngôn ngữ (Ladder)</li>
+      </ul>
+      <p><img src="../../assets/images/logix/rslogix5000-aoi-japvn-03.png" alt="Nhập thông tin AOI"></p>
+      <p>Khai báo các thông số:</p>
+      <p><img src="../../assets/images/logix/rslogix5000-aoi-japvn-04.png" alt="Khai báo thông số AOI"></p>
+      <ul>
+        <li>Parameter: Định nghĩa các thông số đầu vào/ra, kiểu dữ liệu, hiển thị khi gọi AOI.</li>
+        <li>Local Tag: Tag nội bộ chỉ dùng trong AOI.</li>
+      </ul>
+      <p>Sau khi chọn xong, Click OK. AOI được tạo như sau:</p>
+      <p><img src="../../assets/images/logix/rslogix5000-aoi-japvn-05.png" alt="AOI được tạo"></p>
+      <p>Double Click vào Logic để viết chương trình cho AOI:</p>
+      <p><img src="../../assets/images/logix/rslogix5000-aoi-japvn-06.png" alt="Viết chương trình AOI"></p>
+      <h3>Sử dụng AOI</h3>
+      <p>Quay lại chương trình chính, trên thanh công cụ lệnh, Tab Add On sẽ có AOI vừa tạo:</p>
+      <p><img src="../../assets/images/logix/rslogix5000-aoi-japvn-07.png" alt="AOI trên thanh công cụ"></p>
+      <p>Để sử dụng, tạo Rung mới và Click vào AOI, gán các thông số Input/Output:</p>
+      <p><img src="../../assets/images/logix/rslogix5000-aoi-japvn-08.png" alt="Sử dụng AOI trong Ladder"></p>
+      <p>Có thể viết ở ngôn ngữ Funtion Block Diagram (FBD):</p>
+      <p><img src="../../assets/images/logix/rslogix5000-aoi-japvn-09.png" alt="AOI trong FBD"></p>
+      <h3>Ghi chú</h3>
+      <ul>
+        <li>AOI không cho phép chỉnh sửa Online.</li>
+        <li>AOI có thể Export/Import vào các dự án khác nhau.</li>
+        <li>Ngôn ngữ AOI: LD, FBD, ST (không có SFC).</li>
+      </ul>
+      <h3>Tài liệu tham khảo</h3>
+      <ul>
+        <li><a href="http://literature.rockwellautomation.com/idc/groups/literature/documents/pm/1756-pm010_-en-p.pdf" target="_blank" rel="noopener">Tài liệu Add-On Instruction</a></li>
+      </ul>
+      <p><em>Giap Van Vy – 2012</em></p>
+      <hr>
+      <h2 id="en">[Logix] Lesson 13: Using Add On Instruction in RSLogix 5000</h2>
+      <p><em>English version</em></p>
+      <h3>AOI Benefits</h3>
+      <ul>
+        <li>Code reuse, faster programming.</li>
+        <li>Write once, use in many projects (Export/Import AOI).</li>
+        <li>Clearer program structure, easier maintenance.</li>
+        <li>Intellectual property protection, lock AOI source code.</li>
+      </ul>
+      <h3>Steps to create AOI</h3>
+      <p>Example: Simple AOI. Initial program:</p>
+      <p><img src="../../assets/images/logix/rslogix5000-aoi-japvn-01.png" alt="Initial program"></p>
+      <p>Create New Add-On Instruction:</p>
+      <p><img src="../../assets/images/logix/rslogix5000-aoi-japvn-02.png" alt="Create new AOI"></p>
+      <p>Enter AOI information:</p>
+      <ul>
+        <li>AOI name</li>
+        <li>Type: Select language (Ladder)</li>
+      </ul>
+      <p><img src="../../assets/images/logix/rslogix5000-aoi-japvn-03.png" alt="Enter AOI info"></p>
+      <p>Declare parameters:</p>
+      <p><img src="../../assets/images/logix/rslogix5000-aoi-japvn-04.png" alt="Declare AOI parameters"></p>
+      <ul>
+        <li>Parameter: Define input/output, data type, display when calling AOI.</li>
+        <li>Local Tag: Internal tag only used in AOI.</li>
+      </ul>
+      <p>Click OK. AOI created:</p>
+      <p><img src="../../assets/images/logix/rslogix5000-aoi-japvn-05.png" alt="AOI created"></p>
+      <p>Double Click Logic to write AOI program:</p>
+      <p><img src="../../assets/images/logix/rslogix5000-aoi-japvn-06.png" alt="Write AOI program"></p>
+      <h3>Using AOI</h3>
+      <p>Back to main program, Add On tab will have the new AOI:</p>
+      <p><img src="../../assets/images/logix/rslogix5000-aoi-japvn-07.png" alt="AOI in toolbar"></p>
+      <p>To use, create new Rung and click AOI, assign Input/Output:</p>
+      <p><img src="../../assets/images/logix/rslogix5000-aoi-japvn-08.png" alt="Use AOI in Ladder"></p>
+      <p>Can also use in Funtion Block Diagram (FBD):</p>
+      <p><img src="../../assets/images/logix/rslogix5000-aoi-japvn-09.png" alt="AOI in FBD"></p>
+      <h4>Notes</h4>
+      <ul>
+        <li>AOI cannot be edited Online.</li>
+        <li>AOI can be Exported/Imported to other projects.</li>
+        <li>AOI languages: LD, FBD, ST (no SFC).</li>
+      </ul>
+      <h4>Reference</h4>
+      <ul>
+        <li><a href="http://literature.rockwellautomation.com/idc/groups/literature/documents/pm/1756-pm010_-en-p.pdf" target="_blank" rel="noopener">Add-On Instruction Manual</a></li>
+      </ul>
+      <p><em>Giap Van Vy – 2012</em></p>
+    </article>
+  </main>
+</body>
+</html>
