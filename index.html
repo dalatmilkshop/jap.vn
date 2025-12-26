@@ -3,261 +3,184 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="JAP - Just Automation Platform. Independent industrial automation knowledge base and community resources.">
-    <title>JAP.vn - Just Automation Platform | Independent Knowledge Base</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <meta name="description" content="JAP - Just Automation Platform. Preserving industrial automation knowledge since 2012.">
+    <title>JAP.vn - Automation Knowledge Archive | Est. 2012</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
     <style>
         /* --- VARIABLES --- */
         :root {
-            --bg-body: #0b1120; --bg-card: #1e293b; --bg-section: #0f172a;
-            --primary: #3b82f6; --primary-glow: rgba(59, 130, 246, 0.5);
-            --accent: #f59e0b; --text-main: #f8fafc; --text-sub: #94a3b8;
-            --border: rgba(255,255,255,0.08);
+            --bg-body: #0f172a; --bg-card: #1e293b; 
+            --primary: #64748b; /* Màu xám xanh (Slate) - Tông màu trầm, khiêm tốn, không lòe loẹt */
+            --text-main: #e2e8f0; --text-sub: #94a3b8;
+            --border: rgba(255,255,255,0.05);
+            --gold: #d4af37; /* Màu vàng kim loại nhẹ cho năm thành lập */
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Inter', sans-serif; background-color: var(--bg-body); color: var(--text-main); line-height: 1.6; overflow-x: hidden; }
+        body { font-family: 'Inter', sans-serif; background-color: var(--bg-body); color: var(--text-main); line-height: 1.6; }
         a { text-decoration: none; transition: 0.3s; color: inherit; }
-        ul { list-style: none; }
         
-        /* --- LOGIC NGÔN NGỮ --- */
+        /* LOGIC NGÔN NGỮ */
         [lang="vi"] { display: none !important; }
         [lang="en"] { display: block !important; }
-        span[lang="vi"] { display: none !important; }
-        span[lang="en"] { display: inline !important; }
-
         body.show-vi [lang="vi"] { display: block !important; }
         body.show-vi [lang="en"] { display: none !important; }
-        body.show-vi span[lang="vi"] { display: inline !important; }
-        body.show-vi span[lang="en"] { display: none !important; }
 
-        /* --- UTILITIES --- */
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
-        .badge { background: rgba(59, 130, 246, 0.1); color: var(--primary); padding: 4px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; border: 1px solid rgba(59, 130, 246, 0.2); }
-        .section-padding { padding: 100px 0; }
+        /* --- LAYOUT --- */
+        .container { max-width: 1000px; margin: 0 auto; padding: 0 24px; }
         
         /* --- HEADER --- */
-        header { background: rgba(11, 17, 32, 0.9); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 1000; padding: 16px 0; }
-        .nav-flex { display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-size: 1.6rem; font-weight: 800; color: #fff; letter-spacing: -1px; display: flex; align-items: center; gap: 8px; }
-        .logo span { color: var(--primary); }
-        .nav-links { display: flex; gap: 32px; }
-        .nav-links a { font-size: 0.95rem; font-weight: 500; color: var(--text-sub); }
-        .nav-links a:hover { color: var(--primary); }
+        header { padding: 40px 0; border-bottom: 1px solid var(--border); }
+        .nav-flex { display: flex; justify-content: space-between; align-items: flex-end; }
         
-        .lang-switch { background: transparent; border: 1px solid var(--border); color: var(--text-sub); padding: 6px 14px; border-radius: 6px; cursor: pointer; font-weight: 600; transition: 0.3s; }
-        .lang-switch:hover { border-color: var(--primary); color: var(--primary); }
-
-        /* --- HERO --- */
-        .hero { padding: 140px 0 100px; text-align: center; background: radial-gradient(circle at 50% 0%, #1e293b 0%, var(--bg-body) 70%); }
-        .hero h1 { font-size: 4rem; line-height: 1.1; margin-bottom: 24px; font-weight: 800; }
-        .hero p { font-size: 1.25rem; color: var(--text-sub); max-width: 700px; margin: 0 auto 40px; }
-        .btn { padding: 14px 32px; border-radius: 8px; font-weight: 600; display: inline-block; }
-        .btn-primary { background: var(--primary); color: #fff; box-shadow: 0 0 20px rgba(59, 130, 246, 0.3); }
-        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 0 30px rgba(59, 130, 246, 0.5); }
-
-        /* --- STATS --- */
-        .stats-bar { border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); background: var(--bg-section); padding: 30px 0; }
-        .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; text-align: center; }
-        .stat-num { font-size: 2.5rem; font-weight: 800; color: #fff; display: block; }
-        .stat-label { font-size: 0.9rem; color: var(--text-sub); text-transform: uppercase; letter-spacing: 1px; }
-
-        /* --- GRID CONTENT --- */
-        .grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 24px; margin-top: 60px; }
-        .feature-card { background: var(--bg-card); padding: 30px; border-radius: 12px; border: 1px solid var(--border); transition: 0.3s; }
-        .feature-card:hover { border-color: var(--primary); transform: translateY(-5px); }
-        .f-icon { font-size: 32px; margin-bottom: 20px; color: var(--primary); }
-        .feature-card h3 { font-size: 1.25rem; margin-bottom: 10px; color: #fff; }
-        .feature-card p { font-size: 0.9rem; color: var(--text-sub); }
-
-        /* --- RESOURCES LIST --- */
-        .resources { background: var(--bg-section); }
-        .resource-row { 
-            display: flex; justify-content: space-between; align-items: center; 
-            padding: 20px; background: var(--bg-card); border: 1px solid var(--border); 
-            margin-bottom: 16px; border-radius: 8px; transition: 0.2s;
+        .logo-area h1 { font-size: 2rem; font-weight: 800; letter-spacing: -1px; margin-bottom: 5px; }
+        .logo-area p { font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: var(--primary); }
+        
+        .est-badge { 
+            border: 1px solid var(--border); padding: 5px 15px; border-radius: 4px; 
+            font-size: 0.75rem; color: var(--gold); letter-spacing: 1px; text-transform: uppercase;
         }
-        .resource-row:hover { border-color: var(--text-sub); background: rgba(255,255,255,0.03); }
-        .res-left { display: flex; align-items: center; gap: 16px; }
-        .file-icon { width: 40px; height: 40px; background: rgba(59, 130, 246, 0.1); color: var(--primary); display: flex; align-items: center; justify-content: center; border-radius: 6px; font-weight: bold; font-size: 0.8rem; }
-        .res-info h4 { font-size: 1rem; color: var(--text-main); }
-        .res-info span { font-size: 0.85rem; color: var(--text-sub); }
-        .download-arrow { color: var(--text-sub); font-size: 1.2rem; }
+
+        /* --- HERO (Tâm sự mỏng) --- */
+        .intro { padding: 80px 0; text-align: center; }
+        .intro h2 { font-size: 2.5rem; font-weight: 300; margin-bottom: 20px; color: #fff; }
+        .intro p { max-width: 700px; margin: 0 auto; color: var(--text-sub); font-size: 1.1rem; }
+        
+        /* --- ARCHIVE GRID --- */
+        .archive-section { padding-bottom: 80px; }
+        .section-label { font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: var(--primary); margin-bottom: 30px; display: block; border-bottom: 1px solid var(--border); padding-bottom: 10px; }
+        
+        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+        
+        .doc-card { 
+            background: rgba(255,255,255,0.02); border: 1px solid var(--border); pading: 25px; 
+            border-radius: 8px; transition: 0.3s; padding: 25px;
+        }
+        .doc-card:hover { background: rgba(255,255,255,0.05); border-color: var(--text-sub); }
+        
+        .doc-meta { font-size: 0.75rem; color: var(--primary); margin-bottom: 10px; display: block; }
+        .doc-card h3 { font-size: 1.1rem; margin-bottom: 10px; font-weight: 600; }
+        .doc-card p { font-size: 0.9rem; color: var(--text-sub); }
 
         /* --- FOOTER --- */
-        footer { border-top: 1px solid var(--border); padding: 60px 0 30px; font-size: 0.9rem; color: var(--text-sub); background: #020617; }
-        .footer-bottom { border-top: 1px solid var(--border); margin-top: 40px; padding-top: 30px; text-align: center; font-size: 0.8rem; opacity: 0.7; }
+        footer { border-top: 1px solid var(--border); padding: 40px 0; text-align: center; font-size: 0.85rem; color: var(--primary); }
+        .footer-note { max-width: 600px; margin: 0 auto 20px; font-style: italic; }
 
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 2.5rem; }
-            .nav-links { display: none; }
-            .stats-grid { grid-template-columns: 1fr 1fr; }
-        }
+        /* BUTTON */
+        .lang-switch { background: transparent; border: none; color: var(--primary); cursor: pointer; font-size: 0.8rem; }
+        .lang-switch:hover { color: #fff; }
+
     </style>
 </head>
 <body>
 
     <header>
         <div class="container nav-flex">
-            <a href="#" class="logo">JAP<span>.vn</span></a>
-            <nav>
-                <ul class="nav-links">
-                    <li><a href="#"><span lang="en">Controllers</span><span lang="vi">Bộ điều khiển</span></a></li>
-                    <li><a href="#"><span lang="en">HMI & SCADA</span><span lang="vi">HMI & SCADA</span></a></li>
-                    <li><a href="#"><span lang="en">Motion</span><span lang="vi">Truyền động</span></a></li>
-                </ul>
-            </nav>
-            <button class="lang-switch" onclick="toggleLanguage()">
-                <span id="lang-text">EN / VI</span>
-            </button>
+            <div class="logo-area">
+                <h1>JAP.vn</h1>
+                <p>
+                    <span lang="en">Just Automation Platform</span>
+                    <span lang="vi">Nền tảng Tự động hóa</span>
+                </p>
+            </div>
+            <div style="text-align: right;">
+                <div class="est-badge">Est. 2012</div>
+                <button class="lang-switch" onclick="toggleLanguage()" style="margin-top: 10px;">EN / VI</button>
+            </div>
         </div>
     </header>
 
-    <section class="hero">
+    <section class="intro">
         <div class="container">
-            <span class="badge">
-                <span lang="en">Tech Update: v37 Series</span>
-                <span lang="vi">Tin công nghệ: Series v37</span>
-            </span>
-            <h1 style="margin-top: 20px;">
-                <span lang="en">Industrial Intelligence <br> <span style="color: var(--primary);">Simplified.</span></span>
-                <span lang="vi">Đơn giản hóa <br> <span style="color: var(--primary);">Trí tuệ Công nghiệp.</span></span>
-            </h1>
+            <h2>
+                <span lang="en">Preserving Technical Knowledge</span>
+                <span lang="vi">Lưu giữ Tri thức Kỹ thuật</span>
+            </h2>
             <p>
-                <span lang="en">Independent knowledge base for industrial automation strategies, logic patterns, and system architecture.</span>
-                <span lang="vi">Kho kiến thức độc lập về chiến lược tự động hóa công nghiệp, mẫu logic và kiến trúc hệ thống.</span>
+                <span lang="en">
+                    This project is dedicated to maintaining the archive of industrial automation documentation, 
+                    ensuring that valuable engineering resources remain accessible to the community.
+                </span>
+                <span lang="vi">
+                    Dự án này được dành riêng để duy trì kho lưu trữ tài liệu tự động hóa công nghiệp,
+                    đảm bảo rằng các nguồn tài nguyên kỹ thuật giá trị vẫn luôn sẵn sàng phục vụ cộng đồng.
+                </span>
             </p>
-            <a href="#resources" class="btn btn-primary">
-                <span lang="en">View Knowledge Base</span>
-                <span lang="vi">Xem Kho kiến thức</span>
-            </a>
         </div>
     </section>
 
-    <div class="stats-bar">
-        <div class="container stats-grid">
-            <div><span class="stat-num">13+</span><span class="stat-label"><span lang="en">Years Online</span><span lang="vi">Năm Hoạt động</span></span></div>
-            <div><span class="stat-num">5k+</span><span class="stat-label"><span lang="en">Topics</span><span lang="vi">Chủ đề</span></span></div>
-            <div><span class="stat-num">v37</span><span class="stat-label"><span lang="en">Tech Coverage</span><span lang="vi">Phạm vi hỗ trợ</span></span></div>
-            <div><span class="stat-num">24/7</span><span class="stat-label"><span lang="en">Community</span><span lang="vi">Cộng đồng</span></span></div>
-        </div>
-    </div>
-
-    <section class="section-padding">
-        <div class="container">
-            <div style="text-align: center;">
-                <h2><span lang="en">The Ecosystem</span><span lang="vi">Hệ sinh thái</span></h2>
-            </div>
-            <div class="grid-4">
-                <div class="feature-card">
-                    <div class="f-icon">🧠</div>
-                    <h3>PAC & PLC Systems</h3>
-                    <p><span lang="en">Logic design principles and controller architecture.</span><span lang="vi">Nguyên lý thiết kế Logic và kiến trúc bộ điều khiển.</span></p>
-                </div>
-                <div class="feature-card">
-                    <div class="f-icon">⚡</div>
-                    <h3>AC Drives</h3>
-                    <p><span lang="en">Parameter optimization for industrial motors.</span><span lang="vi">Tối ưu hóa tham số cho động cơ công nghiệp.</span></p>
-                </div>
-                 <div class="feature-card">
-                    <div class="f-icon">📡</div>
-                    <h3>Network Topology</h3>
-                    <p><span lang="en">EtherNet/IP configuration guides.</span><span lang="vi">Hướng dẫn cấu hình EtherNet/IP.</span></p>
-                </div>
-                 <div class="feature-card">
-                    <div class="f-icon">💾</div>
-                    <h3>Migration Strategy</h3>
-                    <p><span lang="en">Upgrading legacy systems to modern standards.</span><span lang="vi">Nâng cấp hệ thống cũ lên tiêu chuẩn hiện đại.</span></p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="resources" class="section-padding resources">
-        <div class="container">
-            <div style="text-align: center; margin-bottom: 40px;">
-                <h2><span lang="en">Featured Articles</span><span lang="vi">Bài viết Nổi bật</span></h2>
-            </div>
-            
-            <a href="#" class="resource-row">
-                <div class="res-left">
-                    <div class="file-icon">DOC</div>
-                    <div class="res-info">
-                        <h4><span lang="en">What's new in Studio 5000 v37?</span><span lang="vi">Có gì mới trong Studio 5000 v37?</span></h4>
-                        <span>Type: Technical Review • Read time: 5 mins</span>
-                    </div>
-                </div>
-                <div class="download-arrow">➔</div>
+    <section class="container archive-section">
+        <span class="section-label">
+            <span lang="en">LIBRARY INDEX</span>
+            <span lang="vi">DANH MỤC THƯ VIỆN</span>
+        </span>
+        
+        <div class="grid-3">
+            <a href="#" class="doc-card">
+                <span class="doc-meta">TOPIC: LOGIC DESIGN</span>
+                <h3>
+                    <span lang="en">Structure of ControlLogix Systems</span>
+                    <span lang="vi">Cấu trúc hệ thống ControlLogix</span>
+                </h3>
+                <p>
+                    <span lang="en">Fundamental architecture overview and best practices for memory management.</span>
+                    <span lang="vi">Tổng quan kiến trúc cơ bản và thực hành quản lý bộ nhớ.</span>
+                </p>
             </a>
-            <a href="#" class="resource-row">
-                <div class="res-left">
-                    <div class="file-icon">PDF</div>
-                    <div class="res-info">
-                        <h4><span lang="en">RSLinx Classic vs. Enterprise</span><span lang="vi">So sánh RSLinx Classic và Enterprise</span></h4>
-                        <span>Type: Whitepaper • Format: PDF</span>
-                    </div>
-                </div>
-                <div class="download-arrow">➔</div>
+
+            <a href="#" class="doc-card">
+                <span class="doc-meta">TOPIC: COMMUNICATION</span>
+                <h3>
+                    <span lang="en">EtherNet/IP Implementation Guide</span>
+                    <span lang="vi">Hướng dẫn triển khai EtherNet/IP</span>
+                </h3>
+                <p>
+                    <span lang="en">Standard protocols for industrial networking stability.</span>
+                    <span lang="vi">Các giao thức tiêu chuẩn để ổn định mạng công nghiệp.</span>
+                </p>
             </a>
-            <a href="#" class="resource-row">
-                <div class="res-left">
-                    <div class="file-icon">GUIDE</div>
-                    <div class="res-info">
-                        <h4><span lang="en">Migrating from RSLogix 500 to Studio 5000</span><span lang="vi">Chuyển đổi từ RSLogix 500 sang Studio 5000</span></h4>
-                        <span>Type: Best Practices • Step-by-step</span>
-                    </div>
-                </div>
-                <div class="download-arrow">➔</div>
+
+            <a href="#" class="doc-card">
+                <span class="doc-meta">TOPIC: LEGACY</span>
+                <h3>
+                    <span lang="en">Migration from SLC 500</span>
+                    <span lang="vi">Chuyển đổi từ SLC 500</span>
+                </h3>
+                <p>
+                    <span lang="en">Strategies for upgrading hardware without losing logic integrity.</span>
+                    <span lang="vi">Chiến lược nâng cấp phần cứng mà không làm mất tính toàn vẹn của logic.</span>
+                </p>
             </a>
         </div>
     </section>
 
     <footer>
         <div class="container">
-            <div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 40px;">
-                <div style="max-width: 300px;">
-                    <div class="logo" style="margin-bottom: 20px;">JAP<span>.vn</span></div>
-                    <p>
-                        <span lang="en">Independent platform for industrial automation enthusiasts.</span>
-                        <span lang="vi">Nền tảng độc lập dành cho người đam mê tự động hóa công nghiệp.</span>
-                    </p>
-                </div>
-                <div>
-                    <h4 style="color: #fff; margin-bottom: 20px;">Info</h4>
-                    <ul>
-                        <li style="margin-bottom: 10px;"><a href="#">About Us</a></li>
-                        <li style="margin-bottom: 10px;"><a href="#">Disclaimer</a></li>
-                        <li style="margin-bottom: 10px;"><a href="#">Privacy</a></li>
-                    </ul>
-                </div>
-            </div>
-            
-            <div class="footer-bottom">
-                <p>
-                    <span lang="en"><strong>Disclaimer:</strong> JAP.vn is an independent knowledge base and is NOT affiliated with, endorsed by, or sponsored by Rockwell Automation, Inc. All trademarks belong to their respective owners. We do not distribute software.</span>
-                    <span lang="vi"><strong>Tuyên bố miễn trừ:</strong> JAP.vn là kho kiến thức độc lập, KHÔNG trực thuộc, được ủy quyền hay tài trợ bởi Rockwell Automation, Inc. Mọi thương hiệu thuộc về chủ sở hữu tương ứng. Chúng tôi không phân phối phần mềm.</span>
-                </p>
-                <p style="margin-top: 10px;">&copy; 2025 Just Automation Platform. All Rights Reserved.</p>
-            </div>
+            <p class="footer-note">
+                <span lang="en">
+                    "Knowledge increases by sharing but not by saving."
+                </span>
+                <span lang="vi">
+                    "Tri thức tăng lên nhờ sự sẻ chia chứ không phải nhờ cất giữ."
+                </span>
+            </p>
+            <p>
+                &copy; 2012 - 2025 JAP Archive Project. <br>
+                <span style="font-size: 0.75rem; opacity: 0.6;">
+                    Maintained by the Community. Not affiliated with Rockwell Automation.
+                </span>
+            </p>
         </div>
     </footer>
 
     <script>
         const savedLang = localStorage.getItem('jap_lang');
         const body = document.body;
-        
-        if (savedLang === 'vi') {
-            body.classList.add('show-vi');
-        }
+        if (savedLang === 'vi') body.classList.add('show-vi');
 
         function toggleLanguage() {
             body.classList.toggle('show-vi');
-            
-            if (body.classList.contains('show-vi')) {
-                localStorage.setItem('jap_lang', 'vi');
-            } else {
-                localStorage.setItem('jap_lang', 'en');
-            }
+            localStorage.setItem('jap_lang', body.classList.contains('show-vi') ? 'vi' : 'en');
         }
     </script>
 </body>
