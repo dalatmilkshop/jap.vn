@@ -3,23 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="JAP - Just Automation Platform. A tribute archive to the original Rockwell Automation blog (Est. 2012).">
-    <title>JAP.vn - Automation Heritage Archive | Est. 2012</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+    <meta name="description" content="JAP - Industrial Automation Documentation. Technical archives for Rockwell Automation, PLC, and SCADA systems.">
+    <title>JAP.vn - Automation Documentation Hub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
         /* --- VARIABLES --- */
         :root {
-            --bg-body: #0f172a; --bg-card: #1e293b; 
-            --primary: #94a3b8; /* Slate gray */
-            --highlight: #e2e8f0; /* White smoke */
-            --accent: #d4af37; /* Gold - Màu của sự trân trọng */
-            --border: rgba(255,255,255,0.05);
+            --primary: #0056b3; /* Wiki Blue */
+            --text-dark: #333;
+            --text-light: #666;
+            --bg-light: #f8f9fa;
+            --border: #e1e4e8;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Inter', sans-serif; background-color: var(--bg-body); color: var(--primary); line-height: 1.7; }
-        a { text-decoration: none; transition: 0.3s; color: inherit; }
-        
+        body { font-family: 'Roboto', sans-serif; background-color: #fff; color: var(--text-dark); line-height: 1.6; }
+        a { text-decoration: none; color: var(--primary); }
+        a:hover { text-decoration: underline; }
+
         /* LOGIC NGÔN NGỮ */
         [lang="vi"] { display: none !important; }
         [lang="en"] { display: block !important; }
@@ -27,148 +28,149 @@
         body.show-vi [lang="en"] { display: none !important; }
 
         /* --- LAYOUT --- */
-        .container { max-width: 900px; margin: 0 auto; padding: 0 24px; }
+        .container { max-width: 1100px; margin: 0 auto; display: flex; min-height: 100vh; }
         
-        /* --- HEADER --- */
-        header { padding: 50px 0; border-bottom: 1px solid var(--border); text-align: center; }
-        .logo { font-family: 'Playfair Display', serif; font-size: 2.5rem; color: var(--highlight); margin-bottom: 5px; letter-spacing: -1px; }
-        .sub-logo { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 2px; color: var(--accent); }
+        /* --- SIDEBAR (Giống trang Docs) --- */
+        .sidebar { width: 280px; background: var(--bg-light); border-right: 1px solid var(--border); padding: 30px 20px; display: flex; flex-direction: column; }
+        .logo { font-size: 1.5rem; font-weight: 700; color: #000; margin-bottom: 30px; display: block; text-decoration: none !important; }
+        .logo span { color: var(--primary); }
+        
+        .menu-title { font-size: 0.75rem; text-transform: uppercase; color: #999; margin-bottom: 10px; font-weight: 700; letter-spacing: 1px; margin-top: 20px; }
+        .menu-link { display: block; padding: 8px 0; color: var(--text-light); font-size: 0.95rem; }
+        .menu-link:hover { color: var(--primary); }
 
-        /* --- TRIBUTE HERO (PHẦN TRI ÂN) --- */
-        .tribute { padding: 80px 0; text-align: center; }
-        .quote-icon { font-size: 40px; color: var(--border); margin-bottom: 20px; display: block; }
+        /* --- MAIN CONTENT --- */
+        .main { flex: 1; padding: 40px 60px; }
         
-        .tribute h2 { 
-            font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--highlight); 
-            margin-bottom: 30px; font-style: italic; line-height: 1.4;
-        }
+        .header-top { display: flex; justify-content: space-between; border-bottom: 1px solid var(--border); padding-bottom: 20px; margin-bottom: 40px; }
+        .last-update { font-size: 0.85rem; color: #888; }
         
-        .tribute p { max-width: 650px; margin: 0 auto 20px; font-size: 1.05rem; }
-        
-        .dedication-box {
-            margin-top: 40px; padding: 20px; border: 1px dashed var(--border);
-            display: inline-block; border-radius: 4px;
-        }
-        .dedication-text { font-size: 0.9rem; font-style: italic; opacity: 0.8; }
+        h1 { font-size: 2.5rem; margin-bottom: 15px; font-weight: 300; }
+        .intro-text { font-size: 1.1rem; color: var(--text-light); margin-bottom: 40px; max-width: 700px; }
 
-        /* --- ARCHIVE LIST --- */
-        .archive { padding: 60px 0 100px; }
-        .section-title { text-align: center; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 40px; opacity: 0.6; }
-        
-        .doc-item {
-            display: flex; justify-content: space-between; align-items: center;
-            padding: 20px 0; border-bottom: 1px solid var(--border);
-            transition: 0.3s;
-        }
-        .doc-item:hover { padding-left: 10px; border-color: var(--primary); }
-        .doc-date { font-size: 0.8rem; opacity: 0.5; font-family: monospace; }
-        .doc-title { font-size: 1.1rem; color: var(--highlight); margin-left: 20px; font-weight: 500; }
-        .doc-arrow { opacity: 0; transition: 0.3s; }
-        .doc-item:hover .doc-arrow { opacity: 1; transform: translateX(-5px); }
+        /* --- CARDS GRID --- */
+        .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .topic-card { border: 1px solid var(--border); border-radius: 6px; padding: 25px; transition: 0.2s; }
+        .topic-card:hover { border-color: var(--primary); box-shadow: 0 4px 12px rgba(0,0,0,0.05); text-decoration: none; }
+        .topic-icon { font-size: 24px; margin-bottom: 15px; display: block; }
+        .topic-title { font-size: 1.2rem; font-weight: 600; color: var(--text-dark); margin-bottom: 10px; }
+        .topic-desc { font-size: 0.9rem; color: var(--text-light); }
 
         /* --- FOOTER --- */
-        footer { border-top: 1px solid var(--border); padding: 40px 0; text-align: center; font-size: 0.8rem; opacity: 0.6; }
+        .footer-simple { margin-top: 60px; padding-top: 20px; border-top: 1px solid var(--border); font-size: 0.85rem; color: #999; display: flex; justify-content: space-between; }
         
-        /* BTN */
-        .lang-btn { background: none; border: 1px solid var(--border); color: var(--primary); padding: 5px 15px; border-radius: 20px; cursor: pointer; margin-top: 20px; font-size: 0.75rem; }
-        .lang-btn:hover { border-color: var(--highlight); color: var(--highlight); }
+        /* LANG SWITCH */
+        .lang-btn { background: #fff; border: 1px solid var(--border); padding: 5px 10px; border-radius: 4px; cursor: pointer; font-size: 0.8rem; }
 
+        @media (max-width: 768px) {
+            .container { flex-direction: column; }
+            .sidebar { width: 100%; border-right: none; border-bottom: 1px solid var(--border); }
+            .main { padding: 30px 20px; }
+        }
     </style>
 </head>
 <body>
 
-    <header>
-        <div class="container">
-            <div class="logo">JAP.vn</div>
-            <div class="sub-logo">Est. 2012</div>
-        </div>
-    </header>
+    <div class="container">
+        <aside class="sidebar">
+            <a href="#" class="logo">JAP<span>.vn</span></a>
+            
+            <div class="menu-title">Navigation</div>
+            <a href="#" class="menu-link">Home / Overview</a>
+            <a href="#" class="menu-link">Hardware Index</a>
+            <a href="#" class="menu-link">Software Archive</a>
+            <a href="#" class="menu-link">Legacy Systems</a>
 
-    <section class="tribute container">
-        <span class="quote-icon">❝</span>
-        
-        <h2>
-            <span lang="en">"To the original founder who guided us <br> in our early days."</span>
-            <span lang="vi">"Gửi người sáng lập ban đầu, người đã dẫn lối <br> cho chúng tôi những ngày đầu vào nghề."</span>
-        </h2>
-        
-        <div class="dedication-box">
-            <p class="dedication-text">
+            <div class="menu-title">External Links</div>
+            <a href="#" class="menu-link">Rockwell Knowledgebase ↗</a>
+            <a href="#" class="menu-link">PLCTalk Forum ↗</a>
+            
+            <div style="margin-top: auto;">
+                <button class="lang-btn" onclick="toggleLanguage()">🌐 EN / VI</button>
+            </div>
+        </aside>
+
+        <main class="main">
+            <div class="header-top">
+                <span class="last-update">
+                    <span lang="en">System Status: <strong>Online</strong></span>
+                    <span lang="vi">Trạng thái hệ thống: <strong>Trực tuyến</strong></span>
+                </span>
+                <span class="last-update">Est. 2012 • Re-indexed 2025</span>
+            </div>
+
+            <h1>
+                <span lang="en">Automation Documentation Hub</span>
+                <span lang="vi">Trung tâm Tài liệu Tự động hóa</span>
+            </h1>
+            
+            <p class="intro-text">
                 <span lang="en">
-                    This archive is maintained by a former reader (from 2012) as a gesture of gratitude. 
-                    We aim to keep these valuable technical resources alive for the next generation of engineers.
+                    This platform serves as a central archive for industrial automation technical notes, configuration guides, and troubleshooting procedures. Restored and maintained to support the engineering community.
                 </span>
                 <span lang="vi">
-                    Kho lưu trữ này được duy trì bởi một độc giả cũ (từ năm 2012) như một lời tri ân. 
-                    Chúng tôi mong muốn gìn giữ nguồn tài liệu kỹ thuật quý giá này cho thế hệ kỹ sư tiếp theo.
+                    Nền tảng này đóng vai trò là kho lưu trữ trung tâm các ghi chú kỹ thuật, hướng dẫn cấu hình và quy trình xử lý sự cố tự động hóa công nghiệp. Được phục dựng và duy trì để hỗ trợ cộng đồng kỹ sư.
                 </span>
             </p>
-        </div>
 
-        <br>
-        <button class="lang-btn" onclick="toggleLanguage()">English / Tiếng Việt</button>
-    </section>
+            <hr style="border: 0; border-top: 1px solid #eee; margin-bottom: 40px;">
 
-    <section class="archive container">
-        <div class="section-title">
-            <span lang="en">Restored Articles</span>
-            <span lang="vi">Bài viết được Phục dựng</span>
-        </div>
+            <div class="grid-2">
+                <a href="#" class="topic-card">
+                    <span class="topic-icon">📘</span>
+                    <div class="topic-title">
+                        <span lang="en">Studio 5000 Logix Designer</span>
+                        <span lang="vi">Studio 5000 Logix Designer</span>
+                    </div>
+                    <div class="topic-desc">
+                        <span lang="en">Ladder logic patterns, AOI implementation, and tag database management.</span>
+                        <span lang="vi">Các mẫu lập trình Ladder, triển khai AOI và quản lý cơ sở dữ liệu Tag.</span>
+                    </div>
+                </a>
 
-        <a href="#" class="doc-item">
-            <div style="display: flex; align-items: baseline;">
-                <span class="doc-date">2012</span>
-                <span class="doc-title">
-                    <span lang="en">Introduction to RSLogix 5000</span>
-                    <span lang="vi">Giới thiệu về RSLogix 5000</span>
-                </span>
+                <a href="#" class="topic-card">
+                    <span class="topic-icon">🔌</span>
+                    <div class="topic-title">
+                        <span lang="en">Communication Protocols</span>
+                        <span lang="vi">Giao thức Truyền thông</span>
+                    </div>
+                    <div class="topic-desc">
+                        <span lang="en">Deep dive into EtherNet/IP, ControlNet, and legacy DH+ networks.</span>
+                        <span lang="vi">Tìm hiểu sâu về EtherNet/IP, ControlNet và các mạng DH+ cũ.</span>
+                    </div>
+                </a>
+
+                <a href="#" class="topic-card">
+                    <span class="topic-icon">⚠️</span>
+                    <div class="topic-title">
+                        <span lang="en">Troubleshooting & Diagnostics</span>
+                        <span lang="vi">Chẩn đoán & Xử lý lỗi</span>
+                    </div>
+                    <div class="topic-desc">
+                        <span lang="en">Error code index for ControlLogix and CompactLogix processors.</span>
+                        <span lang="vi">Danh mục mã lỗi cho các bộ xử lý ControlLogix và CompactLogix.</span>
+                    </div>
+                </a>
+
+                <a href="#" class="topic-card">
+                    <span class="topic-icon">💾</span>
+                    <div class="topic-title">
+                        <span lang="en">Legacy Archive (2012-2015)</span>
+                        <span lang="vi">Kho lưu trữ Cũ (2012-2015)</span>
+                    </div>
+                    <div class="topic-desc">
+                        <span lang="en">Restored articles from the original JAP blog regarding SLC 500.</span>
+                        <span lang="vi">Các bài viết được khôi phục từ blog JAP gốc liên quan đến SLC 500.</span>
+                    </div>
+                </a>
             </div>
-            <span class="doc-arrow">→</span>
-        </a>
 
-        <a href="#" class="doc-item">
-            <div style="display: flex; align-items: baseline;">
-                <span class="doc-date">2013</span>
-                <span class="doc-title">
-                    <span lang="en">Understanding PLC Tags & Data Types</span>
-                    <span lang="vi">Tìm hiểu về Tag và Kiểu dữ liệu trong PLC</span>
-                </span>
+            <div class="footer-simple">
+                <div>&copy; 2025 JAP.vn Documentation Project.</div>
+                <div>Independent Platform. Not affiliated with Rockwell Automation.</div>
             </div>
-            <span class="doc-arrow">→</span>
-        </a>
-
-        <a href="#" class="doc-item">
-            <div style="display: flex; align-items: baseline;">
-                <span class="doc-date">2014</span>
-                <span class="doc-title">
-                    <span lang="en">Troubleshooting Common I/O Faults</span>
-                    <span lang="vi">Khắc phục các lỗi I/O thường gặp</span>
-                </span>
-            </div>
-            <span class="doc-arrow">→</span>
-        </a>
-        
-         <a href="#" class="doc-item">
-            <div style="display: flex; align-items: baseline;">
-                <span class="doc-date">2015</span>
-                <span class="doc-title">
-                    <span lang="en">HMI Interface Design Basics</span>
-                    <span lang="vi">Cơ bản về thiết kế giao diện HMI</span>
-                </span>
-            </div>
-            <span class="doc-arrow">→</span>
-        </a>
-    </section>
-
-    <footer>
-        <div class="container">
-            <p>
-                <span lang="en">Maintained with respect by the Automation Community.</span>
-                <span lang="vi">Được duy trì với sự trân trọng bởi Cộng đồng Tự động hóa.</span>
-            </p>
-            <p style="margin-top: 10px; font-size: 0.7rem;">&copy; 2012 - 2025 JAP Archive.</p>
-        </div>
-    </footer>
+        </main>
+    </div>
 
     <script>
         const savedLang = localStorage.getItem('jap_lang');
