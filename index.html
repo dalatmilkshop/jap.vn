@@ -3,98 +3,130 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="JAP - Just Automation Platform. The premier knowledge base for Industrial Automation and Rockwell configurations.">
+    <meta name="description" content="JAP - Just Automation Platform. The premier knowledge base for Industrial Automation.">
     <title>JAP.vn - Just Automation Platform | Industrial Knowledge Base</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         /* --- VARIABLES --- */
         :root {
-            --bg-body: #0f172a;
+            --bg-body: #0b1120; /* Darker navy */
             --bg-card: #1e293b;
-            --primary: #3b82f6;
-            --accent: #f59e0b;
-            --text-main: #f1f5f9;
+            --bg-section: #0f172a;
+            --primary: #3b82f6; /* Blue */
+            --primary-glow: rgba(59, 130, 246, 0.5);
+            --accent: #f59e0b; /* Amber */
+            --text-main: #f8fafc;
             --text-sub: #94a3b8;
-            --white: #ffffff;
+            --border: rgba(255,255,255,0.08);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Inter', sans-serif; background-color: var(--bg-body); color: var(--text-main); line-height: 1.6; }
+        body { font-family: 'Inter', sans-serif; background-color: var(--bg-body); color: var(--text-main); line-height: 1.6; overflow-x: hidden; }
         a { text-decoration: none; transition: 0.3s; color: inherit; }
         ul { list-style: none; }
-
-        /* --- UTILITIES --- */
-        .container { max-width: 1280px; margin: 0 auto; padding: 0 24px; }
-        .text-gradient { background: linear-gradient(to right, #60a5fa, #3b82f6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         
-        /* Language Toggle Classes */
-        [lang="vi"] { display: none; } /* Mặc định ẩn tiếng Việt */
-        body.show-vi [lang="vi"] { display: block; } /* Hiện tiếng Việt khi có class show-vi */
-        body.show-vi [lang="en"] { display: none; } /* Ẩn tiếng Anh khi có class show-vi */
-        
-        /* Inline toggle for spans inside paragraphs */
+        /* Language Logic */
+        [lang="vi"] { display: none; }
+        body.show-vi [lang="vi"] { display: block; }
+        body.show-vi [lang="en"] { display: none; }
         span[lang="vi"] { display: none; }
         body.show-vi span[lang="vi"] { display: inline; }
         body.show-vi span[lang="en"] { display: none; }
 
+        /* --- UTILITIES --- */
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+        .badge { background: rgba(59, 130, 246, 0.1); color: var(--primary); padding: 4px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; border: 1px solid rgba(59, 130, 246, 0.2); }
+        .section-padding { padding: 100px 0; }
+        
         /* --- HEADER --- */
         header {
-            background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(255,255,255,0.1); position: sticky; top: 0; z-index: 1000; padding: 15px 0;
+            background: rgba(11, 17, 32, 0.8); backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 1000; padding: 16px 0;
         }
         .nav-flex { display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-size: 1.8rem; font-weight: 800; color: var(--white); letter-spacing: -1px; }
+        .logo { font-size: 1.6rem; font-weight: 800; color: #fff; letter-spacing: -1px; display: flex; align-items: center; gap: 8px; }
         .logo span { color: var(--primary); }
+        .logo::before { content: ''; width: 12px; height: 12px; background: var(--accent); border-radius: 50%; box-shadow: 0 0 10px var(--accent); }
         
-        .right-nav { display: flex; align-items: center; gap: 30px; }
-        .nav-links { display: flex; gap: 30px; }
-        .nav-links a { font-weight: 500; font-size: 0.95rem; color: var(--text-sub); }
+        .nav-links { display: flex; gap: 32px; }
+        .nav-links a { font-size: 0.95rem; font-weight: 500; color: var(--text-sub); }
         .nav-links a:hover { color: var(--primary); }
-
-        /* Lang Switcher Button */
+        
         .lang-switch {
-            background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);
-            color: var(--white); padding: 5px 12px; border-radius: 20px;
-            cursor: pointer; font-size: 0.8rem; font-weight: 600; transition: 0.3s;
-            display: flex; align-items: center; gap: 5px;
+            background: transparent; border: 1px solid var(--border); color: var(--text-sub);
+            padding: 6px 14px; border-radius: 6px; cursor: pointer; font-weight: 600; transition: 0.3s;
         }
-        .lang-switch:hover { background: var(--primary); border-color: var(--primary); }
+        .lang-switch:hover { border-color: var(--primary); color: var(--primary); }
 
         /* --- HERO --- */
-        .hero { padding: 100px 0; text-align: center; background: radial-gradient(circle at top, #1e293b 0%, #0f172a 70%); }
-        .hero h1 { font-size: 3.5rem; line-height: 1.1; margin-bottom: 24px; font-weight: 800; }
-        .hero p { font-size: 1.2rem; color: var(--text-sub); max-width: 800px; margin: 0 auto 40px; }
-        .cta-btn {
-            display: inline-block; background: var(--primary); color: var(--white);
-            padding: 14px 35px; border-radius: 50px; font-weight: 600;
-            box-shadow: 0 10px 25px -5px rgba(59, 130, 246, 0.5);
+        .hero { 
+            padding: 140px 0 100px; text-align: center; position: relative; overflow: hidden;
+            background: radial-gradient(circle at 50% 0%, #1e293b 0%, var(--bg-body) 70%);
         }
-        .cta-btn:hover { transform: translateY(-2px); box-shadow: 0 20px 30px -10px rgba(59, 130, 246, 0.6); }
-
-        /* --- GRID --- */
-        .features { padding: 80px 0; background: #0b1120; }
-        .section-title { text-align: center; margin-bottom: 60px; }
-        .section-title h2 { font-size: 2.2rem; margin-bottom: 10px; }
+        .hero::before {
+            content: ''; position: absolute; top: -50%; left: 50%; transform: translateX(-50%);
+            width: 1000px; height: 500px; background: var(--primary); filter: blur(120px); opacity: 0.15; pointer-events: none;
+        }
+        .hero h1 { font-size: 4rem; line-height: 1.1; margin-bottom: 24px; font-weight: 800; text-shadow: 0 0 40px rgba(0,0,0,0.5); }
+        .hero p { font-size: 1.25rem; color: var(--text-sub); max-width: 700px; margin: 0 auto 40px; }
         
-        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
-        .card {
-            background: var(--bg-card); padding: 35px; border-radius: 12px;
-            border: 1px solid rgba(255,255,255,0.05); transition: 0.3s;
+        .btn-group { display: flex; gap: 16px; justify-content: center; }
+        .btn { padding: 14px 32px; border-radius: 8px; font-weight: 600; transition: 0.3s; }
+        .btn-primary { background: var(--primary); color: #fff; box-shadow: 0 0 20px rgba(59, 130, 246, 0.3); }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 0 30px rgba(59, 130, 246, 0.5); }
+        .btn-secondary { background: rgba(255,255,255,0.05); color: #fff; border: 1px solid var(--border); }
+        .btn-secondary:hover { background: rgba(255,255,255,0.1); }
+
+        /* --- STATS BAR --- */
+        .stats-bar { border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); background: var(--bg-section); padding: 30px 0; }
+        .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; text-align: center; }
+        .stat-num { font-size: 2.5rem; font-weight: 800; color: #fff; display: block; }
+        .stat-label { font-size: 0.9rem; color: var(--text-sub); text-transform: uppercase; letter-spacing: 1px; }
+
+        /* --- ECOSYSTEM GRID --- */
+        .ecosystem { background: var(--bg-body); }
+        .section-header { text-align: center; margin-bottom: 60px; }
+        .section-header h2 { font-size: 2.5rem; margin-bottom: 16px; }
+        
+        .grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 24px; }
+        .feature-card {
+            background: var(--bg-card); padding: 30px; border-radius: 12px; border: 1px solid var(--border);
+            transition: 0.3s; position: relative; overflow: hidden;
         }
-        .card:hover { transform: translateY(-5px); border-color: rgba(59, 130, 246, 0.4); }
-        .icon-box { font-size: 30px; margin-bottom: 20px; color: var(--primary); }
-        .card h3 { margin-bottom: 15px; font-size: 1.3rem; }
-        .card p { color: var(--text-sub); font-size: 0.95rem; }
+        .feature-card:hover { border-color: var(--primary); transform: translateY(-5px); }
+        .f-icon { font-size: 32px; margin-bottom: 20px; color: var(--primary); }
+        .feature-card h3 { font-size: 1.25rem; margin-bottom: 10px; color: #fff; }
+        .feature-card p { font-size: 0.9rem; color: var(--text-sub); }
+
+        /* --- RESOURCES LIST --- */
+        .resources { background: var(--bg-section); }
+        .resource-row { 
+            display: flex; justify-content: space-between; align-items: center; 
+            padding: 20px; background: var(--bg-card); border: 1px solid var(--border); 
+            margin-bottom: 16px; border-radius: 8px; transition: 0.2s;
+        }
+        .resource-row:hover { border-color: var(--text-sub); background: rgba(255,255,255,0.03); }
+        .res-left { display: flex; align-items: center; gap: 16px; }
+        .file-icon { width: 40px; height: 40px; background: rgba(59, 130, 246, 0.1); color: var(--primary); display: flex; align-items: center; justify-content: center; border-radius: 6px; font-weight: bold; }
+        .res-info h4 { font-size: 1rem; color: var(--text-main); }
+        .res-info span { font-size: 0.85rem; color: var(--text-sub); }
+        .download-arrow { color: var(--text-sub); font-size: 1.2rem; }
+
+        /* --- NEWSLETTER --- */
+        .newsletter { padding: 80px 0; text-align: center; background: linear-gradient(180deg, var(--bg-body) 0%, #0f172a 100%); border-top: 1px solid var(--border); }
+        .input-group { max-width: 500px; margin: 30px auto 0; position: relative; }
+        .input-group input { width: 100%; padding: 16px 20px; border-radius: 50px; border: 1px solid var(--border); background: rgba(255,255,255,0.05); color: #fff; outline: none; }
+        .input-group button { position: absolute; right: 5px; top: 5px; background: var(--primary); border: none; color: #fff; padding: 11px 25px; border-radius: 40px; cursor: pointer; font-weight: 600; }
 
         /* --- FOOTER --- */
-        footer { border-top: 1px solid rgba(255,255,255,0.1); padding: 60px 0 30px; color: var(--text-sub); font-size: 0.9rem; }
-        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px; margin-bottom: 40px; }
-        .legal { text-align: center; font-size: 0.8rem; opacity: 0.6; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 30px; }
+        footer { border-top: 1px solid var(--border); padding: 60px 0 30px; font-size: 0.9rem; color: var(--text-sub); background: #020617; }
+        .footer-bottom { border-top: 1px solid var(--border); margin-top: 40px; padding-top: 30px; text-align: center; font-size: 0.8rem; opacity: 0.7; }
 
         @media (max-width: 768px) {
             .hero h1 { font-size: 2.5rem; }
             .nav-links { display: none; }
-            .footer-grid { grid-template-columns: 1fr; }
+            .stats-grid { grid-template-columns: 1fr 1fr; }
+            .btn-group { flex-direction: column; }
         }
     </style>
 </head>
@@ -103,155 +135,257 @@
     <header>
         <div class="container nav-flex">
             <a href="#" class="logo">JAP<span>.vn</span></a>
-            
-            <div class="right-nav">
-                <nav>
-                    <ul class="nav-links">
-                        <li><a href="#">
-                            <span lang="en">Documentation</span><span lang="vi">Tài liệu</span>
-                        </a></li>
-                        <li><a href="#">
-                            <span lang="en">System Config</span><span lang="vi">Cấu hình</span>
-                        </a></li>
-                        <li><a href="#">
-                            <span lang="en">Community</span><span lang="vi">Cộng đồng</span>
-                        </a></li>
-                    </ul>
-                </nav>
-                
-                <button class="lang-switch" onclick="toggleLanguage()">
-                    🌐 <span id="lang-label">VI</span>
-                </button>
-            </div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#"><span lang="en">Hardware</span><span lang="vi">Phần cứng</span></a></li>
+                    <li><a href="#"><span lang="en">Software</span><span lang="vi">Phần mềm</span></a></li>
+                    <li><a href="#"><span lang="en">Networks</span><span lang="vi">Mạng CN</span></a></li>
+                    <li><a href="#"><span lang="en">Legacy</span><span lang="vi">Thiết bị cũ</span></a></li>
+                </ul>
+            </nav>
+            <button class="lang-switch" onclick="toggleLanguage()">
+                <span id="lang-text">EN / VI</span>
+            </button>
         </div>
     </header>
 
     <section class="hero">
         <div class="container">
-            <h1>
-                <span lang="en">Optimizing <span class="text-gradient">Industrial Intelligence</span></span>
-                <span lang="vi">Tối ưu hóa <span class="text-gradient">Trí tuệ Công nghiệp</span></span>
+            <span class="badge">
+                <span lang="en">v34.00 Firmware Released</span>
+                <span lang="vi">Đã cập nhật Firmware v34.00</span>
+            </span>
+            <h1 style="margin-top: 20px;">
+                <span lang="en">Industrial Intelligence <br> <span style="color: var(--primary);">Simplified.</span></span>
+                <span lang="vi">Đơn giản hóa <br> <span style="color: var(--primary);">Trí tuệ Công nghiệp.</span></span>
             </h1>
-            <p lang="en">
-                The definitive technical knowledge base for Rockwell Automation ecosystems. 
-                We provide configuration guides, troubleshooting protocols, and legacy system support.
+            <p>
+                <span lang="en">The definitive archive for Rockwell Automation configuration, Studio 5000 logic patterns, and legacy hardware migration strategies.</span>
+                <span lang="vi">Kho lưu trữ chuyên sâu về cấu hình Rockwell Automation, các mẫu lệnh Studio 5000 và chiến lược chuyển đổi phần cứng cũ.</span>
             </p>
-            <p lang="vi">
-                Kho tri thức kỹ thuật chuyên sâu về hệ sinh thái Rockwell Automation. 
-                Cung cấp hướng dẫn cấu hình, quy trình xử lý lỗi và hỗ trợ các hệ thống cũ.
-            </p>
-            <a href="#solutions" class="cta-btn">
-                <span lang="en">Start Exploring</span>
-                <span lang="vi">Khám phá ngay</span>
+            <div class="btn-group">
+                <a href="#ecosystem" class="btn btn-primary">
+                    <span lang="en">Browse Database</span>
+                    <span lang="vi">Duyệt Dữ liệu</span>
+                </a>
+                <a href="#resources" class="btn btn-secondary">
+                    <span lang="en">View Documentation</span>
+                    <span lang="vi">Xem Tài liệu</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <div class="stats-bar">
+        <div class="container stats-grid">
+            <div>
+                <span class="stat-num">12+</span>
+                <span class="stat-label"><span lang="en">Years Legacy</span><span lang="vi">Năm Hoạt động</span></span>
+            </div>
+            <div>
+                <span class="stat-num">5k+</span>
+                <span class="stat-label"><span lang="en">Articles</span><span lang="vi">Bài viết</span></span>
+            </div>
+            <div>
+                <span class="stat-num">v34</span>
+                <span class="stat-label"><span lang="en">Latest Support</span><span lang="vi">Hỗ trợ mới nhất</span></span>
+            </div>
+            <div>
+                <span class="stat-num">24/7</span>
+                <span class="stat-label"><span lang="en">System Uptime</span><span lang="vi">Thời gian hoạt động</span></span>
+            </div>
+        </div>
+    </div>
+
+    <section id="ecosystem" class="section-padding ecosystem">
+        <div class="container">
+            <div class="section-header">
+                <h2>
+                    <span lang="en">The Ecosystem</span>
+                    <span lang="vi">Hệ sinh thái</span>
+                </h2>
+                <p style="color: var(--text-sub);">
+                    <span lang="en">Comprehensive coverage across the factory floor.</span>
+                    <span lang="vi">Bao phủ toàn diện các thiết bị trong nhà máy.</span>
+                </p>
+            </div>
+            <div class="grid-4">
+                <div class="feature-card">
+                    <div class="f-icon">🧠</div>
+                    <h3>ControlLogix</h3>
+                    <p>
+                        <span lang="en">Advanced configuration for 5580 controllers. Redundancy & Safety setup.</span>
+                        <span lang="vi">Cấu hình nâng cao cho bộ điều khiển 5580. Thiết lập Redundancy & Safety.</span>
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <div class="f-icon">🖥️</div>
+                    <h3>FactoryTalk View</h3>
+                    <p>
+                        <span lang="en">HMI & SCADA visualization tips. SE/ME distributed network architecture.</span>
+                        <span lang="vi">Mẹo hiển thị HMI & SCADA. Kiến trúc mạng phân tán SE/ME.</span>
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <div class="f-icon">⚡</div>
+                    <h3>PowerFlex Drives</h3>
+                    <p>
+                        <span lang="en">VFD parameter optimization. CIP Motion integration over EtherNet/IP.</span>
+                        <span lang="vi">Tối ưu hóa tham số biến tần. Tích hợp CIP Motion qua EtherNet/IP.</span>
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <div class="f-icon">📡</div>
+                    <h3>Stratix Networks</h3>
+                    <p>
+                        <span lang="en">Industrial switch configuration. VLANs, NAT, and DLR topology guides.</span>
+                        <span lang="vi">Cấu hình Switch công nghiệp. Hướng dẫn VLAN, NAT và giao thức DLR.</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="resources" class="section-padding resources">
+        <div class="container">
+            <div class="section-header">
+                <h2>
+                    <span lang="en">Featured Resources</span>
+                    <span lang="vi">Tài nguyên Nổi bật</span>
+                </h2>
+            </div>
+            
+            <a href="#" class="resource-row">
+                <div class="res-left">
+                    <div class="file-icon">PDF</div>
+                    <div class="res-info">
+                        <h4>
+                            <span lang="en">Studio 5000 v34 Release Notes</span>
+                            <span lang="vi">Thông tin phát hành Studio 5000 v34</span>
+                        </h4>
+                        <span>Updated: Dec 2025 • Size: 2.4 MB</span>
+                    </div>
+                </div>
+                <div class="download-arrow">➔</div>
+            </a>
+
+            <a href="#" class="resource-row">
+                <div class="res-left">
+                    <div class="file-icon">ZIP</div>
+                    <div class="res-info">
+                        <h4>
+                            <span lang="en">RSLinx Classic Gateway Config Guide</span>
+                            <span lang="vi">Hướng dẫn cấu hình RSLinx Classic Gateway</span>
+                        </h4>
+                        <span>Updated: Nov 2025 • Assets Included</span>
+                    </div>
+                </div>
+                <div class="download-arrow">➔</div>
+            </a>
+
+            <a href="#" class="resource-row">
+                <div class="res-left">
+                    <div class="file-icon">L5X</div>
+                    <div class="res-info">
+                        <h4>
+                            <span lang="en">Sample AOI: Analog Input Scaling</span>
+                            <span lang="vi">AOI Mẫu: Xử lý tín hiệu Analog</span>
+                        </h4>
+                        <span>Logic Import File • Tested on L81E</span>
+                    </div>
+                </div>
+                <div class="download-arrow">➔</div>
+            </a>
+             <a href="#" class="resource-row">
+                <div class="res-left">
+                    <div class="file-icon">ISO</div>
+                    <div class="res-info">
+                        <h4>
+                            <span lang="en">Legacy: RSLogix 500 Installer (Archive)</span>
+                            <span lang="vi">Bản cũ: Bộ cài RSLogix 500 (Lưu trữ)</span>
+                        </h4>
+                        <span>Legacy Support • VM Ready</span>
+                    </div>
+                </div>
+                <div class="download-arrow">➔</div>
             </a>
         </div>
     </section>
 
-    <section id="solutions" class="features">
+    <section class="newsletter">
         <div class="container">
-            <div class="section-title">
-                <h2>
-                    <span lang="en">Technical Resources</span>
-                    <span lang="vi">Tài nguyên Kỹ thuật</span>
-                </h2>
-                <p style="color: var(--text-sub);">
-                    <span lang="en">Comprehensive guides for Engineers & Integrators</span>
-                    <span lang="vi">Hướng dẫn toàn diện cho Kỹ sư & Nhà tích hợp</span>
-                </p>
-            </div>
-
-            <div class="grid-3">
-                <article class="card">
-                    <div class="icon-box">⚙️</div>
-                    <h3>
-                        <span lang="en">Environment Setup</span>
-                        <span lang="vi">Thiết lập Môi trường</span>
-                    </h3>
-                    <p lang="en">Detailed walkthroughs on setting up Studio 5000 Logix Designer and RSLinx Classic for optimal performance on Windows 10/11.</p>
-                    <p lang="vi">Hướng dẫn chi tiết cài đặt môi trường làm việc Studio 5000 & RSLinx để đạt hiệu suất tối đa trên Windows 10/11.</p>
-                </article>
-
-                <article class="card">
-                    <div class="icon-box">🛡️</div>
-                    <h3>
-                        <span lang="en">Error Diagnostics</span>
-                        <span lang="vi">Chẩn đoán Lỗi</span>
-                    </h3>
-                    <p lang="en">Database of error codes for ControlLogix & CompactLogix systems. Solutions for connection timeouts and firmware mismatches.</p>
-                    <p lang="vi">Cơ sở dữ liệu mã lỗi cho hệ thống ControlLogix. Giải pháp khắc phục sự cố mất kết nối và lệch firmware.</p>
-                </article>
-
-                <article class="card">
-                    <div class="icon-box">💾</div>
-                    <h3>
-                        <span lang="en">Legacy Migration</span>
-                        <span lang="vi">Chuyển đổi Hệ thống cũ</span>
-                    </h3>
-                    <p lang="en">Strategies for maintaining or upgrading retired hardware like PLC-5 and SLC 500 to modern Ethernet/IP architectures.</p>
-                    <p lang="vi">Chiến lược bảo trì hoặc nâng cấp các phần cứng cũ như PLC-5, SLC 500 lên kiến trúc mạng Ethernet/IP hiện đại.</p>
-                </article>
+            <h3>
+                <span lang="en">Stay Updated with Automation Trends</span>
+                <span lang="vi">Cập nhật xu hướng Tự động hóa mới nhất</span>
+            </h3>
+            <p style="color: var(--text-sub); margin-top: 10px;">
+                <span lang="en">Join 15,000+ engineers receiving our monthly technical digest.</span>
+                <span lang="vi">Tham gia cùng 15,000+ kỹ sư nhận bản tin kỹ thuật hàng tháng.</span>
+            </p>
+            <div class="input-group">
+                <input type="email" placeholder="Enter your work email...">
+                <button>
+                    <span lang="en">Subscribe</span>
+                    <span lang="vi">Đăng ký</span>
+                </button>
             </div>
         </div>
     </section>
 
     <footer>
         <div class="container">
-            <div class="footer-grid">
-                <div>
-                    <h3 class="logo" style="margin-bottom: 20px;">JAP<span>.vn</span></h3>
-                    <p lang="en">Just Automation Platform. Empowering the next generation of Automation Engineers.</p>
-                    <p lang="vi">Nền tảng Tự động hóa. Trao quyền cho thế hệ Kỹ sư Tự động hóa tiếp theo.</p>
+            <div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 40px;">
+                <div style="max-width: 300px;">
+                    <div class="logo" style="margin-bottom: 20px;">JAP<span>.vn</span></div>
+                    <p>
+                        <span lang="en">Empowering the next generation of industrial innovators with accessible technical knowledge.</span>
+                        <span lang="vi">Trao quyền cho thế hệ đổi mới công nghiệp tiếp theo với nguồn tri thức kỹ thuật dễ tiếp cận.</span>
+                    </p>
                 </div>
                 <div>
-                    <h4 style="color: #fff; margin-bottom: 20px;">Contact</h4>
+                    <h4 style="color: #fff; margin-bottom: 20px;">Platform</h4>
                     <ul>
-                        <li>support@jap.vn</li>
-                        <li>Da Nang, Vietnam</li>
+                        <li style="margin-bottom: 10px;"><a href="#">Knowledge Base</a></li>
+                        <li style="margin-bottom: 10px;"><a href="#">Source Code</a></li>
+                        <li style="margin-bottom: 10px;"><a href="#">Firmware Archive</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 style="color: #fff; margin-bottom: 20px;">Legal</h4>
+                    <ul>
+                        <li style="margin-bottom: 10px;"><a href="#">Terms of Use</a></li>
+                        <li style="margin-bottom: 10px;"><a href="#">Privacy Policy</a></li>
+                        <li style="margin-bottom: 10px;"><a href="#">DMCA</a></li>
                     </ul>
                 </div>
             </div>
             
-            <div class="legal">
-                <p lang="en">
-                    <strong>Disclaimer:</strong> JAP.vn is an independent knowledge base and is NOT affiliated with, endorsed by, or sponsored by Rockwell Automation, Inc.
+            <div class="footer-bottom">
+                <p>
+                    <span lang="en">Disclaimer: JAP.vn is an independent educational platform and is not affiliated with Rockwell Automation, Inc.</span>
+                    <span lang="vi">Tuyên bố miễn trừ: JAP.vn là nền tảng giáo dục độc lập và không liên kết với Rockwell Automation, Inc.</span>
                 </p>
-                <p lang="vi">
-                    <strong>Tuyên bố miễn trừ:</strong> JAP.vn là nền tảng chia sẻ kiến thức độc lập, KHÔNG trực thuộc hay được ủy quyền bởi Rockwell Automation.
-                </p>
-                <p style="margin-top: 20px;">&copy; 2025 Just Automation Platform. All rights reserved.</p>
+                <p style="margin-top: 10px;">&copy; 2025 Just Automation Platform. All Rights Reserved.</p>
             </div>
         </div>
     </footer>
 
     <script>
-        // Kiểm tra xem người dùng đã chọn ngôn ngữ trước đó chưa
         const savedLang = localStorage.getItem('jap_lang');
-        const langLabel = document.getElementById('lang-label');
-
-        // Nếu đã từng chọn tiếng Việt, thì hiển thị tiếng Việt
+        const body = document.body;
+        
         if (savedLang === 'vi') {
-            document.body.classList.add('show-vi');
-            langLabel.innerText = 'EN'; // Nút sẽ hiển thị tùy chọn chuyển về EN
+            body.classList.add('show-vi');
         }
 
         function toggleLanguage() {
-            const body = document.body;
-            
-            // Toggle class 'show-vi'
             body.classList.toggle('show-vi');
-
-            // Kiểm tra trạng thái hiện tại để lưu và đổi nhãn nút
             if (body.classList.contains('show-vi')) {
-                // Đang hiện Tiếng Việt
-                langLabel.innerText = 'EN';
-                localStorage.setItem('jap_lang', 'vi'); // Lưu nhớ
+                localStorage.setItem('jap_lang', 'vi');
             } else {
-                // Đang hiện Tiếng Anh
-                langLabel.innerText = 'VI';
-                localStorage.setItem('jap_lang', 'en'); // Lưu nhớ
+                localStorage.setItem('jap_lang', 'en');
             }
         }
     </script>
-
 </body>
 </html>
