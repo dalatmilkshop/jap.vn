@@ -21,62 +21,85 @@
   <link rel="stylesheet" href="../../assets/css/main.css">
 </head>
 <body>
-  <div style="max-width:900px;margin:auto;">
-    <button class="lang-btn" onclick="toggleLang()">🌐 EN / VI</button>
-    <article>
-      <div lang="vi">
-        <h1>[Logix] Bài 8: Sử dụng kiểu dữ liệu User Defined trong RSLogix 5000</h1>
-        <p><em>Ngày đăng: 21/10/2012 &mdash; Cập nhật: 2025</em></p>
-        <p><img src="../../assets/images/logix/rslogix5000-userdefined-japvn-01.png" alt="User Defined Data Type trong RSLogix 5000"></p>
-        <p>Ngoài các kiểu dữ liệu cơ bản như <strong>INT, DINT, BOOL, STRING</strong>, RSLogix 5000 cho phép người dùng định nghĩa các kiểu dữ liệu riêng (User Defined Data Type) để tối ưu hóa lập trình hướng đối tượng. Ví dụ: tạo đối tượng <strong>MOTOR</strong> với các thành phần <strong>START, STOP, RUNNING, FAULT</strong>...</p>
-        <h2>Tạo mới User Defined Data Type</h2>
-        <p>Chọn <strong>New Data Type</strong> trong phần cấu hình.</p>
-        <p><em>(Một số hình minh họa không còn file gốc, vui lòng tham khảo tài liệu chính thức bên dưới)</em></p>
-        <ul>
-          <li>Nhập tên kiểu dữ liệu cho đối tượng mới (ví dụ: MOTOR).</li>
-          <li>Nhập các thành phần của đối tượng và chọn OK để hoàn tất.</li>
-          <li>Kiểu dữ liệu mới sẽ xuất hiện trong danh sách.</li>
-        </ul>
-        <h2>Tạo Tag mới với kiểu dữ liệu vừa tạo</h2>
-        <p>Trong <strong>Controller Tag</strong>, tạo Tag mới (ví dụ: MOTOR1) với kiểu dữ liệu là MOTOR.</p>
-        <p><img src="../../assets/images/logix/rslogix5000-userdefined-japvn-07.png" alt="Tag với User Defined Data Type"></p>
-        <p>Các thành phần của MOTOR sẽ tự động được tạo ra và sẵn sàng sử dụng trong chương trình.</p>
-        <h3>Ghi chú</h3>
-        <ul>
-          <li>Khi chỉnh sửa kiểu dữ liệu, các Tag liên quan sẽ tự động cập nhật.</li>
-          <li>Có thể Export/Import kiểu dữ liệu giữa các chương trình.</li>
-        </ul>
-        <h3>Tài liệu tham khảo</h3>
-        <p><a href="http://literature.rockwellautomation.com/idc/groups/literature/documents/pm/1756-pm004_-en-p.pdf" target="_blank" rel="noopener">Tài liệu chính thức của Rockwell Automation</a></p>
-        <p><em>Giap Van Vy – 2012</em></p>
+  <div class="container">
+    <aside class="sidebar">
+      <a href="/" class="logo"><span>JAP</span>.VN</a>
+      <div class="sidebar-group-title"><span lang="vi">Mục lục Logix</span><span lang="en">Logix TOC</span></div>
+      <ul class="sidebar-list">
+        <li><a class="sidebar-link" href="bai-2-gioi-thieu-phan-cung-controllogix.html"><span lang="vi">Bài 2: Giới thiệu phần cứng Controllogix</span><span lang="en">Lesson 2: ControlLogix Hardware</span></a></li>
+        <li><a class="sidebar-link" href="bai-4-cai-dat-phan-mem-rslogix-5000-v20.html"><span lang="vi">Bài 4: Cài đặt phần mềm RSLogix 5000 V20</span><span lang="en">Lesson 4: Installing RSLogix 5000 V20</span></a></li>
+        <li><a class="sidebar-link" href="bai-5-rslinx-classic.html"><span lang="vi">Bài 5: RSLinx Classic</span><span lang="en">Lesson 5: RSLinx Classic</span></a></li>
+        <li><a class="sidebar-link" href="bai-6-upgrade-firmware-cho-controllogix-compactlogix.html"><span lang="vi">Bài 6: Upgrade Firmware cho Controllogix/Compactlogix</span><span lang="en">Lesson 6: Upgrading Firmware</span></a></li>
+        <li><a class="sidebar-link" href="bai-7-tao-chuong-trinh-moi-voi-rslogix-5000.html"><span lang="vi">Bài 7: Tạo chương trình mới với RSLogix 5000</span><span lang="en">Lesson 7: New Project with RSLogix 5000</span></a></li>
+        <li><a class="sidebar-link active" href="bai-8-su-dung-kieu-du-lieu-user-defined-trong-rslogix-5000.html"><span lang="vi">Bài 8: Sử dụng kiểu dữ liệu User Defined</span><span lang="en">Lesson 8: User Defined Data Types</span></a></li>
+        <li><a class="sidebar-link" href="bai-9-viet-chuong-trinh-ladder-voi-rslogix-5000.html"><span lang="vi">Bài 9: Viết chương trình Ladder với RSLogix 5000</span><span lang="en">Lesson 9: Ladder Programming</span></a></li>
+        <li><a class="sidebar-link" href="bai-10-downloadupload-va-chinh-sua-online-trong-rslogix-5000.html"><span lang="vi">Bài 10: Download/Upload và chỉnh sửa Online</span><span lang="en">Lesson 10: Download/Upload & Online Edit</span></a></li>
+        <li><a class="sidebar-link" href="bai-11-mo-phong-rslogix-5000-voi-rsemulate-5000.html"><span lang="vi">Bài 11: Mô phỏng RSLogix 5000 với RSEmulate 5000</span><span lang="en">Lesson 11: Simulation with RSEmulate 5000</span></a></li>
+        <li><a class="sidebar-link" href="bai-12-cau-hinh-remote-io-trong-rslogix-5000.html"><span lang="vi">Bài 12: Cấu hình Remote I/O trong Rslogix 5000</span><span lang="en">Lesson 12: Configuring Remote I/O</span></a></li>
+        <li><a class="sidebar-link" href="bai-13-su-dung-add-on-intruction-trong-rslogix-5000.html"><span lang="vi">Bài 13: Sử dụng Add On Instruction</span><span lang="en">Lesson 13: Add On Instruction</span></a></li>
+        <li><a class="sidebar-link" href="bai-16-cau-hinh-redundancy-controllogix-ethernetip.html"><span lang="vi">Bài 16: Cấu hình Redundancy với Controllogix</span><span lang="en">Lesson 16: Redundancy with ControlLogix</span></a></li>
+        <li><a class="sidebar-link" href="bai-17-tai-lieu-tham-khao.html"><span lang="vi">Bài 17: Tài liệu tham khảo</span><span lang="en">Lesson 17: Reference Materials</span></a></li>
+      </ul>
+      <div style="margin-top: 30px;">
+        <button class="lang-btn" onclick="toggleLang()">🌐 EN / VI</button>
       </div>
-      <div lang="en">
-        <h1>[Logix] Lesson 8: Using User Defined Data Types in RSLogix 5000</h1>
-        <p><em>Published: 21/10/2012 &mdash; Updated: 2025</em></p>
-        <p><img src="../../assets/images/logix/rslogix5000-userdefined-japvn-01.png" alt="User Defined Data Type in RSLogix 5000"></p>
-        <p>Besides basic data types like <strong>INT, DINT, BOOL, STRING</strong>, RSLogix 5000 allows users to define custom data types (User Defined Data Type) for object-oriented programming. For example, create a <strong>MOTOR</strong> object with <strong>START, STOP, RUNNING, FAULT</strong> fields...</p>
-        <h2>Create a new User Defined Data Type</h2>
-        <p>Select <strong>New Data Type</strong> in the configuration.</p>
-        <p><em>(Some illustrations are missing, please refer to the official documentation below)</em></p>
-        <ul>
-          <li>Enter the name for the new data type (e.g., MOTOR).</li>
-          <li>Enter the fields and click OK to finish.</li>
-          <li>The new data type will appear in the list.</li>
-        </ul>
-        <h2>Create a new Tag with the new data type</h2>
-        <p>In <strong>Controller Tag</strong>, create a new Tag (e.g., MOTOR1) with data type MOTOR.</p>
-        <p><img src="../../assets/images/logix/rslogix5000-userdefined-japvn-07.png" alt="Tag with User Defined Data Type"></p>
-        <p>The MOTOR fields will be automatically created and ready to use in your program.</p>
-        <h3>Notes</h3>
-        <ul>
-          <li>Editing the data type will automatically update all related Tags.</li>
-          <li>You can Export/Import data types between projects.</li>
-        </ul>
-        <h3>Reference</h3>
-        <p><a href="http://literature.rockwellautomation.com/idc/groups/literature/documents/pm/1756-pm004_-en-p.pdf" target="_blank" rel="noopener">Official Rockwell Automation documentation</a></p>
-        <p><em>Giap Van Vy – 2012</em></p>
-      </div>
-    </article>
+    </aside>
+    <main class="main">
+      <article>
+        <div lang="vi">
+          <h1>[Logix] Bài 8: Sử dụng kiểu dữ liệu User Defined trong RSLogix 5000</h1>
+          <p><em>Ngày đăng: 21/10/2012 &mdash; Cập nhật: 2025</em></p>
+          <p><img src="../../assets/images/logix/rslogix5000-userdefined-japvn-01.png" alt="User Defined Data Type trong RSLogix 5000"></p>
+          <p>Ngoài các kiểu dữ liệu cơ bản như <strong>INT, DINT, BOOL, STRING</strong>, RSLogix 5000 cho phép người dùng định nghĩa các kiểu dữ liệu riêng (User Defined Data Type) để tối ưu hóa lập trình hướng đối tượng. Ví dụ: tạo đối tượng <strong>MOTOR</strong> với các thành phần <strong>START, STOP, RUNNING, FAULT</strong>...</p>
+          <h2>Tạo mới User Defined Data Type</h2>
+          <p>Chọn <strong>New Data Type</strong> trong phần cấu hình.</p>
+          <p><em>(Một số hình minh họa không còn file gốc, vui lòng tham khảo tài liệu chính thức bên dưới)</em></p>
+          <ul>
+            <li>Nhập tên kiểu dữ liệu cho đối tượng mới (ví dụ: MOTOR).</li>
+            <li>Nhập các thành phần của đối tượng và chọn OK để hoàn tất.</li>
+            <li>Kiểu dữ liệu mới sẽ xuất hiện trong danh sách.</li>
+          </ul>
+          <h2>Tạo Tag mới với kiểu dữ liệu vừa tạo</h2>
+          <p>Trong <strong>Controller Tag</strong>, tạo Tag mới (ví dụ: MOTOR1) với kiểu dữ liệu là MOTOR.</p>
+          <p><img src="../../assets/images/logix/rslogix5000-userdefined-japvn-07.png" alt="Tag với User Defined Data Type"></p>
+          <p>Các thành phần của MOTOR sẽ tự động được tạo ra và sẵn sàng sử dụng trong chương trình.</p>
+          <h3>Ghi chú</h3>
+          <ul>
+            <li>Khi chỉnh sửa kiểu dữ liệu, các Tag liên quan sẽ tự động cập nhật.</li>
+            <li>Có thể Export/Import kiểu dữ liệu giữa các chương trình.</li>
+          </ul>
+          <h3>Tài liệu tham khảo</h3>
+          <p><a href="http://literature.rockwellautomation.com/idc/groups/literature/documents/pm/1756-pm004_-en-p.pdf" target="_blank" rel="noopener">Tài liệu chính thức của Rockwell Automation</a></p>
+          <p><em>Giap Van Vy – 2012</em></p>
+        </div>
+        <div lang="en">
+          <h1>[Logix] Lesson 8: Using User Defined Data Types in RSLogix 5000</h1>
+          <p><em>Published: 21/10/2012 &mdash; Updated: 2025</em></p>
+          <p><img src="../../assets/images/logix/rslogix5000-userdefined-japvn-01.png" alt="User Defined Data Type in RSLogix 5000"></p>
+          <p>Besides basic data types like <strong>INT, DINT, BOOL, STRING</strong>, RSLogix 5000 allows users to define custom data types (User Defined Data Type) for object-oriented programming. For example, create a <strong>MOTOR</strong> object with <strong>START, STOP, RUNNING, FAULT</strong> fields...</p>
+          <h2>Create a new User Defined Data Type</h2>
+          <p>Select <strong>New Data Type</strong> in the configuration.</p>
+          <p><em>(Some illustrations are missing, please refer to the official documentation below)</em></p>
+          <ul>
+            <li>Enter the name for the new data type (e.g., MOTOR).</li>
+            <li>Enter the fields and click OK to finish.</li>
+            <li>The new data type will appear in the list.</li>
+          </ul>
+          <h2>Create a new Tag with the new data type</h2>
+          <p>In <strong>Controller Tag</strong>, create a new Tag (e.g., MOTOR1) with data type MOTOR.</p>
+          <p><img src="../../assets/images/logix/rslogix5000-userdefined-japvn-07.png" alt="Tag with User Defined Data Type"></p>
+          <p>The MOTOR fields will be automatically created and ready to use in your program.</p>
+          <h3>Notes</h3>
+          <ul>
+            <li>Editing the data type will automatically update all related Tags.</li>
+            <li>You can Export/Import data types between projects.</li>
+          </ul>
+          <h3>Reference</h3>
+          <p><a href="http://literature.rockwellautomation.com/idc/groups/literature/documents/pm/1756-pm004_-en-p.pdf" target="_blank" rel="noopener">Official Rockwell Automation documentation</a></p>
+          <p><em>Giap Van Vy – 2012</em></p>
+        </div>
+      </article>
+    </main>
   </div>
   <script>
     function toggleLang() {
@@ -85,25 +108,47 @@
   </script>
 </body>
 </html>
-<!-- Internal links for SEO -->
-<hr>
-<div class="internal-links" style="max-width:900px;margin:auto;padding:1em 0;">
-  <h3>Liên kết nội bộ (Internal links)</h3>
-  <ul>
-    <li><strong>Bài trước:</strong> <a href="bai-7-tao-chuong-trinh-moi-voi-rslogix-5000.html">Bài 7: Tạo chương trình mới với RSLogix 5000</a></li>
-    <li><strong>Bài tiếp theo:</strong> <a href="bai-9-viet-chuong-trinh-ladder-voi-rslogix-5000.html">Bài 9: Viết chương trình Ladder với RSLogix 5000</a></li>
-    <li><strong>Các bài liên quan:</strong> 
-      <a href="bai-10-downloadupload-va-chinh-sua-online-trong-rslogix-5000.html">Bài 10</a>, 
-      <a href="bai-11-mo-phong-rslogix-5000-voi-rsemulate-5000.html">Bài 11</a>
-    </li>
-  </ul>
-  <h3>Internal links</h3>
-  <ul>
-    <li><strong>Previous lesson:</strong> <a href="bai-7-tao-chuong-trinh-moi-voi-rslogix-5000.html">Lesson 7: Creating a new program with RSLogix 5000</a></li>
-    <li><strong>Next lesson:</strong> <a href="bai-9-viet-chuong-trinh-ladder-voi-rslogix-5000.html">Lesson 9: Writing Ladder Programs in RSLogix 5000</a></li>
-    <li><strong>Related lessons:</strong> 
-      <a href="bai-10-downloadupload-va-chinh-sua-online-trong-rslogix-5000.html">Lesson 10</a>, 
-      <a href="bai-11-mo-phong-rslogix-5000-voi-rsemulate-5000.html">Lesson 11</a>
-    </li>
-  </ul>
-</div>
+  <section class="related-articles">
+    <div class="related-title">
+      <span lang="vi">Bài viết liên quan</span>
+      <span lang="en">Related Articles</span>
+    </div>
+    <div class="related-list">
+      <a class="related-card" href="bai-7-tao-chuong-trinh-moi-voi-rslogix-5000.html">
+        <div class="related-meta">Bài 7 / <span lang="en">Lesson 7</span></div>
+        <div class="related-title-card"><span lang="vi">Tạo chương trình mới với RSLogix 5000</span><span lang="en">New Project with RSLogix 5000</span></div>
+      </a>
+      <a class="related-card" href="bai-9-viet-chuong-trinh-ladder-voi-rslogix-5000.html">
+        <div class="related-meta">Bài 9 / <span lang="en">Lesson 9</span></div>
+        <div class="related-title-card"><span lang="vi">Viết chương trình Ladder với RSLogix 5000</span><span lang="en">Ladder Programming with RSLogix 5000</span></div>
+      </a>
+      <a class="related-card" href="bai-10-downloadupload-va-chinh-sua-online-trong-rslogix-5000.html">
+        <div class="related-meta">Bài 10 / <span lang="en">Lesson 10</span></div>
+        <div class="related-title-card"><span lang="vi">Download/Upload và chỉnh sửa Online</span><span lang="en">Download/Upload & Online Edit</span></div>
+      </a>
+    </div>
+  </section>
+  <style>
+    .container { max-width: 1100px; margin: 0 auto; display: flex; min-height: 100vh; }
+    .sidebar { width: 280px; background: #f8f9fa; border-right: 1px solid #e1e4e8; padding: 30px 20px; display: flex; flex-direction: column; }
+    .logo { font-size: 1.5rem; font-weight: 700; color: #000; margin-bottom: 30px; display: block; text-decoration: none !important; }
+    .logo span { color: #0056b3; }
+    .sidebar-group-title { font-size: 1.05rem; color: #444; margin: 18px 0 8px 0; font-weight: 600; letter-spacing: 0.5px; }
+    .sidebar-list { list-style: none; padding: 0; margin: 0; }
+    .sidebar-list li { margin-bottom: 6px; }
+    .sidebar-link { display: block; padding: 7px 0 7px 10px; border-radius: 4px; color: #666; font-size: 1rem; transition: background 0.2s; }
+    .sidebar-link.active, .sidebar-link:hover { background: #e6f0fa; color: #0056b3; font-weight: 500; }
+    .main { flex: 1; padding: 40px 60px; }
+    .related-articles { max-width: 900px; margin: 40px auto 0 auto; padding: 0 0 32px 0; }
+    .related-title { font-size: 1.15em; font-weight: 600; color: #0056b3; margin-bottom: 18px; }
+    .related-list { display: flex; flex-wrap: wrap; gap: 18px; }
+    .related-card { flex: 1 1 260px; min-width: 220px; background: #f8f9fa; border-radius: 7px; box-shadow: 0 1px 6px #e1e4e8; padding: 18px 18px 14px 18px; text-decoration: none; color: #222; transition: box-shadow 0.2s, background 0.2s; display: block; }
+    .related-card:hover { background: #e6f0fa; box-shadow: 0 2px 12px #cbe3ff; }
+    .related-meta { color: #888; font-size: 0.98em; margin-bottom: 6px; }
+    .related-title-card { font-size: 1.08em; font-weight: 500; color: #0056b3; }
+    @media (max-width: 900px) {
+      .container { flex-direction: column; }
+      .sidebar { width: 100%; border-right: none; border-bottom: 1px solid #e1e4e8; }
+      .main { padding: 30px 20px; }
+    }
+  </style>
