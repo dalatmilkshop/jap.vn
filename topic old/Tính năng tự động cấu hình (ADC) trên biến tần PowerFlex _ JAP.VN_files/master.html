@@ -35,7 +35,7 @@
 				<ul class="wpl-avatars sd-like-gravatars">
 					<% _.each( likers, function( item, key, list) { %>
 						<li class='<%= item.css_class %>'><a href="<%= item.profile_URL %>" title="<%= item.name %>" class="wpl-liker" rel="nofollow" target="_parent">
-							<img src='<%= item.avatar_URL %>' class='avatar avatar-30' alt='<%= item.name %>' width='30' height='30' />
+							<img loading="lazy" src='<%= item.avatar_URL %>' class='avatar avatar-30' alt='<%= item.name %>' width='30' height='30' />
 						</a></li>
 					<% }); %>
 				</ul>
