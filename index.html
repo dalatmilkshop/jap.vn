@@ -1,11 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0056b3">
     <meta name="description" content="JAP - Industrial Automation Documentation. Technical archives for Rockwell Automation, PLC, and SCADA systems.">
     <title>JAP.vn - Automation Documentation Hub</title>
-    <script type="application/ld+json">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     {
       "@context": "https://schema.org",
       "@type": "WebSite",
@@ -26,28 +30,63 @@
     </script>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
-        /* --- VARIABLES --- */
+        /* --- CSS CUSTOM PROPERTIES --- */
         :root {
-            --primary: #0056b3; /* Wiki Blue */
+            --primary-color: #0056b3;
             --text-dark: #333;
             --text-light: #666;
             --bg-light: #f8f9fa;
-            --border: #e1e4e8;
+            --border-color: #e1e4e8;
+            --shadow: rgba(0,0,0,0.05);
+            --transition: 0.2s ease;
         }
 
         body.dark-mode {
             --text-dark: #e0e0e0;
             --text-light: #bbb;
             --bg-light: #2a2a2a;
-            --border: #444;
-            background-color: #1a1a1a;
-            color: var(--text-dark);
+            --border-color: #444;
+            --shadow: rgba(0,0,0,0.1);
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Roboto', sans-serif; background-color: #fff; color: var(--text-dark); line-height: 1.6; }
-        a { text-decoration: none; color: var(--primary); }
-        a:hover { text-decoration: underline; }
+        /* --- RESET & BASE --- */
+        *, *::before, *::after { box-sizing: border-box; }
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background-color: #fff;
+            color: var(--text-dark);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* --- ACCESSIBILITY --- */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 6px;
+            background: var(--primary-color);
+            color: white;
+            padding: 8px;
+            text-decoration: none;
+            border-radius: 4px;
+            z-index: 1000;
+        }
+        .skip-link:focus { top: 6px; }
+
+        /* --- LINKS --- */
+        a {
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: color var(--transition);
+        }
+        a:hover, a:focus {
+            text-decoration: underline;
+            color: var(--primary-color);
+        }
+        a:focus { outline: 2px solid var(--primary-color); outline-offset: 2px; }
 
         /* LOGIC NGÔN NGỮ (HARDCORE FIX) */
         [lang="vi"] { display: none !important; }
@@ -64,14 +103,55 @@
         .container { max-width: 1100px; margin: 0 auto; display: flex; min-height: 100vh; }
         
         /* --- SIDEBAR --- */
-        .sidebar { width: 280px; background: var(--bg-light); border-right: 1px solid var(--border); padding: 30px 20px; display: flex; flex-direction: column; }
-        .logo { font-size: 1.5rem; font-weight: 700; color: #000; margin-bottom: 30px; display: block; text-decoration: none !important; }
-        .logo span { color: var(--primary); }
+        .sidebar {
+            width: 280px;
+            background: var(--bg-light);
+            border-right: 1px solid var(--border-color);
+            padding: 30px 20px;
+            display: flex;
+            flex-direction: column;
+        }
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #000;
+            margin-bottom: 30px;
+            display: block;
+            text-decoration: none !important;
+        }
+        .logo span { color: var(--primary-color); }
         
-        .menu-title { font-size: 0.75rem; text-transform: uppercase; color: #999; margin-bottom: 10px; font-weight: 700; letter-spacing: 1px; margin-top: 20px; }
-        .menu-link { display: block; padding: 8px 0; color: var(--text-light); font-size: 0.95rem; }
-        .menu-link:hover { color: var(--primary); }
-        .search-box { width: 100%; padding: 8px 12px; border: 1px solid var(--border); border-radius: 4px; margin-bottom: 20px; font-size: 0.9rem; }
+        .menu-title {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            color: #999;
+            margin-bottom: 10px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin-top: 20px;
+        }
+        .menu-link {
+            display: block;
+            padding: 8px 0;
+            color: var(--text-light);
+            font-size: 0.95rem;
+            transition: color var(--transition);
+        }
+        .menu-link:hover, .menu-link:focus { color: var(--primary-color); }
+        .search-box {
+            width: 100%;
+            padding: 8px 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+            transition: border-color var(--transition);
+        }
+        .search-box:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 2px rgba(0, 86, 179, 0.2);
+        }
 
         /* --- MAIN CONTENT --- */
         .main { flex: 1; padding: 40px 60px; }
@@ -83,19 +163,50 @@
         .intro-text { font-size: 1.1rem; color: var(--text-light); margin-bottom: 40px; max-width: 700px; }
 
         /* --- CARDS GRID --- */
-        .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
-        .topic-card { border: 1px solid var(--border); border-radius: 6px; padding: 25px; transition: 0.2s; }
-        .topic-card:hover { border-color: var(--primary); box-shadow: 0 4px 12px rgba(0,0,0,0.05); text-decoration: none; }
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        .topic-card {
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 25px;
+            transition: all var(--transition);
+            text-decoration: none;
+        }
+        .topic-card:hover, .topic-card:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 4px 12px var(--shadow);
+            transform: translateY(-2px);
+        }
+        .topic-card:focus { outline: 2px solid var(--primary-color); outline-offset: 2px; }
         .topic-icon { font-size: 24px; margin-bottom: 15px; display: block; }
-        .topic-title { font-size: 1.2rem; font-weight: 600; color: var(--text-dark); margin-bottom: 10px; }
+        .topic-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 10px;
+        }
         .topic-desc { font-size: 0.9rem; color: var(--text-light); }
 
-        /* --- FOOTER --- */
-        .footer-simple { margin-top: 60px; padding-top: 20px; border-top: 1px solid var(--border); font-size: 0.85rem; color: #999; display: flex; justify-content: space-between; }
-        
-        /* LANG SWITCH */
-        .lang-btn { background: #fff; border: 1px solid var(--border); padding: 5px 10px; border-radius: 4px; cursor: pointer; font-size: 0.8rem; margin-top: auto; }
-        .lang-btn:hover { border-color: var(--primary); color: var(--primary); }
+        /* --- BUTTONS --- */
+        .lang-btn {
+            background: #fff;
+            border: 1px solid var(--border-color);
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            margin-top: auto;
+            transition: all var(--transition);
+        }
+        .lang-btn:hover, .lang-btn:focus {
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+            background: var(--bg-light);
+        }
+        .lang-btn:focus { outline: 2px solid var(--primary-color); outline-offset: 2px; }
 
         @media (max-width: 768px) {
             .container { flex-direction: column; }
@@ -105,6 +216,7 @@
     </style>
 </head>
 <body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
 
     <div class="container">
         <aside class="sidebar">
@@ -133,7 +245,7 @@
             </div>
         </aside>
 
-        <main class="main">
+        <main class="main" id="main-content">
             <div class="header-top">
                 <span class="last-update">
                     <span lang="en">System Status: <strong>Online</strong></span>
@@ -220,35 +332,59 @@
         </main>
     </div>
 
-    <script>
-        const savedLang = localStorage.getItem('jap_lang');
-        const body = document.body;
-        // Chỉ hiện tiếng Việt nếu đã lưu trước đó
-        if (savedLang === 'vi') body.classList.add('show-vi');
+    <script defer>
+        // Debounce utility function
+        function debounce(func, wait) {
+            let timeout;
+            return function executedFunction(...args) {
+                const later = () => {
+                    clearTimeout(timeout);
+                    func(...args);
+                };
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait);
+            };
+        }
 
+        // DOM ready
+        document.addEventListener('DOMContentLoaded', function() {
+            const body = document.body;
+            const savedLang = localStorage.getItem('jap_lang');
+
+            // Language preference
+            if (savedLang === 'vi') body.classList.add('show-vi');
+
+            // Dark mode preference
+            if (localStorage.getItem('jap_dark') === 'dark') body.classList.add('dark-mode');
+
+            // Optimized search with debounce
+            const searchBox = document.getElementById('search-box');
+            const menuLinks = document.querySelectorAll('.menu-link');
+
+            const performSearch = debounce(function() {
+                const query = this.value.toLowerCase().trim();
+                menuLinks.forEach(link => {
+                    const text = link.textContent.toLowerCase();
+                    const isVisible = text.includes(query);
+                    link.style.display = isVisible ? 'block' : 'none';
+                });
+            }, 150);
+
+            searchBox.addEventListener('input', performSearch);
+        });
+
+        // Theme toggle functions
         function toggleLanguage() {
+            const body = document.body;
             body.classList.toggle('show-vi');
-            // Lưu trạng thái
             localStorage.setItem('jap_lang', body.classList.contains('show-vi') ? 'vi' : 'en');
         }
 
         function toggleDarkMode() {
+            const body = document.body;
             body.classList.toggle('dark-mode');
             localStorage.setItem('jap_dark', body.classList.contains('dark-mode') ? 'dark' : 'light');
         }
-
-        // Load preferences from storage
-        if (localStorage.getItem('jap_dark') === 'dark') body.classList.add('dark-mode');
-
-        // Search functionality
-        document.getElementById('search-box').addEventListener('input', function() {
-            const query = this.value.toLowerCase();
-            const links = document.querySelectorAll('.menu-link');
-            links.forEach(link => {
-                const text = link.textContent.toLowerCase();
-                link.style.display = text.includes(query) ? 'block' : 'none';
-            });
-        });
     </script>
 </body>
 </html>
