@@ -91,16 +91,18 @@
         }
         a:focus { outline: 2px solid var(--primary-color); outline-offset: 2px; }
 
-        /* LOGIC NGÔN NGỮ (HARDCORE FIX) */
-        [lang="vi"] { display: none !important; }
-        [lang="en"] { display: block !important; }
-        span[lang="vi"] { display: none !important; }
-        span[lang="en"] { display: inline !important; }
+          /* LOGIC NGÔN NGỮ (HARDCORE FIX)
+              Limit selectors to elements inside the body so the <html lang="vi">
+              attribute does not hide the whole document. */
+          body [lang="vi"] { display: none !important; }
+          body [lang="en"] { display: revert !important; }
+          span[lang="vi"] { display: none !important; }
+          span[lang="en"] { display: inline !important; }
 
-        body.show-vi [lang="vi"] { display: block !important; }
-        body.show-vi [lang="en"] { display: none !important; }
-        body.show-vi span[lang="vi"] { display: inline !important; }
-        body.show-vi span[lang="en"] { display: none !important; }
+          body.show-vi [lang="vi"] { display: revert !important; }
+          body.show-vi [lang="en"] { display: none !important; }
+          body.show-vi span[lang="vi"] { display: inline !important; }
+          body.show-vi span[lang="en"] { display: none !important; }
 
         /* --- LAYOUT --- */
         .container { max-width: 1100px; margin: 0 auto; display: flex; min-height: 100vh; }
